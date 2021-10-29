@@ -3,8 +3,9 @@ import createSagaMiddleware from 'redux-saga';
 import { reduxBatch } from '@manaflair/redux-batch';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer, rootSaga } from './combine';
+import { createLogger } from 'redux-logger';
 
-
+const logger = createLogger();
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
 
