@@ -1,27 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import RootStack from './src/navigation';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NativeBaseProvider } from 'native-base';
+import { navigationRef } from './src/navigation/route';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, padding: 100 }}>
-      <Text>Home</Text>
-    </View>
-  )
-}
-
-const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen}></Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer ref={navigationRef}>
+        <NativeBaseProvider>
+          <RootStack></RootStack>
+        </NativeBaseProvider>
+      </NavigationContainer>
+    </Provider>
+
   );
 }
 

@@ -1,0 +1,1 @@
+export const API_URL = "https://wrnnt2i9j9.execute-api.ap-northeast-2.amazonaws.com/staging/"
