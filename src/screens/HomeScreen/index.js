@@ -1,11 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Box, Center, Text, NativeBaseProvider } from 'native-base';
+import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import { navigate } from '../../navigation/route';
+
 
 function HomeScreen({ navigation }) {
-  console.log(navigation);
-  return (<View style={{ paddingBottom: 300 }}>
-    <Text>HomeScreen</Text>
-  </View>)
-}
+  return (
+    <NativeBaseProvider>
+      <Center flex={1} px="3" >
+        {/* <Box width="100%" onTouchStart={() => { alert('touch!') }} textAlign="center"> */}
+        <Text fontSize={45} italic bold onTouchStart={() => navigate('Auth')}>earth</Text>
+        {/* </Box> */}
+      </Center>
+    </NativeBaseProvider>
+  )
+};
 
 export default HomeScreen;

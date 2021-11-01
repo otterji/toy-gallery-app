@@ -8,8 +8,8 @@ const Stack = createNativeStackNavigator();
 
 export function AuthStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={LoginInScreen}></Stack.Screen>
+    <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
+      <Stack.Screen name="Welcome" component={LoginInScreen}  ></Stack.Screen>
     </Stack.Navigator>
   );
 }
