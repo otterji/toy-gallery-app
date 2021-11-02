@@ -1,4 +1,4 @@
-import { Box, Button, Center, Input, Text } from 'native-base';
+import { Box, Button, Center, Input, Text, Pressable } from 'native-base';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -41,9 +41,9 @@ function LoginScreen({ navigation }) {
         }}
           marginBottom="30"
           backgroundColor="#E7DFC2"></Input>
-        <Box padding={10} onPress={() => navigate('SignUp')}>
+        <Text padding={10} onPress={() => navigate('SignUp')}>
           회원가입
-        </Box>
+        </Text>
         <Button onPress={() => dispatch(authActions.postRegister({
           email, password
         }))}
