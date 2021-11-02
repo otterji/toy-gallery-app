@@ -8,20 +8,20 @@ import { NativeBaseProvider } from 'native-base';
 import { navigationRef } from './src/navigation/route';
 import { Provider } from 'react-redux';
 import store from './src/store';
+import colors from './src/styles/colors';
 
-
-const myTheme = {
-  ...DefaultTheme,
+const navigationTheme = {
   colors: {
-    ...DefaultTheme.colors,
-    background: '#FFFDE7'
-  }
-};
+    background: colors.background,
+    text: colors.textPrimary,
+    border: 'none',
+  },
+}
 
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer ref={navigationRef} theme={myTheme}>
+      <NavigationContainer ref={navigationRef} theme={navigationTheme}>
         <NativeBaseProvider>
           <RootStack />
         </NativeBaseProvider>
@@ -30,12 +30,3 @@ export default function App() {
 
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFDE7',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

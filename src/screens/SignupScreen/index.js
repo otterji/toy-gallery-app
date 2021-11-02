@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import authActions from '../../store/auth/actions';
 
 
-function LoginInScreen({ navigation }) {
+function SignupScreen({ navigation }) {
   const { navigate } = navigation;
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.authReducer);
@@ -22,13 +22,10 @@ function LoginInScreen({ navigation }) {
     onChangeText: (text) => setPassword(text)
   };
 
-  console.log(email);
-
-
   return (
     <Box width="100%" height="100%">
       <Box paddingX='15px'>
-        <Text fontSize="20px" bold marginY='20'> 안녕하세요, 어스입니다.</Text>
+        <Text fontSize="20px" bold marginY='20'>첫 방문이시군요!</Text>
         <Text fontSize="14px" >이메일</Text>
         <Input {...emailInput} mx="3" placeholder="이메일" w={{
           base: "95%",
@@ -57,4 +54,4 @@ function LoginInScreen({ navigation }) {
   )
 }
 
-export default LoginInScreen;
+export default SignupScreen;
