@@ -28,10 +28,17 @@ function SignupScreen({ navigation }) {
   };
 
   useEffect(() => {
-    setIsDuplicated(isDuplicated);
-  }, [isDuplicated])
+    return () => {
+      console.log('destroyed');
+      dispatch(authActions.resetStore());
+    };
+  }, []);
 
-  console.log('here', curIsDuplicated)
+  useEffect(() => {
+    setIsDuplicated(isDuplicated);
+  }, [isDuplicated]);
+
+  console.log('here', curIsDuplicated);
 
   return (
 

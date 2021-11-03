@@ -74,6 +74,9 @@ export function* getEmailCheckSaga({ email }) {
       type: authConstants.GET_EMAIL_CHECK.SUCCESS,
       isDuplicated,
     });
+    if (isDuplicated === false) {
+      yield RootNavigation.replace('Auth', { screen: 'Name' });
+    }
   } catch (err) {
     yield put({ type: authConstants.GET_EMAIL_CHECK.FAIL });
 

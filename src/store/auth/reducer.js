@@ -8,7 +8,7 @@
  */
 
 import produce from 'immer';
-import authConstants from './constants';
+import authConstants, { RESET_STORE } from './constants';
 
 // The initial state of the App
 export const initialState = {
@@ -79,6 +79,10 @@ const authReducer = (state = initialState, action) =>
 
       case authConstants.LOG_OUT.SUCCESS:
         draft.user = initialState.user;
+        break;
+      case RESET_STORE:
+        draft.loading = false;
+        draft.isDuplicated = false;
         break;
     }
   });

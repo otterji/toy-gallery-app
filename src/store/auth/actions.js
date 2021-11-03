@@ -1,4 +1,4 @@
-import authConstants from "./constants";
+import authConstants, { RESET_STORE } from "./constants";
 
 const authActions = {
   logIn: ({ email, password }) => ({
@@ -20,6 +20,9 @@ const authActions = {
   getEmailCheckAction: ({ email }) => ({
     type: authConstants.GET_EMAIL_CHECK.REQUEST,
     email,
+  }),
+  resetStore: () => ({
+    type: RESET_STORE,
   }),
 };
 
