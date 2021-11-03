@@ -16,6 +16,7 @@ export const initialState = {
   loginLoading: false,
   registerLoading: false,
   isDuplicated: false,
+  emailCheckLoading: false,
   user: {
     id: null,
     email: ""
@@ -36,6 +37,19 @@ const authReducer = (state = initialState, action) =>
 
       case authConstants.LOG_IN.FAIL:
         draft.loginLoading = false;
+        break;
+
+      case authConstants.GET_EMAIL_CHECK.REQUEST:
+        draft.emailCheckLoading = true;
+        break;
+
+      case authConstants.GET_EMAIL_CHECK.SUCCESS:
+        draft.emailCheckLoading = false;
+        draft.isDuplicated = action.isDuplicated;
+        break;
+
+      case authConstants.GET_EMAIL_CHECK.FAIL:
+        draft.emailCheckLoading = false;
         break;
 
       case authConstants.GET_ME.REQUEST:

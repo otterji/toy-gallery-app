@@ -23,24 +23,30 @@ function LoginScreen({ navigation }) {
     value: password,
     onChangeText: (text) => setPassword(text)
   };
-  // style = {{ borderColor: "black", borderWidth: 1 }}
 
   return (
     <Box paddingX="15px" width="100%" height="100%">
       <Box>
         <Text fontSize="20px" bold marginY='25px'> 안녕하세요, 어스입니다.</Text>
         <Text fontSize="14px" >이메일*</Text>
-        <Input {...emailInput} placeholder="이메일을 입력해주세요"
+        <Input
+          {...emailInput}
+          placeholder="이메일을 입력해주세요"
           backgroundColor="#E7DFC2"
           marginBottom="15px"
-        ></Input>
+          borderColor="#E7DFC2"
+        />
         <Text fontSize="14px" >비밀번호*</Text>
-        <Input {...passwordInput} placeholder="비밀번호를 입력해주세요"
-          marginBottom="30"
-          backgroundColor="#E7DFC2"></Input>
+        <Input
+          {...passwordInput}
+          placeholder="비밀번호를 입력해주세요"
+          borderColor="#E7DFC2"
+          marginBottom="50"
+          backgroundColor="#E7DFC2"
+        />
         <DefaultBtn text="회원가입하기" onPressBtn={() => navigate("SignUp")} disabled={false}></DefaultBtn>
         <Box height="15px" />
-        <DefaultBtn text="로그인 후 작품 관람하기" onPressBtn={() => () => dispatch(authActions.postRegister({
+        <DefaultBtn text="로그인 후 작품 관람하기" onPressBtn={() => dispatch(authActions.postRegister({
           email, password
         }))} disabled={email.length === 0 || password.length === 0}></DefaultBtn>
       </Box >

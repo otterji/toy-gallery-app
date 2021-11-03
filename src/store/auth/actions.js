@@ -17,8 +17,8 @@ const authActions = {
     email,
     password
   }),
-  getEmailCheckAction: (email) => ({
-    type: authActionTypes.GET_EMAIL_CHECK.REQUEST,
+  getEmailCheckAction: ({ email }) => ({
+    type: authConstants.GET_EMAIL_CHECK.REQUEST,
     email,
   }),
 };

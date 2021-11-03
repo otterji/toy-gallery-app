@@ -66,10 +66,25 @@ export function* getMeSaga() {
   }
 }
 
+export function* getEmailCheckSaga({ email }) {
+  const url = createAPI(`/auth/email?q=${email}`);
+  try {
+    const { isDuplicated } = yield call(fetcher, url);
+    yield put({
+      type: authConstants.GET_EMAIL_CHECK.SUCCESS,
+      isDuplicated,
+    });
+  } catch (err) {
+    yield put({ type: authConstants.GET_EMAIL_CHECK.FAIL });
+
+  }
+}
+
 export default function* authSaga() {
   yield all([
     takeLatest(authConstants.POST_REGISTER.REQUEST, postRegisterSaga),
     takeLatest(authConstants.LOG_IN.REQUEST, logInSaga),
     takeLatest(authConstants.GET_ME.REQUEST, getMeSaga),
+    takeLatest(authConstants.GET_EMAIL_CHECK.REQUEST, getEmailCheckSaga),
   ]);
 }
