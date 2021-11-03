@@ -17,6 +17,10 @@ const authActions = {
     email,
     password
   }),
+  getEmailCheckAction: (email) => ({
+    type: authActionTypes.GET_EMAIL_CHECK.REQUEST,
+    email,
+  }),
 };
 
 export default authActions

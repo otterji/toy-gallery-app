@@ -30,18 +30,13 @@ function SignupScreen({ navigation }) {
       <Box paddingX='15px'>
         <Text fontSize="20px" bold marginY='20'>첫 방문이시군요!</Text>
         <Text fontSize="14px" >이메일</Text>
-        <Input {...emailInput} mx="3" placeholder="이메일을 입력해주세요" w={{
-          base: "95%",
-          md: "25%",
-        }}
+        <Input {...emailInput} placeholder="이메일을 입력해주세요"
           backgroundColor="#E7DFC2"
           marginBottom="10"
+          ㅠ
         ></Input>
         <Text fontSize="14px" >비밀번호</Text>
-        <Input {...passwordInput} mx="3" placeholder="비밀번호를 입력해주세요" w={{
-          base: "95%",
-          md: "25%",
-        }}
+        <Input {...passwordInput} placeholder="비밀번호를 입력해주세요"
           marginBottom="30"
           backgroundColor="#E7DFC2"></Input>
         {/* <Button onPress={() => dispatch(authActions.postRegister({

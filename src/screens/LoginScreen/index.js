@@ -2,6 +2,8 @@ import { Box, Button, Center, Input, Text, Pressable } from 'native-base';
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { borderWidth } from 'styled-system';
+import DefaultBtn from '../../components/DefaultBtn';
 import authActions from '../../store/auth/actions';
 
 
@@ -21,37 +23,26 @@ function LoginScreen({ navigation }) {
     value: password,
     onChangeText: (text) => setPassword(text)
   };
+  // style = {{ borderColor: "black", borderWidth: 1 }}
 
   return (
-    <Box width="100%" height="100%">
-      <Box paddingX='15px'>
-        <Text fontSize="20px" bold marginY='20'> 안녕하세요, 어스입니다.</Text>
-        <Text fontSize="14px" >이메일</Text>
-        <Input {...emailInput} mx="3" placeholder="이메일" w={{
-          base: "95%",
-          md: "25%",
-        }}
+    <Box paddingX="15px" width="100%" height="100%">
+      <Box>
+        <Text fontSize="20px" bold marginY='25px'> 안녕하세요, 어스입니다.</Text>
+        <Text fontSize="14px" >이메일*</Text>
+        <Input {...emailInput} placeholder="이메일을 입력해주세요"
           backgroundColor="#E7DFC2"
-          marginBottom="10"
+          marginBottom="15px"
         ></Input>
-        <Text fontSize="14px" >비밀번호</Text>
-        <Input {...passwordInput} mx="3" placeholder="비밀번호" w={{
-          base: "95%",
-          md: "25%",
-        }}
+        <Text fontSize="14px" >비밀번호*</Text>
+        <Input {...passwordInput} placeholder="비밀번호를 입력해주세요"
           marginBottom="30"
           backgroundColor="#E7DFC2"></Input>
-        <Text padding={10} onPress={() => navigate('SignUp')}>
-          회원가입
-        </Text>
-        <Button onPress={() => dispatch(authActions.postRegister({
+        <DefaultBtn text="회원가입" onPressBtn={() => navigate("SignUp")} disabled={false}></DefaultBtn>
+        <Box height="15px" />
+        <DefaultBtn text="작품 관람하기" onPressBtn={() => () => dispatch(authActions.postRegister({
           email, password
-        }))}
-          width="100%"
-          backgroundColor='#E7E2D4'
-          color='#ABA9A1'
-          height='48px'
-        >작품 관람하기</Button>
+        }))} disabled={email.length === 0 || password.length === 0}></DefaultBtn>
       </Box >
     </Box >
   )

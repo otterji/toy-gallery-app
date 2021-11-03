@@ -24,10 +24,7 @@ function NameScreen({ navigation }) {
       <Box paddingX='15px'>
         <Text fontSize="20px" bold marginY='20'>사용하실 닉네임을 입력해주세요 :)</Text>
         <Text fontSize="14px" >닉네임</Text>
-        <Input {...nickNameInput} mx="3" placeholder="어스에서 사용할 닉네임을 입력해주세요" w={{
-          base: "95%",
-          md: "25%",
-        }}
+        <Input {...nickNameInput} placeholder="어스에서 사용할 닉네임을 입력해주세요"
           backgroundColor="#E7DFC2"
           marginBottom="10"
         ></Input>
