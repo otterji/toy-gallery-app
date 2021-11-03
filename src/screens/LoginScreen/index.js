@@ -38,9 +38,9 @@ function LoginScreen({ navigation }) {
         <Input {...passwordInput} placeholder="비밀번호를 입력해주세요"
           marginBottom="30"
           backgroundColor="#E7DFC2"></Input>
-        <DefaultBtn text="회원가입" onPressBtn={() => navigate("SignUp")} disabled={false}></DefaultBtn>
+        <DefaultBtn text="회원가입하기" onPressBtn={() => navigate("SignUp")} disabled={false}></DefaultBtn>
         <Box height="15px" />
-        <DefaultBtn text="작품 관람하기" onPressBtn={() => () => dispatch(authActions.postRegister({
+        <DefaultBtn text="로그인 후 작품 관람하기" onPressBtn={() => () => dispatch(authActions.postRegister({
           email, password
         }))} disabled={email.length === 0 || password.length === 0}></DefaultBtn>
       </Box >

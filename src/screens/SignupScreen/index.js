@@ -33,7 +33,6 @@ function SignupScreen({ navigation }) {
         <Input {...emailInput} placeholder="이메일을 입력해주세요"
           backgroundColor="#E7DFC2"
           marginBottom="10"
-          ㅠ
         ></Input>
         <Text fontSize="14px" >비밀번호</Text>
         <Input {...passwordInput} placeholder="비밀번호를 입력해주세요"
