@@ -12,7 +12,7 @@ function NameScreen({ navigation, route }) {
   const { params } = route;
   const { email, password } = params;
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.authReducer);
+  const { user, registerLoading } = useSelector(state => state.authReducer);
   const [nickName, setNickName] = useState("");
 
   const nickNameInput = {
@@ -35,9 +35,9 @@ function NameScreen({ navigation, route }) {
         {/* <Button onPress={() => dispatch(authActions.postRegister({
           email, password
         }))} */}
-        <DefaultBtn text="완료" onPressBtn={() => dispatch(authActions.postRegister({
+        <DefaultBtn text={registerLoading ? "로딩중" : "완료"} onPressBtn={() => dispatch(authActions.postRegister({
           email, password, nickname: nickName
-        }))} disabled={nickName.length === 0}></DefaultBtn>
+        }))} disabled={nickName.length === 0 || registerLoading}></DefaultBtn>
       </Box >
     </Box>
   )

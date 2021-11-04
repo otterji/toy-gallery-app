@@ -18,12 +18,12 @@ export function* postRegisterSaga({ email, password, nickname }) {
     yield put({
       type: authConstants.GET_ME.REQUEST,
     });
-    yield RootNavigation.navigate('Main');
+    yield RootNavigation.replace('SignUpCompleted');
   } catch (err) {
     console.log(err);
     yield put({ type: authConstants.POST_REGISTER.FAIL });
   }
-}
+};
 
 export function* logInSaga({ email, password }) {
   const url = createAPI('/auth/login');
@@ -39,14 +39,14 @@ export function* logInSaga({ email, password }) {
     yield put({
       type: authConstants.GET_ME.REQUEST,
     });
-    yield RootNavigation.navigate('/SignupCompleted')
+    yield RootNavigation.replace('SignUpCompleted')
   } catch (error) {
     console.log(error)
     yield put({
       type: authConstants.LOG_IN.FAIL,
     });
   }
-}
+};
 
 export function* getMeSaga() {
   const url = createAPI('/auth/me');
@@ -63,7 +63,7 @@ export function* getMeSaga() {
       type: authConstants.GET_ME.FAIL,
     });
   }
-}
+};
 
 export function* getEmailCheckSaga({ email, password }) {
   const url = createAPI(`/auth/email?q=${email}`);
@@ -80,7 +80,7 @@ export function* getEmailCheckSaga({ email, password }) {
     yield put({ type: authConstants.GET_EMAIL_CHECK.FAIL });
 
   }
-}
+};
 
 export default function* authSaga() {
   yield all([
@@ -89,4 +89,4 @@ export default function* authSaga() {
     takeLatest(authConstants.GET_ME.REQUEST, getMeSaga),
     takeLatest(authConstants.GET_EMAIL_CHECK.REQUEST, getEmailCheckSaga),
   ]);
-}
+};
