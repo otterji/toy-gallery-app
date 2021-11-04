@@ -12,14 +12,16 @@ const authActions = {
   getMe: () => ({
     type: authConstants.GET_ME.REQUEST,
   }),
-  postRegister: ({ email, password }) => ({
+  postRegister: ({ email, password, nickname }) => ({
     type: authConstants.POST_REGISTER.REQUEST,
     email,
-    password
+    password,
+    nickname
   }),
-  getEmailCheckAction: ({ email }) => ({
+  getEmailCheckAction: ({ email, password }) => ({
     type: authConstants.GET_EMAIL_CHECK.REQUEST,
     email,
+    password,
   }),
   resetStore: () => ({
     type: RESET_STORE,

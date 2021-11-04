@@ -7,8 +7,10 @@ import authActions from '../../store/auth/actions';
 import colors from '../../styles/colors';
 
 
-function NameScreen({ navigation }) {
+function NameScreen({ navigation, route }) {
   const { navigate } = navigation;
+  const { params } = route;
+  const { email, password } = params;
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.authReducer);
   const [nickName, setNickName] = useState("");
@@ -17,7 +19,6 @@ function NameScreen({ navigation }) {
     value: nickName,
     onChangeText: (text) => setNickName(text),
   }
-
 
   return (
     <Box paddingX="15px" width="100%" height="100%">
@@ -34,7 +35,9 @@ function NameScreen({ navigation }) {
         {/* <Button onPress={() => dispatch(authActions.postRegister({
           email, password
         }))} */}
-        <DefaultBtn text="완료" onPressBtn={() => console.log(props.disabled)} disabled={nickName.length === 0}></DefaultBtn>
+        <DefaultBtn text="완료" onPressBtn={() => dispatch(authActions.postRegister({
+          email, password, nickname: nickName
+        }))} disabled={nickName.length === 0}></DefaultBtn>
       </Box >
     </Box>
   )

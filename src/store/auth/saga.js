@@ -3,12 +3,12 @@ import { createAPI, poster, setItemToAsync, fetcher } from '../../hooks/requests
 import authConstants from './constants';
 import * as RootNavigation from '../../navigation/route';
 
-export function* postRegisterSaga({ email, password }) {
+export function* postRegisterSaga({ email, password, nickname }) {
   const url = createAPI('/auth/register');
   try {
     const { token } = yield call(poster, {
       url,
-      body: { email, password },
+      body: { email, password, nickname },
     });
     yield put({
       type: authConstants.POST_REGISTER.SUCCESS,
@@ -56,7 +56,6 @@ export function* getMeSaga() {
       type: authConstants.GET_ME.SUCCESS,
       result,
     });
-    console.log(result)
     yield setItemToAsync('userId', result.id);
   } catch (error) {
     console.log(error);
@@ -66,7 +65,7 @@ export function* getMeSaga() {
   }
 }
 
-export function* getEmailCheckSaga({ email }) {
+export function* getEmailCheckSaga({ email, password }) {
   const url = createAPI(`/auth/email?q=${email}`);
   try {
     const { isDuplicated } = yield call(fetcher, url);
@@ -75,7 +74,7 @@ export function* getEmailCheckSaga({ email }) {
       isDuplicated,
     });
     if (isDuplicated === false) {
-      yield RootNavigation.replace('Auth', { screen: 'Name' });
+      yield RootNavigation.replace('Name', { email, password });
     }
   } catch (err) {
     yield put({ type: authConstants.GET_EMAIL_CHECK.FAIL });
