@@ -11,7 +11,7 @@ import colors from '../../styles/colors';
 function LoginScreen({ navigation }) {
   const { navigate } = navigation;
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.authReducer);
+  const { user, loginLoading } = useSelector(state => state.authReducer);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailErr, setEmailErr] = useState(false);
@@ -34,12 +34,14 @@ function LoginScreen({ navigation }) {
 
   const emailInput = {
     value: email,
-    onChangeText: (text) => onChangeEmail(text)
+    onChangeText: (text) => onChangeEmail(text),
+    autoCapitalize: "none"
   }
 
   const passwordInput = {
     value: password,
-    onChangeText: (text) => setPassword(text)
+    onChangeText: (text) => setPassword(text),
+    secureTextEntry: true,
   };
 
   return (
@@ -73,11 +75,15 @@ function LoginScreen({ navigation }) {
           marginBottom="50"
           backgroundColor="#E7DFC2"
         />
-        <DefaultBtn text="회원가입하기" onPressBtn={() => navigate("SignUp")} disabled={false}></DefaultBtn>
+        <DefaultBtn
+          text={loginLoading ? "로딩중" : "로그인 후 작품 관람하기"}
+          onPressBtn={() => dispatch(authActions.logIn({
+            email, password
+          }))}
+          disabled={email.length === 0 || password.length === 0 || loginLoading || emailErr}
+        />
         <Box height="15px" />
-        <DefaultBtn text="로그인 후 작품 관람하기" onPressBtn={() => dispatch(authActions.logIn({
-          email, password
-        }))} disabled={email.length === 0 || password.length === 0}></DefaultBtn>
+        <DefaultBtn text="회원가입하기" onPressBtn={() => navigate("SignUp")} disabled={false}></DefaultBtn>
       </Box >
     </Box >
   )

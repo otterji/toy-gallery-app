@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import RootStack from './src/navigation';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NativeBaseProvider } from 'native-base';
+import { extendTheme, NativeBaseProvider } from 'native-base';
 import { navigationRef } from './src/navigation/route';
 import { Provider } from 'react-redux';
 import store from './src/store';
@@ -18,11 +18,25 @@ const navigationTheme = {
   },
 }
 
+const theme = extendTheme({
+  components: {
+    Toast: {
+      baseStyle: {},
+      defaultProps: {
+        placement: "top",
+        duration: 6000,
+      },
+      variants: {},
+      sizes: {},
+    }
+  }
+});
+
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer ref={navigationRef} theme={navigationTheme}>
-        <NativeBaseProvider>
+        <NativeBaseProvider theme={theme}>
           <RootStack />
         </NativeBaseProvider>
       </NavigationContainer>

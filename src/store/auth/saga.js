@@ -2,6 +2,7 @@ import { call, put, all, takeLatest } from 'redux-saga/effects';
 import { createAPI, poster, setItemToAsync, fetcher } from '../../hooks/requests';
 import authConstants from './constants';
 import * as RootNavigation from '../../navigation/route';
+import { Toast, useToast } from 'native-base';
 
 export function* postRegisterSaga({ email, password, nickname }) {
   const url = createAPI('/auth/register');
@@ -21,6 +22,12 @@ export function* postRegisterSaga({ email, password, nickname }) {
     yield RootNavigation.replace('SignUpCompleted');
   } catch (err) {
     console.log(err);
+    yield Toast.show({
+      title: '회원가입을 할 수 없습니다.',
+      placement: "top",
+      status: "warning",
+      duration: 6000,
+    })
     yield put({ type: authConstants.POST_REGISTER.FAIL });
   }
 };
@@ -39,9 +46,15 @@ export function* logInSaga({ email, password }) {
     yield put({
       type: authConstants.GET_ME.REQUEST,
     });
-    yield RootNavigation.replace('SignUpCompleted')
+    yield RootNavigation.replace('Main', { screen: "Landing" })
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    yield Toast.show({
+      title: '이메일과 비밀번호를 확인해주세요.',
+      placement: "top",
+      status: "warning",
+      duration: 6000,
+    })
     yield put({
       type: authConstants.LOG_IN.FAIL,
     });
@@ -73,12 +86,20 @@ export function* getEmailCheckSaga({ email, password }) {
       type: authConstants.GET_EMAIL_CHECK.SUCCESS,
       isDuplicated,
     });
+    if (isDuplicated) {
+      console.log('isDuplicated true');
+      yield Toast.show({
+        title: '이미 가입된 이메일입니다.',
+        placement: "top",
+        status: "warning",
+        duration: 6000,
+      })
+    }
     if (isDuplicated === false) {
       yield RootNavigation.replace('Name', { email, password });
     }
   } catch (err) {
     yield put({ type: authConstants.GET_EMAIL_CHECK.FAIL });
-
   }
 };
 

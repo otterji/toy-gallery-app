@@ -47,6 +47,7 @@ function SignupScreen({ navigation }) {
   const emailInput = {
     value: email,
     onChangeText: (text) => onChangeEmail(text),
+    autoCapitalize: "none"
   };
 
   const passwordInput = {
@@ -81,25 +82,25 @@ function SignupScreen({ navigation }) {
               <></>
             )
         }
-        <Text fontSize="14px" marginTop="15px">비밀번호*</Text>
-        <Input
-          {...passwordInput}
-          placeholder="비밀번호를 입력해주세요"
-          borderColor="#E7DFC2"
-          marginBottom={curIsDuplicated ? '18px' : '50px'}
-          backgroundColor="#E7DFC2"
-        />
         {
           curIsDuplicated
             ?
             (
-              <Text color={colors.error} marginBottom="32px">이미 가입된 이메일입니다.</Text>
+              <Text color={colors.error}>이미 가입된 이메일입니다.</Text>
             )
             : (
               <></>
             )
         }
-        <DefaultBtn text={emailCheckLoading ? "로딩중" : "다음"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading} />
+        <Text fontSize="14px" marginTop="15px">비밀번호*</Text>
+        <Input
+          {...passwordInput}
+          placeholder="비밀번호를 입력해주세요"
+          borderColor="#E7DFC2"
+          marginBottom="50px"
+          backgroundColor="#E7DFC2"
+        />
+        <DefaultBtn text={emailCheckLoading ? "로딩중" : "다음"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading || emailErr} />
       </Box >
     </Box >
   )
