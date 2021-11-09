@@ -6,10 +6,24 @@ import colors from '../styles/colors';
 import SignupScreen from '../screens/SignupScreen';
 import NameScreen from '../screens/NameScreen';
 import SignupCompletedScreen from '../screens/SignUpCompletedScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { navigate } from './route';
+import { Toast, useToast } from 'native-base';
 
 const Stack = createNativeStackNavigator();
 
 export function AuthStack() {
+  AsyncStorage.getItem('userId', (err, result) => {
+    if (result) {
+      Toast.show({
+        title: '자동으로 로그인 되었습니다.',
+        placement: "top",
+        status: "success",
+        duration: 6000,
+      })
+      navigate('Landing');
+    }
+  })
   return (
     <Stack.Navigator screenOptions={{ headerTitleAlign: "center", headerStyle: { backgroundColor: colors.background } }}>
       <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Login' }} ></Stack.Screen>

@@ -19,6 +19,12 @@ export function* postRegisterSaga({ email, password, nickname }) {
     yield put({
       type: authConstants.GET_ME.REQUEST,
     });
+    yield Toast.show({
+      title: '회원가입이 완료되었습니다.',
+      placement: "top",
+      status: "success",
+      duration: 6000,
+    });
     yield RootNavigation.replace('SignUpCompleted');
   } catch (err) {
     console.log(err);
@@ -45,6 +51,12 @@ export function* logInSaga({ email, password }) {
     });
     yield put({
       type: authConstants.GET_ME.REQUEST,
+    });
+    yield Toast.show({
+      title: '로그인되었습니다.',
+      placement: "top",
+      status: "success",
+      duration: 6000,
     });
     yield RootNavigation.replace('Main', { screen: "Landing" })
   } catch (error) {
