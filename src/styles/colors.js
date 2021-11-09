@@ -6,7 +6,7 @@ const colors = {
   primaryLight: '#FF9B88',
   secondaryLight: '#92FFD1',
   textPrimary: '#242424',
-  gray: [],
+  gray: ['#757575', '#CBC3A6'],
   error: '#B53931',
 };
 

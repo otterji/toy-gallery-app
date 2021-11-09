@@ -16,31 +16,31 @@ const imgList = [
   {
     id: 0,
     imgSource: atelier,
-    link: 'atelier',
+    link: 'Atelier',
     marginTop: '50px'
   },
   {
     id: 1,
     imgSource: funding,
-    link: 'funding',
+    link: '',
     marginTop: '31px'
   },
   {
     id: 2,
     imgSource: myGallery,
-    link: 'myGallery',
+    link: '',
     marginTop: '39px'
   },
   {
     id: 3,
     imgSource: magazine,
-    link: 'magazine',
+    link: '',
     marginTop: '58px'
   },
   {
     id: 4,
     imgSource: message,
-    link: 'message',
+    link: 'Message',
     marginTop: '64px'
   },
 ]
@@ -49,7 +49,7 @@ const imgList = [
 function LandingScreen({ navigation }) {
 
   const renderImg = (_target) => (
-    <Pressable onPress={() => console.log(_target.link)} marginTop={_target.marginTop}>
+    <Pressable onPress={() => navigate(`${_target.link}`)} marginTop={_target.marginTop}>
       <Image
         alt={`${_target.imgSource}`}
         source={_target.imgSource}

@@ -87,7 +87,6 @@ export function* getEmailCheckSaga({ email, password }) {
       isDuplicated,
     });
     if (isDuplicated) {
-      console.log('isDuplicated true');
       yield Toast.show({
         title: '이미 가입된 이메일입니다.',
         placement: "top",
