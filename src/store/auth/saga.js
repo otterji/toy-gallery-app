@@ -2,7 +2,7 @@ import { call, put, all, takeLatest } from 'redux-saga/effects';
 import { createAPI, poster, setItemToAsync, fetcher } from '../../hooks/requests';
 import authConstants from './constants';
 import * as RootNavigation from '../../navigation/route';
-import { Toast, useToast } from 'native-base';
+import { Toast } from 'native-base';
 
 export function* postRegisterSaga({ email, password, nickname }) {
   const url = createAPI('/auth/register');

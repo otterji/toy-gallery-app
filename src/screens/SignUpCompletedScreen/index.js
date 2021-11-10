@@ -9,8 +9,6 @@ function SignupCompletedScreen({ navigation }) {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.authReducer);
 
-  console.log(user);
-
   return (
     <Box paddingX="15px" width="100%" height="100%">
       <Box>
