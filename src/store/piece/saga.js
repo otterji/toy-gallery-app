@@ -7,9 +7,15 @@ export function* getAllPiecesSaga() {
   const url = createAPI('/piece');
   try {
     const { pieceList } = yield call(fetcher, url);
+    const newPieceList = pieceList.map((x) => {
+      return {
+        ...x,
+        pressed: false,
+      }
+    })
     yield put({
       type: pieceConstants.GET_ALL_PIECES.SUCCESS,
-      pieceList,
+      pieceList: newPieceList,
     });
   } catch (error) {
     yield Toast.show({
@@ -17,7 +23,7 @@ export function* getAllPiecesSaga() {
       placement: "top",
       status: "warning",
       duration: 6000,
-    })
+    });
     yield put({
       type: pieceConstants.GET_ALL_PIECES.FAIL,
     });
@@ -38,7 +44,7 @@ export function* getPieceDetailSaga({ pieceId }) {
       placement: "top",
       status: "warning",
       duration: 6000,
-    })
+    });
     yield put({ type: pieceConstants.GET_PIECE_DETAIL.FAIL });
   }
 };
