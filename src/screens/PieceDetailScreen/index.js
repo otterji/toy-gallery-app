@@ -20,7 +20,6 @@ function PieceDetailScreen({ navigation, route }) {
   const { navigate } = navigation;
   const { params } = route;
   const { pieceId } = params;
-  console.log(pieceId);
   const dispatch = useDispatch();
   const { loading, pieceList, pieceDetail } = useSelector(state => state.pieceReducer || initialState);
   const [targetPiece, setTargetPiece] = useState({
@@ -31,8 +30,10 @@ function PieceDetailScreen({ navigation, route }) {
   });
 
   useEffect(() => {
-    // dispatch(pieceActions.getAllPieces());
+    dispatch(pieceActions.getPieceDeatil({ pieceId }));
   }, []);
+
+  console.log(pieceDetail);
 
   // useEffect(() => {
   //   if (pieceList.length === 0) return;
@@ -40,7 +41,19 @@ function PieceDetailScreen({ navigation, route }) {
   // }, [pieceList]);
 
   return (
-    <Text>Piece Detail Page</Text>
+    <ScrollView>
+      <Image source={{ uri: pieceDetail.imageLink }} width={screen.width} height="300px"></Image>
+      <Box width="100%" height="100%" paddingX="15px" paddingTop="10px">
+        <Text fontSize="24px">No.{pieceDetail.id} {pieceDetail.material}</Text>
+        <Text fontSize="26px" fontWeight="bold">{pieceDetail.title}</Text>
+        <Box width="100%" height="35px" backgroundColor="#E7DFC2" paddingLeft="5px" marginTop="20px" borderRadius="5px">
+          <Text fontSize="23px">Description</Text>
+        </Box>
+        <Box>
+          <Text>{pieceDetail.desc}</Text>
+        </Box>
+      </Box>
+    </ScrollView>
   )
 }
 
