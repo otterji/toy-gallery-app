@@ -34,6 +34,7 @@ export function* getPieceDetailSaga({ pieceId }) {
   const url = createAPI(`/piece/${pieceId}`);
   try {
     const { pieceDetail } = yield call(fetcher, url);
+    console.log(pieceDetail)
     yield put({
       type: pieceConstants.GET_PIECE_DETAIL.SUCCESS,
       pieceDetail,

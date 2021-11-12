@@ -16,8 +16,11 @@ import { FontAwesome } from '@expo/vector-icons';
 const screen = Dimensions.get('window');
 
 
-function PieceDetailScreen({ navigation }) {
+function PieceDetailScreen({ navigation, route }) {
   const { navigate } = navigation;
+  const { params } = route;
+  const { pieceId } = params;
+  console.log(pieceId);
   const dispatch = useDispatch();
   const { loading, pieceList, pieceDetail } = useSelector(state => state.pieceReducer || initialState);
   const [targetPiece, setTargetPiece] = useState({

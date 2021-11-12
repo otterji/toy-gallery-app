@@ -79,7 +79,8 @@ function AtelierScreen({ navigation }) {
                               fontSize="20px"
                               onPress={() => {
                                 navigate('PieceDetail', {
-                                  pieceTitle: x.title
+                                  pieceTitle: x.title,
+                                  pieceId: x.id,
                                 });
                               }}
                             >
@@ -126,7 +127,8 @@ function AtelierScreen({ navigation }) {
                 <Box key={`atelier-gridView-${_item.id}`}>
                   <Image width={screen.width / 2} height={200} source={{ uri: _item.imageLink }} alt="image" key={_item.id} onPress={() => {
                     navigate('PieceDetail', {
-                      pieceTitle: _item.title
+                      pieceTitle: _item.title,
+                      pieceId: _item.id,
                     });
                   }} />
                   <Text pt={1} pb={2} pl={2} color={colors.gray[1]}>
