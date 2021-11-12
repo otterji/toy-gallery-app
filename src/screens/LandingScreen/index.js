@@ -16,7 +16,7 @@ const imgList = [
   {
     id: 0,
     imgSource: atelier,
-    link: 'Atelier',
+    link: 'AtelierStack',
     marginTop: '50px'
   },
   {

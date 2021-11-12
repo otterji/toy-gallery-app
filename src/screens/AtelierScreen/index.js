@@ -59,9 +59,35 @@ function AtelierScreen({ navigation }) {
                 if (x.pressed) {
                   return (
                     <Pressable key={`atelier-defaultMode-${x.id}`} onPress={() => onPressHandler(x.id, x.pressed)}>
-                      <Box width={screen.width} height={300}>
-                        <Text>Hi</Text>
-                      </Box>
+                      <AutoHeightImage
+                        alt="image"
+                        source={{ uri: x.imageLink }}
+                        width={screen.width}
+                      >
+                        <Box style={{ width: '100%', height: '100%', backgroundColor: 'rgba(203, 195, 166, 0.7)' }}>
+                          <Box pt='15px' pl='15px' style={{ width: '100%', height: '100%' }}>
+                            <Text color="#FAFAFA" fontSize="24px">No. {x.id} {x.material}</Text>
+                            <Text color="#FAFAFA" fontSize="26px" fontWeight="bold">{x.title}</Text>
+                            <Button
+                              backgroundColor={colors.primary}
+                              width="100px"
+                              position="absolute"
+                              bottom="0"
+                              right="0"
+                              mr="15px"
+                              mb="16px"
+                              fontSize="20px"
+                              onPress={() => {
+                                navigate('PieceDetail', {
+                                  pieceTitle: x.title
+                                });
+                              }}
+                            >
+                              자세히 보기
+                            </Button>
+                          </Box>
+                        </Box>
+                      </AutoHeightImage>
                     </Pressable>
                   )
                 }
@@ -98,7 +124,11 @@ function AtelierScreen({ navigation }) {
             curPiceList.map((_item) => {
               return (
                 <Box key={`atelier-gridView-${_item.id}`}>
-                  <Image width={screen.width / 2} height={200} source={{ uri: _item.imageLink }} alt="image" key={_item.id} />
+                  <Image width={screen.width / 2} height={200} source={{ uri: _item.imageLink }} alt="image" key={_item.id} onPress={() => {
+                    navigate('PieceDetail', {
+                      pieceTitle: _item.title
+                    });
+                  }} />
                   <Text pt={1} pb={2} pl={2} color={colors.gray[1]}>
                     No.{_item.id} {_item.material}
                   </Text>
