@@ -9,6 +9,7 @@ import SignupCompletedScreen from '../screens/SignUpCompletedScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { navigate } from './route';
 import { Toast, useToast } from 'native-base';
+import MyPageScreen from '../screens/MyPageScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,7 @@ export function AuthStack() {
       <Stack.Screen name="SignUp" component={SignupScreen} options={{ title: 'Sign Up' }} ></Stack.Screen>
       <Stack.Screen name="Name" component={NameScreen} options={{ title: 'Sign Up' }} ></Stack.Screen>
       <Stack.Screen name="SignUpCompleted" component={SignupCompletedScreen} options={{ title: 'Welcome' }} ></Stack.Screen>
+      <Stack.Screen name="MyPage" component={MyPageScreen} options={{ title: 'My Room' }} ></Stack.Screen>
     </Stack.Navigator>
   );
 }
