@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { TextPropTypes, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { borderWidth } from 'styled-system';
-import DefaultBtn from '../../components/DefaultBtn';
 import pieceActions from '../../store/piece/actions';
 import { initialState } from '../../store/piece/reducer';
 import { AntDesign } from "@expo/vector-icons"
@@ -11,6 +10,7 @@ import colors from '../../styles/colors';
 import AutoHeightImage from 'react-native-auto-height-image';
 import { Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import Loading from '../../components/Loading';
 
 
 const screen = Dimensions.get('window');
@@ -22,12 +22,19 @@ function AtelierScreen({ navigation }) {
   const { loading, pieceList, pieceDetail } = useSelector(state => state.pieceReducer || initialState);
   const [isDefaultView, setIsDefaultView] = useState(true);
   const [curPiceList, setCurPieceList] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
   const [targetPiece, setTargetPiece] = useState({
     id: null,
     material: '',
     imageLink: '',
     pressed: true,
   });
+
+  useEffect(() => {
+    return () => {
+      dispatch(pieceActions.resetStore());
+    };
+  }, []);
 
   useEffect(() => {
     dispatch(pieceActions.getAllPieces());
@@ -40,14 +47,6 @@ function AtelierScreen({ navigation }) {
 
   useEffect(() => { }, [curPiceList])
 
-  const onPressHandler = (targetId, targetPressed) => {
-    const targetList = curPiceList.map(piece =>
-      piece.id === targetId
-        ? { ...piece, pressed: !targetPressed }
-        : piece
-    );
-    setCurPieceList(targetList);
-  };
 
   const DefaultView = () => (
     <Box width="100%" height="100%" >
@@ -56,12 +55,12 @@ function AtelierScreen({ navigation }) {
           <VStack alignItems="center"  >
             {
               curPiceList.map((x) => {
-                if (x.pressed) {
+                if (x.id === selectedId) {
                   return (
-                    <Pressable key={`atelier-defaultMode-${x.id}`} onPress={() => onPressHandler(x.id, x.pressed)}>
+                    <Pressable key={`atelier-defaultMode-${x.id}`} onPress={() => setSelectedId(x.id)}>
                       <AutoHeightImage
-                        alt="image"
-                        source={{ uri: x.imageLink }}
+                        alt={`atelier-image-${x.id}`}
+                        source={x.imageLink.length !== 0 ? { uri: x.imageLink } : null}
                         width={screen.width}
                       >
                         <Box style={{ width: '100%', height: '100%', backgroundColor: 'rgba(203, 195, 166, 0.7)' }}>
@@ -93,10 +92,10 @@ function AtelierScreen({ navigation }) {
                   )
                 }
                 return (
-                  <Pressable key={`atelier-defaultMode-${x.id}`} onPress={() => onPressHandler(x.id, x.pressed)}>
+                  <Pressable key={`atelier-defaultMode-${x.id}`} onPress={() => setSelectedId(x.id)}>
                     <AutoHeightImage
-                      alt="image"
-                      source={{ uri: x.imageLink }}
+                      alt={`atelier-image-not-pressed-${x.id}`}
+                      source={x.imageLink.length !== 0 ? { uri: x.imageLink } : null}
                       width={screen.width}
                     />
                   </Pressable>
@@ -112,6 +111,7 @@ function AtelierScreen({ navigation }) {
         size="sm"
         backgroundColor={colors.secondary}
         icon={<Icon color="white" as={<AntDesign name="appstore-o" />} size="sm" />}
+        renderInPortal={false}
       />
     </Box >
   );
@@ -125,7 +125,7 @@ function AtelierScreen({ navigation }) {
             curPiceList.map((_item) => {
               return (
                 <Box key={`atelier-gridView-${_item.id}`}>
-                  <Image width={screen.width / 2} height={200} source={{ uri: _item.imageLink }} alt="image" key={_item.id} onPress={() => {
+                  <Image width={screen.width / 2} height={200} source={_item.imageLink.length !== 0 ? { uri: _item.imageLink } : null} alt={`atelier-image-grid-${_item.id}`} key={_item.id} onPress={() => {
                     navigate('PieceDetail', {
                       pieceTitle: _item.title,
                       pieceId: _item.id,
@@ -147,17 +147,22 @@ function AtelierScreen({ navigation }) {
         size="sm"
         backgroundColor={colors.secondary}
         icon={<Icon color="white" as={<FontAwesome name="minus-square-o" />} size="sm" paddingLeft="2px" />}
+        renderInPortal={false}
       />
       {/* icon grid 도 있음 https://icons.expo.fyi/ */}
     </Box >
   );
 
   return (
-    isDefaultView
+    loading
       ?
-      DefaultView()
+      (<Loading />)
       :
-      GridView()
+      isDefaultView
+        ?
+        DefaultView()
+        :
+        GridView()
   )
 }
 

@@ -13,6 +13,7 @@ import pieceConstants, { RESET_STORE } from './constants';
 // The initial state of the App
 export const initialState = {
   loading: true,
+  resetLoading: true,
   pieceList: [],
   pieceDetail: {
     id: null,
@@ -60,7 +61,9 @@ const pieceReducer = (state = initialState, action) =>
         break;
 
       case RESET_STORE:
-        draft.loading = false;
+        draft.resetLoading = false;
+        draft.pieceList = [];
+        draft.pieceDetail = initialState.pieceDetail;
         break;
     }
   });

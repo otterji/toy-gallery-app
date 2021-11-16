@@ -12,6 +12,7 @@ import myGallery from '../../../assets/myGallery.png';
 
 const screen = Dimensions.get('window');
 
+
 const imgList = [
   {
     id: 0,
