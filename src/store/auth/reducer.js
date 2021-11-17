@@ -19,7 +19,8 @@ export const initialState = {
   emailCheckLoading: false,
   user: {
     id: null,
-    email: ""
+    email: "",
+    nickname: "",
   },
 };
 

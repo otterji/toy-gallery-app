@@ -18,7 +18,7 @@ export default function AccordionComponent({
           <Accordion index={[0, 1]} style={{ borderWidth: 0, borderRadius: 0 }} allowMultiple>
             {
               list.map((x) => (
-                <Accordion.Item>
+                <Accordion.Item key={`accordion-${x.id}`}>
                   <Accordion.Summary
                     height='38px'
                     padding="0px"
