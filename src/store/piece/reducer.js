@@ -23,7 +23,7 @@ export const initialState = {
     material: "",
     title: "",
     subTitle: "",
-    desc: "T",
+    desc: "",
     features: "",
     artistInfo: {
       id: null,
@@ -31,6 +31,14 @@ export const initialState = {
       name: "",
       nationality: ""
     }
+  },
+  artistDetail: {
+    id: null,
+    profileImageLink: '',
+    name: '',
+    nationality: '',
+    desc: '',
+    pieceList: []
   }
 };
 
@@ -57,6 +65,17 @@ const pieceReducer = (state = initialState, action) =>
         draft.pieceDetail = action.pieceDetail;
         break;
       case pieceConstants.GET_PIECE_DETAIL.FAIL:
+        draft.loading = false;
+        break;
+
+      case pieceConstants.GET_ARTIST_DETAIL.REQUEST:
+        draft.loading = true;
+        break;
+      case pieceConstants.GET_ARTIST_DETAIL.SUCCESS:
+        draft.loading = false;
+        draft.artistDetail = action.artistDetail;
+        break;
+      case pieceConstants.GET_ARTIST_DETAIL.FAIL:
         draft.loading = false;
         break;
 

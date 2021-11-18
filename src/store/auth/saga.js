@@ -14,7 +14,6 @@ export function* postRegisterSaga({ email, password, nickname }) {
     yield put({
       type: authConstants.POST_REGISTER.SUCCESS,
     });
-    console.log(token)
     yield setItemToAsync('idToken', token);
     yield put({
       type: authConstants.GET_ME.REQUEST,

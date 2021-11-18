@@ -12,6 +12,11 @@ const pieceConstants = {
     SUCCESS: 'Piece/GET_PIECE_DETAIL_SUCCESS',
     FAIL: 'Piece/GET_PIECE_DETAIL_FAIL',
   },
+  GET_ARTIST_DETAIL: {
+    REQUEST: 'Piece/GET_ARTIST_DETAIL_REQUEST',
+    SUCCESS: 'Piece/GET_ARTIST_DETAIL_SUCCESS',
+    FAIL: 'Piece/GET_ARTIST_DETAIL_FAIL',
+  }
 };
 
 export default pieceConstants

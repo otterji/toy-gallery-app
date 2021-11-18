@@ -7,6 +7,7 @@ import { navigate } from './route';
 import PieceDetailScreen from '../screens/PieceDetailScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import colors from '../styles/colors';
+import ArtistDetailScreen from '../screens/ArtistDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ export function AteilerStack() {
         ),
       }} />
       <Stack.Screen name="PieceDetail" component={PieceDetailScreen} options={({ route }) => ({ title: route.params.pieceTitle })} />
+      <Stack.Screen name="ArtistDetail" component={ArtistDetailScreen} options={({ route }) => ({ title: route.params.artistName })} />
     </Stack.Navigator >
   );
 }

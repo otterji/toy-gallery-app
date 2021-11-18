@@ -4,9 +4,13 @@ const pieceActions = {
   getAllPieces: () => ({
     type: pieceConstants.GET_ALL_PIECES.REQUEST,
   }),
-  getPieceDeatil: ({ pieceId }) => ({
+  getPieceDetail: ({ pieceId }) => ({
     type: pieceConstants.GET_PIECE_DETAIL.REQUEST,
     pieceId,
+  }),
+  getArtistDetail: ({ artistId }) => ({
+    type: pieceConstants.GET_ARTIST_DETAIL.REQUEST,
+    artistId,
   }),
   resetStore: () => ({
     type: RESET_STORE,

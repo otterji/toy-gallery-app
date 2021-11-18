@@ -8,7 +8,6 @@ export const createAPI = (url) => `${API_URL}${url}`;
 export const getItemFromAsync = (storageName) => {
   return new Promise((resolve, reject) => {
     AsyncStorage.getItem(storageName, (err, result) => {
-      console.log(result)
       if (err) {
         reject(err);
       }

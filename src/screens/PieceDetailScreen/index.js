@@ -1,4 +1,4 @@
-import { Box, Text, Image, ScrollView } from 'native-base';
+import { Box, Text, Image, ScrollView, Pressable } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { TextPropTypes, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,7 +47,7 @@ function PieceDetailScreen({ navigation, route }) {
   }, []);
 
   useEffect(() => {
-    dispatch(pieceActions.getPieceDeatil({ pieceId }));
+    dispatch(pieceActions.getPieceDetail({ pieceId }));
   }, []);
 
   useEffect(() => {
@@ -71,7 +71,16 @@ function PieceDetailScreen({ navigation, route }) {
     {
       id: 2,
       title: "Artist",
-      content: `${targetPiece.artistInfo.name} ${targetPiece.artistInfo.nationality}`
+      content: (
+        <Pressable onPress={() => navigate('ArtistDetail', { artistId: targetPiece.artistId, artistName: targetPiece.artistInfo.name, artistInfo: targetPiece.artistInfo })}>
+          <Text fontSize="20px">
+            {targetPiece.artistInfo.name} >
+          </Text>
+          <Text >
+            {targetPiece.artistInfo.nationality}
+          </Text>
+        </Pressable>
+      )
     }
   ]
 

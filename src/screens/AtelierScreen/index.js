@@ -47,8 +47,6 @@ function AtelierScreen({ navigation }) {
 
   useEffect(() => { }, [curPiceList])
 
-  console.log(curPiceList)
-
 
   const DefaultView = () => (
     <Box width="100%" height="100%" >

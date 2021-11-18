@@ -49,9 +49,29 @@ export function* getPieceDetailSaga({ pieceId }) {
   }
 };
 
+export function* getArtistDetailSaga({ pieceId }) {
+  const url = createAPI(`/artist/${pieceId}`);
+  try {
+    const { artistDetail } = yield call(fetcher, url);
+    yield put({
+      type: pieceConstants.GET_ARTIST_DETAIL.SUCCESS,
+      artistDetail,
+    });
+  } catch (err) {
+    yield Toast.show({
+      title: '정보를 불러들이는데에 오류가 발생했습니다.',
+      placement: "top",
+      status: "warning",
+      duration: 6000,
+    });
+    yield put({ type: pieceConstants.GET_ARTIST_DETAIL.FAIL });
+  }
+};
+
 export default function* pieceSaga() {
   yield all([
     takeLatest(pieceConstants.GET_ALL_PIECES.REQUEST, getAllPiecesSaga),
     takeLatest(pieceConstants.GET_PIECE_DETAIL.REQUEST, getPieceDetailSaga),
+    takeLatest(pieceConstants.GET_ARTIST_DETAIL.REQUEST, getArtistDetailSaga),
   ]);
 };

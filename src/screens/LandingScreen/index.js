@@ -75,7 +75,6 @@ function LandingScreen({ navigation }) {
         ))}
       </Box>
     </TouchableWithoutFeedback >
-
   )
 };
 
