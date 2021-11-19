@@ -9,10 +9,7 @@ import colors from '../../styles/colors';
 import DefaultBtn from '../../components/DefaultBtn';
 import pieceActions from '../../store/piece/actions';
 
-
-
 const screen = Dimensions.get('window');
-
 
 function ArtistDetailScreen({ navigation, route }) {
   const { navigate } = navigation;
@@ -30,8 +27,6 @@ function ArtistDetailScreen({ navigation, route }) {
     if (!artistDetail.id) return;
     setArtistWorks(artistDetail.pieceList);
   }, [artistDetail])
-
-  const items = 12;
 
   const aboutList = [
     {
@@ -125,28 +120,38 @@ function ArtistDetailScreen({ navigation, route }) {
 
   return (
     <ScrollView>
-      <Box width="100%" paddingX="15px" paddingY="20px">
-        <HStack width="100%" height="74px" style={{ backgroundColor: "#E7DFC2" }}>
-          <Box padding="15px">
-            <Avatar
-              source={{
-                uri: artistInfo.profileImageLink
-              }}
-            />
-          </Box>
-          <Box padding="15px">
-            <Text fontWeight="bold" fontSize="20px" color={colors.textPrimary}>{artistInfo.name}</Text>
-            <Text fontSize="12px" color="#757575">{artistInfo.nationality}</Text>
-          </Box>
-        </HStack>
-        <Center style={{ backgroundColor: "#EFEDD5" }} >
-          {InfoBox(infoList)}
-        </Center>
-        <Box height="15px" />
-        <DefaultBtn text="Add Favorites" onPressBtn={() => { console.log("hi") }} disabled={!hasAdded} />
-        <Box height="15px" />
-        <AccordionComponent list={aboutList} />
-      </Box>
+      {
+        loading
+          ?
+          (
+            <Loading />
+          )
+          :
+          (
+            <Box width="100%" paddingX="15px" paddingY="20px">
+              <HStack width="100%" height="74px" style={{ backgroundColor: "#E7DFC2" }}>
+                <Box padding="15px">
+                  <Avatar
+                    source={{
+                      uri: artistInfo.profileImageLink
+                    }}
+                  />
+                </Box>
+                <Box padding="15px">
+                  <Text fontWeight="bold" fontSize="20px" color={colors.textPrimary}>{artistInfo.name}</Text>
+                  <Text fontSize="12px" color="#757575">{artistInfo.nationality}</Text>
+                </Box>
+              </HStack>
+              <Center style={{ backgroundColor: "#EFEDD5" }} >
+                {InfoBox(infoList)}
+              </Center>
+              <Box height="15px" />
+              <DefaultBtn text="Add Favorites" onPressBtn={() => { console.log("hi") }} disabled={!hasAdded} />
+              <Box height="15px" />
+              <AccordionComponent list={aboutList} />
+            </Box>
+          )
+      }
     </ScrollView >
   )
 };

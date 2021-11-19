@@ -26,7 +26,6 @@ export function* postRegisterSaga({ email, password, nickname }) {
     });
     yield RootNavigation.replace('SignUpCompleted');
   } catch (err) {
-    console.log(err);
     yield Toast.show({
       title: '회원가입을 할 수 없습니다.',
       placement: "top",
@@ -59,7 +58,6 @@ export function* logInSaga({ email, password }) {
     });
     yield RootNavigation.replace('Main', { screen: "Landing" })
   } catch (error) {
-    console.log(error);
     yield Toast.show({
       title: '이메일과 비밀번호를 확인해주세요.',
       placement: "top",
@@ -82,7 +80,6 @@ export function* getMeSaga() {
     });
     yield setItemToAsync('userId', result.id);
   } catch (error) {
-    console.log(error);
     yield put({
       type: authConstants.GET_ME.FAIL,
     });

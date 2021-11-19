@@ -59,7 +59,6 @@ export function* getArtistDetailSaga({ artistId }) {
       hasAdded,
     });
   } catch (err) {
-    console.log(err)
     yield Toast.show({
       title: '정보를 불러들이는데에 오류가 발생했습니다.',
       placement: "top",
