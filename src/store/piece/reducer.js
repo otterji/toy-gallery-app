@@ -39,7 +39,8 @@ export const initialState = {
     nationality: '',
     desc: '',
     pieceList: []
-  }
+  },
+  hasAdded: false
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -74,8 +75,19 @@ const pieceReducer = (state = initialState, action) =>
       case pieceConstants.GET_ARTIST_DETAIL.SUCCESS:
         draft.loading = false;
         draft.artistDetail = action.artistDetail;
+        draft.hasAdded = action.hasAdded;
         break;
       case pieceConstants.GET_ARTIST_DETAIL.FAIL:
+        draft.loading = false;
+        break;
+
+      case pieceConstants.POST_ARTIST_FAVORITE.REQUEST:
+        draft.loading = true;
+        break;
+      case pieceConstants.POST_ARTIST_FAVORITE.SUCCESS:
+        draft.loading = false;
+        break;
+      case pieceConstants.POST_ARTIST_FAVORITE.FAIL:
         draft.loading = false;
         break;
 

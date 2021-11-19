@@ -14,6 +14,6 @@ const DefaultBtn = ({ text, onPressBtn, disabled }) => {
       disabled={disabled}
     >{text}</Button>
   )
-}
+};
 
 export default DefaultBtn;

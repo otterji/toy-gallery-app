@@ -12,8 +12,12 @@ const pieceActions = {
     type: pieceConstants.GET_ARTIST_DETAIL.REQUEST,
     artistId,
   }),
+  postArtistFavorite: ({ artistId }) => ({
+    type: pieceConstants.POST_ARTIST_FAVORITE.REQUEST,
+    artistId,
+  }),
   resetStore: () => ({
-    type: RESET_STORE,
+    type: RESET_STORE
   }),
 };
 

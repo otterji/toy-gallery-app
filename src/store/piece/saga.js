@@ -1,5 +1,5 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
-import { createAPI, fetcher } from '../../hooks/requests';
+import { createAPI, fetcher, poster } from '../../hooks/requests';
 import { Toast, useToast } from 'native-base';
 import pieceConstants from './constants';
 
@@ -49,15 +49,17 @@ export function* getPieceDetailSaga({ pieceId }) {
   }
 };
 
-export function* getArtistDetailSaga({ pieceId }) {
-  const url = createAPI(`/artist/${pieceId}`);
+export function* getArtistDetailSaga({ artistId }) {
+  const url = createAPI(`/artist/${artistId}`);
   try {
-    const { artistDetail } = yield call(fetcher, url);
+    const { artistDetail, hasAdded } = yield call(fetcher, url);
     yield put({
       type: pieceConstants.GET_ARTIST_DETAIL.SUCCESS,
       artistDetail,
+      hasAdded,
     });
   } catch (err) {
+    console.log(err)
     yield Toast.show({
       title: '정보를 불러들이는데에 오류가 발생했습니다.',
       placement: "top",
@@ -68,10 +70,38 @@ export function* getArtistDetailSaga({ pieceId }) {
   }
 };
 
+export function* postArtistFavoriteSaga({ artistId }) {
+  const url = createAPI(`/artist/favorite`);
+  const payload = {
+    artistId
+  }
+  try {
+    yield call(poster, { url, payload });
+    yield put({
+      type: pieceConstants.POST_ARTIST_FAVORITE.SUCCESS,
+    });
+    yield Toast.show({
+      title: 'Successfully added! :)',
+      placement: "top",
+      status: "success",
+      duration: 6000,
+    });
+  } catch (err) {
+    yield Toast.show({
+      title: 'Oops! Something went wrong :(',
+      placement: "top",
+      status: "warning",
+      duration: 6000,
+    });
+    yield put({ type: pieceConstants.POST_ARTIST_FAVORITE.FAIL });
+  }
+};
+
 export default function* pieceSaga() {
   yield all([
     takeLatest(pieceConstants.GET_ALL_PIECES.REQUEST, getAllPiecesSaga),
     takeLatest(pieceConstants.GET_PIECE_DETAIL.REQUEST, getPieceDetailSaga),
     takeLatest(pieceConstants.GET_ARTIST_DETAIL.REQUEST, getArtistDetailSaga),
+    takeLatest(pieceConstants.POST_ARTIST_FAVORITE.REQUEST, postArtistFavoriteSaga),
   ]);
 };

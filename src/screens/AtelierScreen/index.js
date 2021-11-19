@@ -124,17 +124,18 @@ function AtelierScreen({ navigation }) {
           {
             curPiceList.map((_item) => {
               return (
-                <Box key={`atelier-gridView-${_item.id}`}>
-                  <Image width={screen.width / 2} height={200} source={_item.imageLink.length !== 0 ? { uri: _item.imageLink } : null} alt={`atelier-image-grid-${_item.id}`} key={_item.id} onPress={() => {
-                    navigate('PieceDetail', {
-                      pieceTitle: _item.title,
-                      pieceId: _item.id,
-                    });
-                  }} />
+                <Pressable key={`atelier-gridView-${_item.id}`} onPress={() => {
+                  navigate('PieceDetail', {
+                    pieceTitle: _item.title,
+                    pieceId: _item.id,
+                  })
+                }} >
+                  <Image width={screen.width / 2} height={200} source={_item.imageLink.length !== 0 ? { uri: _item.imageLink } : null} alt={`atelier-image-grid-${_item.id}`} key={_item.id}
+                  />
                   <Text pt={1} pb={2} pl={2} color={colors.gray[1]}>
                     No.{_item.id} {_item.material}
                   </Text>
-                </Box>
+                </Pressable>
               )
             })
           }

@@ -1,13 +1,13 @@
-import { Box, Text, Image, ScrollView, Pressable, HStack, Center, Stack, Avatar } from 'native-base';
+import { Box, Text, Image, ScrollView, SimpleGrid, HStack, Center, Stack, Avatar, Pressable } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
 import Loading from '../../components/Loading';
 import AccordionComponent from '../../components/Accordion';
-import authActions from '../../store/auth/actions';
-import { initialState } from '../../store/auth/reducer';
+import { initialState } from '../../store/piece/reducer';
 import colors from '../../styles/colors';
 import DefaultBtn from '../../components/DefaultBtn';
+import pieceActions from '../../store/piece/actions';
 
 
 
@@ -19,43 +19,69 @@ function ArtistDetailScreen({ navigation, route }) {
   const { params } = route;
   const { artistId, artistName, artistInfo } = params;
   const dispatch = useDispatch();
-  const { loading, user } = useSelector(state => state.authReducer || initialState);
-  const [curUser, setCurUser] = useState({
-    id: null,
-    email: '',
-    nickname: ''
-  });
+  const { loading, artistDetail, hasAdded } = useSelector(state => state.pieceReducer || initialState);
+  const [artistWorks, setArtistWorks] = useState([]);
 
-  // useEffect(() => {
-  //   dispatch(authActions.getMe());
-  // }, []);
+  useEffect(() => {
+    dispatch(pieceActions.getArtistDetail({ artistId }));
+  }, []);
 
-  // useEffect(() => {
-  //   if (!user.id) return;
-  //   setCurUser(user);
-  // }, [user])
+  useEffect(() => {
+    if (!artistDetail.id) return;
+    setArtistWorks(artistDetail.pieceList);
+  }, [artistDetail])
 
+  const items = 12;
 
   const aboutList = [
     {
       id: 0,
       title: "About",
-      content: "About",
+      content: artistInfo.desc,
     },
     {
       id: 1,
       title: "MATERIAL FUNDING",
-      content: "어쩌고 저쩌고"
+      content: (
+        <Text>
+          {
+            artistWorks.map((x, idx) => (
+              <>
+                <Text key={`artist-material-${idx}`}>{x.material}  </Text>
+              </>
+            ))
+          }
+        </Text>
+      )
     },
     {
       id: 2,
       title: "WORKS",
-      content: "하하.."
-    },
-    {
-      id: 3,
-      title: "NOTES",
-      content: "???"
+      content: (
+        <Box width="100%" height="100%" >
+          <SimpleGrid minChildWidth="50%" spacing={0} width="100%" >
+            {artistWorks.map((x, index) => {
+              return <Pressable key={index} onPress={() => {
+                navigate('PieceDetail', {
+                  pieceTitle: x.title,
+                  pieceId: x.id,
+                });
+              }} >
+                <Image
+                  width="100%"
+                  height={180}
+                  key={`atelier-gridView-${x.title}`}
+                  source={x.imageLink.length !== 0 ? { uri: x.imageLink } : null}
+                  alt={`atelier-image-grid-${x.id}`}
+                />
+                <Text pt={1} pb={2} pl={2} color={colors.gray[1]}>
+                  No.{x.year} {x.material}
+                </Text>
+              </Pressable>
+            })}
+          </SimpleGrid>
+        </Box >
+      )
     }
   ];
 
@@ -117,7 +143,7 @@ function ArtistDetailScreen({ navigation, route }) {
           {InfoBox(infoList)}
         </Center>
         <Box height="15px" />
-        <DefaultBtn text="Add Favorites" onPressBtn={() => { console.log("hi") }} disabled={false} />
+        <DefaultBtn text="Add Favorites" onPressBtn={() => { console.log("hi") }} disabled={!hasAdded} />
         <Box height="15px" />
         <AccordionComponent list={aboutList} />
       </Box>
