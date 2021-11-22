@@ -5,7 +5,8 @@ const colors = {
   backgroundDark: '#EFEDD5',
   primaryLight: '#FF9B88',
   secondaryLight: '#92FFD1',
-  textPrimary: '#242424',
+  textPrimary: '#6B4B37',
+  textSecondary: '#FFFDE7',
   gray: ['#757575', '#CBC3A6'],
   error: '#B53931',
 };

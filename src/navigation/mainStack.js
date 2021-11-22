@@ -17,7 +17,7 @@ export function Main(params) {
     <Drawer.Navigator initialRouteName="Home" screenOptions={{
       headerTitleAlign: "center",
       headerLeft: (props) => (
-        <Pressable paddingX={5} onPress={() => navigate('Landing')}>
+        <Pressable paddingX={5} onPress={() => navigate('Landing')} >
           <Image source={earth} alt="earth" />
         </Pressable>
       ),
@@ -27,9 +27,11 @@ export function Main(params) {
         </Pressable>
       ),
     }}>
-      <Drawer.Screen name="Home" component={HomeScreen} options={() => ({
-        headerShown: false,
-      })} />
+      <Drawer.Screen name="Home" component={HomeScreen}
+        options={() => ({
+          headerShown: false,
+        })}
+      />
       <Drawer.Screen name="Landing" component={LandingScreen} options={() => ({
         headerShown: false,
       })} />
