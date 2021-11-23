@@ -23,11 +23,10 @@ function NameScreen({ navigation, route }) {
   return (
     <Box paddingX="15px" width="100%" height="100%">
       <Box>
-        <Text fontSize="20px" bold marginY='25px'>사용하실 닉네임을 입력해주세요 :)</Text>
-        <Text fontSize="14px" >닉네임*</Text>
+        <Text fontSize="14px" marginTop="25px" >Nickname*</Text>
         <Input
           {...nickNameInput}
-          placeholder="닉네임을 입력해주세요"
+          placeholder="Please enter your email nickname"
           backgroundColor="#E7DFC2"
           marginBottom="50px"
           borderColor="#E7DFC2"
@@ -35,7 +34,7 @@ function NameScreen({ navigation, route }) {
         {/* <Button onPress={() => dispatch(authActions.postRegister({
           email, password
         }))} */}
-        <DefaultBtn text={registerLoading ? "로딩중" : "완료"} onPressBtn={() => dispatch(authActions.postRegister({
+        <DefaultBtn text={registerLoading ? "Loading" : "Sign up"} onPressBtn={() => dispatch(authActions.postRegister({
           email, password, nickname: nickName
         }))} disabled={nickName.length === 0 || registerLoading}></DefaultBtn>
       </Box >

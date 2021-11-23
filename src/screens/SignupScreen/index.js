@@ -62,20 +62,20 @@ function SignupScreen({ navigation }) {
 
     <Box paddingX="15px" width="100%" height="100%">
       <Box>
-        <Text fontSize="20px" bold marginY='25px'>첫 방문이시군요!</Text>
-        <Text fontSize="14px" >이메일*</Text>
+        <Text fontSize="14px" marginTop='25px' color={colors.secondary}>Email*</Text>
         <Input
           {...emailInput}
-          placeholder="이메일을 입력해주세요"
+          placeholder="Please enter your email address"
           backgroundColor="#E7DFC2"
           marginBottom="5px"
           borderColor="#E7DFC2"
+          color={colors.secondary}
         />
         {
           emailErr
             ?
             (
-              <Text color={colors.error}>올바른 이메일 양식을 입력해주세요.</Text>
+              <Text color={colors.error}>Please enter a valid email address.</Text>
             )
             :
             (
@@ -86,21 +86,21 @@ function SignupScreen({ navigation }) {
           curIsDuplicated
             ?
             (
-              <Text color={colors.error}>이미 가입된 이메일입니다.</Text>
+              <Text color={colors.error}>This address is already taken.</Text>
             )
             : (
               <></>
             )
         }
-        <Text fontSize="14px" marginTop="15px">비밀번호*</Text>
+        <Text fontSize="14px" marginTop="15px" color={colors.secondary}>Password*</Text>
         <Input
           {...passwordInput}
-          placeholder="비밀번호를 입력해주세요"
+          placeholder="Please enter your password"
           borderColor="#E7DFC2"
           marginBottom="50px"
           backgroundColor="#E7DFC2"
         />
-        <DefaultBtn text={emailCheckLoading ? "로딩중" : "다음"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading || emailErr} />
+        <DefaultBtn text={emailCheckLoading ? "Loading" : "Next"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading || emailErr} />
       </Box >
     </Box >
   )

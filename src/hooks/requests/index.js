@@ -9,13 +9,11 @@ export const getItemFromAsync = (storageName) => {
   return new Promise((resolve, reject) => {
     AsyncStorage.getItem(storageName, (err, result) => {
       if (err) {
-        reject(err);
+        return reject(err);
       }
-
       if (result === null) {
-        resolve(null);
+        return resolve(null);
       }
-
       resolve(JSON.parse(result));
     });
   });

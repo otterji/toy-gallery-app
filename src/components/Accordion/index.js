@@ -10,7 +10,6 @@ export default function AccordionComponent({
 }) {
 
   const screen = Dimensions.get('window');
-  console.log('hi');
 
   return (
     <NativeBaseProvider>

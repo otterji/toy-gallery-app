@@ -8,7 +8,7 @@ const DefaultBtn = ({ text, onPressBtn, disabled }) => {
     <Button onPress={() => onPressBtn()}
       width="100%"
       backgroundColor='#E7E2D4'
-      backgroundColor={`${disabled ? '#E7E2D4' : '#D45E50'}`}
+      backgroundColor={`${disabled ? '#E7E2D4' : '#D57162'}`}
       _text={{ color: `${disabled ? '#ABA9A1' : '#ffffff'}`, fontSize: 16 }}
       height='48px'
       disabled={disabled}

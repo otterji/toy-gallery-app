@@ -19,15 +19,15 @@ export function* postRegisterSaga({ email, password, nickname }) {
       type: authConstants.GET_ME.REQUEST,
     });
     yield Toast.show({
-      title: '회원가입이 완료되었습니다.',
+      title: 'You are successfully signed up',
       placement: "top",
       status: "success",
       duration: 6000,
     });
-    yield RootNavigation.replace('SignUpCompleted');
+    yield RootNavigation.replace('Main', { screen: "Landing" })
   } catch (err) {
     yield Toast.show({
-      title: '회원가입을 할 수 없습니다.',
+      title: 'Something went wrong :(',
       placement: "top",
       status: "warning",
       duration: 6000,
@@ -51,7 +51,7 @@ export function* logInSaga({ email, password }) {
       type: authConstants.GET_ME.REQUEST,
     });
     yield Toast.show({
-      title: '로그인되었습니다.',
+      title: 'Welcome back',
       placement: "top",
       status: "success",
       duration: 6000,
@@ -59,7 +59,7 @@ export function* logInSaga({ email, password }) {
     yield RootNavigation.replace('Main', { screen: "Landing" })
   } catch (error) {
     yield Toast.show({
-      title: '이메일과 비밀번호를 확인해주세요.',
+      title: 'Please check your email or password',
       placement: "top",
       status: "warning",
       duration: 6000,
@@ -96,7 +96,7 @@ export function* getEmailCheckSaga({ email, password }) {
     });
     if (isDuplicated) {
       yield Toast.show({
-        title: '이미 가입된 이메일입니다.',
+        title: 'This email is already taken',
         placement: "top",
         status: "warning",
         duration: 6000,

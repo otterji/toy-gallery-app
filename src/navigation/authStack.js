@@ -14,11 +14,11 @@ const Stack = createNativeStackNavigator();
 
 export function AuthStack() {
 
-  const autoLogin = () => {
-    const userId = getItemFromAsync('userId');
+  const autoLogin = async () => {
+    const userId = await getItemFromAsync('userId');
     if (userId) {
       Toast.show({
-        title: '자동으로 로그인 되었습니다.',
+        title: 'You are automatically signed in',
         placement: "top",
         status: "success",
         duration: 6000,
@@ -34,9 +34,9 @@ export function AuthStack() {
 
   return (
     <Stack.Navigator initialRouteName={getInitialScreen()} screenOptions={{ headerTitleAlign: "center", headerStyle: { backgroundColor: colors.background } }}>
-      <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Login' }} />
-      <Stack.Screen name="SignUp" component={SignupScreen} options={{ title: 'Sign Up' }} />
-      <Stack.Screen name="Name" component={NameScreen} options={{ title: 'Sign Up' }} />
+      <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Sign in' }} />
+      <Stack.Screen name="SignUp" component={SignupScreen} options={{ title: 'Sign up' }} />
+      <Stack.Screen name="Name" component={NameScreen} options={{ title: 'Sign up' }} />
       <Stack.Screen name="SignUpCompleted" component={SignupCompletedScreen} options={{ title: 'Welcome' }} />
     </Stack.Navigator>
   );

@@ -61,10 +61,11 @@ function LandingScreen({ navigation }) {
   return (
     <TouchableWithoutFeedback style={{ width: screen.width, height: screen.height }}>
       <Box marginY={30} marginLeft={26}>
-        <Text fontSize={45} italic bold color={colors.secondary} marginBottom="7px">earth</Text>
-        <Text fontSize={14} color={colors.secondary}>
-          {`업사이클링 작품 큐레이션 지구사랑 커뮤니티
-예술 갤러리 작가 소통 채널`}
+        <Text fontSize={45} italic color={colors.secondary} marginBottom="7px">earth</Text>
+        <Text fontSize={14} color="#E7DFC2">
+          {`Hi, we’re Patreon. We believe 
+people who make things should get 
+paid for the value they give to the world.`}
         </Text>
       </Box>
       <Box backgroundColor={colors.secondary} paddingX={9} flex={1}>
