@@ -1,0 +1,62 @@
+import { Box, Button, Center, Input, Text, Pressable, Image, Flex, ScrollView, VStack, Fab, Icon, SimpleGrid } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { TextPropTypes, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import pieceActions from '../../../../store/piece/actions';
+import { initialState } from '../../../../store/piece/reducer';
+import colors from '../../../../styles/colors';
+import { Dimensions } from 'react-native';
+import Loading from '../../../../components/Loading';
+import { AlphabetList } from "react-native-section-alphabet-list";
+
+
+const screen = Dimensions.get('window');
+
+
+const Artist = ({ navigation }) => {
+  const { navigate } = navigation;
+  const dispatch = useDispatch();
+  const { loading, pieceList, pieceDetail } = useSelector(state => state.pieceReducer || initialState);
+
+  const data = [
+    { value: 'Aillie-Mai Allen', key: 'lCUTs2' },
+    { value: 'Bmmanuel Goldstein', key: 'TXdL0c' },
+    { value: 'Cinston Smith', key: 'zqsiEw' },
+    { value: 'Dilliam Blazkowicz', key: 'psg2PM' },
+    { value: 'Dordon Comstock', key: '1K6I18' },
+    { value: 'Ehilip Ravelston', key: 'NVHSkA' },
+    { value: 'Fosemary Waterlow', key: 'SaHqyG' },
+    { value: 'Gulia Comstock', key: 'iaT1Ex' },
+    { value: 'Hihai Maldonado', key: 'OvMd5e' },
+    { value: 'Zurtaza Molina', key: '25zqAO' },
+    { value: 'Zeter Petigrew', key: '8cWuu3' },
+  ];
+
+
+  return (
+    loading
+      ?
+      (<Loading />)
+      :
+      (
+        <AlphabetList
+          data={data}
+          indexLetterStyle={{
+            color: colors.secondary,
+          }}
+          renderCustomItem={(item) => (
+            <View style={{ padding: 20 }}>
+              <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
+            </View>
+          )}
+          renderCustomSectionHeader={(section) => (
+            <View style={{ backgroundColor: colors.backgroundDark, paddingVertical: 3 }}>
+              <Text style={{ paddingLeft: 20, color: colors.secondary }}>{section.title}</Text>
+            </View>
+          )}
+        />
+      )
+  )
+}
+
+export default Artist;
