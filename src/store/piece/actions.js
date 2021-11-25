@@ -4,6 +4,9 @@ const pieceActions = {
   getAllPieces: () => ({
     type: pieceConstants.GET_ALL_PIECES.REQUEST,
   }),
+  getAllArtists: () => ({
+    type: pieceConstants.GET_ALL_ARTISTS.REQUEST,
+  }),
   getPieceDetail: ({ pieceId }) => ({
     type: pieceConstants.GET_PIECE_DETAIL.REQUEST,
     pieceId,

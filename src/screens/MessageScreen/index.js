@@ -56,7 +56,7 @@ function MessageScreen({ navigation }) {
     <Box paddingX="15px" width="100%" height="100%" pt={10}>
       {
         sampleChat.map((x) => (
-          <Box key={x.id} >
+          <Box key={`chatList-${x.id}`} >
             {ChatBox(x)}
           </Box>
         ))

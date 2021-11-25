@@ -8,15 +8,25 @@ import colors from '../../../../styles/colors';
 import { Dimensions } from 'react-native';
 import Loading from '../../../../components/Loading';
 import { AlphabetList } from "react-native-section-alphabet-list";
+import { navigate } from '../../../../navigation/route';
 
 
 const screen = Dimensions.get('window');
 
 
-const Artist = ({ navigation }) => {
-  const { navigate } = navigation;
+const Artist = () => {
   const dispatch = useDispatch();
-  const { loading, pieceList, pieceDetail } = useSelector(state => state.pieceReducer || initialState);
+  const { artistList, artistLoading } = useSelector(state => state.pieceReducer || initialState);
+  const [curData, setCurData] = useState([]);
+
+  useEffect(() => {
+    dispatch(pieceActions.getAllArtists())
+  }, [])
+
+  useEffect(() => {
+    if (artistList.length === 0) return;
+    setCurData(artistList);
+  }, [artistList])
 
   const data = [
     { value: 'Aillie-Mai Allen', key: 'lCUTs2' },
@@ -34,19 +44,24 @@ const Artist = ({ navigation }) => {
 
 
   return (
-    loading
+    artistLoading
       ?
       (<Loading />)
       :
       (
         <AlphabetList
-          data={data}
+          data={curData}
           indexLetterStyle={{
             color: colors.secondary,
           }}
           renderCustomItem={(item) => (
             <View style={{ padding: 20 }}>
               <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
+              {/* <Image
+                key={`atelier-gridView-${x.item.key}`}
+                source={}
+                alt={`atelier-image-grid-${x.id}`}
+                /> */}
             </View>
           )}
           renderCustomSectionHeader={(section) => (

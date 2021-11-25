@@ -70,7 +70,7 @@ paid for the value they give to the world.`}
       </Box>
       <Box backgroundColor={colors.secondary} paddingX={9} flex={1}>
         {imgList.map((x) => (
-          <Box key={x.id}>
+          <Box key={`landing-${x.id}`}>
             {renderImg(x)}
           </Box>
         ))}

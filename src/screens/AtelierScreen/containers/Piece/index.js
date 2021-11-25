@@ -11,6 +11,7 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import { Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import Loading from '../../../../components/Loading';
+import { navigate } from '../../../../navigation/route';
 
 
 const screen = Dimensions.get('window');
@@ -123,7 +124,7 @@ const Piece = ({ navigation }) => {
                     pieceId: _item.id,
                   })
                 }} >
-                  <Image width={screen.width / 2} height={200} source={_item.imageLink.length !== 0 ? { uri: _item.imageLink } : null} alt={`atelier-image-grid-${_item.id}`} key={_item.id}
+                  <Image width={screen.width / 2} height={200} source={_item.imageLink.length !== 0 ? { uri: _item.imageLink } : null} alt={`atelier-image-grid-${_item.id}`} key={`atelier-img-${_item.id}`}
                   />
                   <Text pt={1} pb={2} pl={2} color={colors.gray[1]}>
                     No.{_item.id} {_item.material}

@@ -14,6 +14,7 @@ import pieceConstants, { RESET_STORE } from './constants';
 export const initialState = {
   loading: true,
   resetLoading: true,
+  artistLoading: true,
   pieceList: [],
   pieceDetail: {
     id: null,
@@ -40,7 +41,8 @@ export const initialState = {
     desc: '',
     pieceList: []
   },
-  hasAdded: false
+  hasAdded: false,
+  artistList: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -56,6 +58,17 @@ const pieceReducer = (state = initialState, action) =>
         break;
       case pieceConstants.GET_ALL_PIECES.FAIL:
         draft.loading = false;
+        break;
+
+      case pieceConstants.GET_ALL_ARTISTS.REQUEST:
+        draft.artistLoading = true;
+        break;
+      case pieceConstants.GET_ALL_ARTISTS.SUCCESS:
+        draft.artistLoading = false;
+        draft.artistList = action.artistList;
+        break;
+      case pieceConstants.GET_ALL_ARTISTS.FAIL:
+        draft.artistLoading = false;
         break;
 
       case pieceConstants.GET_PIECE_DETAIL.REQUEST:
