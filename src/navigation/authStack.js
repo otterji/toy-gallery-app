@@ -27,13 +27,13 @@ export function AuthStack() {
     }
   }
 
-  async function getInitialScreen() {
-    await autoLogin();
-  }
+  // async function getInitialScreen() {
+  //   await autoLogin();
+  // }
 
 
   return (
-    <Stack.Navigator initialRouteName={getInitialScreen()} screenOptions={{ headerTitleAlign: "center", headerStyle: { backgroundColor: colors.background } }}>
+    <Stack.Navigator initialRouteName="Login" screenOptions={{ headerTitleAlign: "center", headerStyle: { backgroundColor: colors.background } }}>
       <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Sign in' }} />
       <Stack.Screen name="SignUp" component={SignupScreen} options={{ title: 'Sign up' }} />
       <Stack.Screen name="Name" component={NameScreen} options={{ title: 'Sign up' }} />

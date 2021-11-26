@@ -10,6 +10,7 @@ import Loading from '../../../../components/Loading';
 import { AlphabetList } from "react-native-section-alphabet-list";
 import { navigate } from '../../../../navigation/route';
 import emptyHeart from '../../../../../assets/emptyHeart.png';
+import filledHeart from '../../../../../assets/filledHeart.png';
 
 const screen = Dimensions.get('window');
 

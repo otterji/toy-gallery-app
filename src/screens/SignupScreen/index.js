@@ -1,4 +1,4 @@
-import { Box, Button, Center, Input, Text } from 'native-base';
+import { Box, Button, Center, Input, Text, Checkbox, Flex, Modal } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,8 @@ function SignupScreen({ navigation }) {
   const [password, setPassword] = useState("");
   const [curIsDuplicated, setIsDuplicated] = useState(false);
   const [emailErr, setEmailErr] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [agreed, setAgreed] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -56,11 +58,59 @@ function SignupScreen({ navigation }) {
     secureTextEntry: true,
   };
 
-
+  const today = new Date();
+  const time = today.toDateString();
+  const curTime = `${today.getFullYear()}. ${today.getMonth() + 1}. ${today.getDate()}`
 
   return (
-
     <Box paddingX="15px" width="100%" height="100%">
+      <Modal isOpen={showModal}>
+        <Modal.Content>
+          <Modal.Header>
+            Privacy Policy
+          </Modal.Header>
+          <Modal.Body>
+            To use the service of ‘Earth’, I consent to the collection and usage of my privacy information, in accordance with the Korean Privacy Law Article 15 and 17.
+            {"\n"}
+            □ Purpose of Collection and Usage of Privacy Information
+            - Account Sign Up, Service Management, Marketing.
+            - Collected Privacy Information are solely used for the purpose stated above.
+            {"\n"}
+            □ List of Collected Privacy Information
+            - Name, email address, Age, etc.
+            {"\n"}
+            □ Period of Privacy Information Acquisition and Usage
+            - In accordance to related laws and regulations, ‘Earth’ possesses your Privacy Information for 1 year. Afterward, following [Korean Privacy Law] Article 21, privacy information is terminated immediately.
+            - In the case of account deletion, privacy information is terminated immediately according to the same regulation.
+            {"\n"}
+            ※ You have the right to refuse. However, account sign-up and service usage are not provided in the case of refusal.
+            {"\n"}
+            Do you agree to the Privacy Policy above?
+            {time}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button.Group space={2}>
+              <Button
+                variant="ghost"
+                colorScheme="blueGray"
+                onPress={() => {
+                  setShowModal(false)
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onPress={() => {
+                  setShowModal(false)
+                  setAgreed(true)
+                }}
+              >
+                Agree
+              </Button>
+            </Button.Group>
+          </Modal.Footer>
+        </Modal.Content>
+      </Modal>
       <Box>
         <Text fontSize="14px" marginTop='25px' color={colors.secondary}>Email*</Text>
         <Input
@@ -100,7 +150,11 @@ function SignupScreen({ navigation }) {
           marginBottom="50px"
           backgroundColor="#E7DFC2"
         />
-        <DefaultBtn text={emailCheckLoading ? "Loading" : "Next"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading || emailErr} />
+        <Flex direction="row">
+          <Checkbox isChecked={agreed} value="test" onPress={() => setShowModal(true)} />
+          <Text>I agree Privacy policy</Text>
+        </Flex>
+        <DefaultBtn text={emailCheckLoading ? "Loading" : "Next"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading || emailErr || !agreed} />
       </Box >
     </Box >
   )
