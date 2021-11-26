@@ -9,7 +9,7 @@ import { Dimensions } from 'react-native';
 import Loading from '../../../../components/Loading';
 import { AlphabetList } from "react-native-section-alphabet-list";
 import { navigate } from '../../../../navigation/route';
-
+import emptyHeart from '../../../../../assets/emptyHeart.png';
 
 const screen = Dimensions.get('window');
 
@@ -56,12 +56,16 @@ const Artist = () => {
           }}
           renderCustomItem={(item) => (
             <View style={{ padding: 20 }}>
-              <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
-              {/* <Image
-                key={`atelier-gridView-${x.item.key}`}
-                source={}
-                alt={`atelier-image-grid-${x.id}`}
-                /> */}
+              <Flex direction="row" justifyContent="space-between">
+                <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
+                <Pressable onPress={() => { console.log('hi') }}>
+                  <Image
+                    key={`atelier-gridView-${item.key}`}
+                    source={emptyHeart}
+                    alt={`atelier-image-grid-${item.id}`}
+                  />
+                </Pressable>
+              </Flex>
             </View>
           )}
           renderCustomSectionHeader={(section) => (

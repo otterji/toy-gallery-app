@@ -31,7 +31,8 @@ export const initialState = {
       profileImageLink: null,
       name: "",
       nationality: ""
-    }
+    },
+    year: '',
   },
   artistDetail: {
     id: null,

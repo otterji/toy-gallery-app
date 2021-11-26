@@ -10,7 +10,7 @@ import { AntDesign } from "@expo/vector-icons"
 import { Dimensions } from 'react-native';
 import Loading from '../../components/Loading';
 import AccordionComponent from '../../components/Accordion';
-
+import colors from '../../styles/colors';
 
 
 const screen = Dimensions.get('window');
@@ -96,13 +96,24 @@ function PieceDetailScreen({ navigation, route }) {
         <ScrollView>
           {targetPiece.imageLink && <Image alt={`piece-detail-image-alt-${targetPiece.imageLink}`} source={{ uri: targetPiece.imageLink }} width={screen.width} height="300px" />}
           <Box width="100%" paddingX="15px" paddingY="10px">
-            <Text fontSize="14px">No.{targetPiece.id} {targetPiece.material} </Text>
-            <Text fontSize="20px" fontWeight="bold" pb="20px">{targetPiece.title} ></Text>
-            <AccordionComponent list={accList} />
-            <Box height="20px" />
-            <DefaultBtn text="갤러리에 추가하기" onPressBtn={() => console.log('hi')} disabled={false} />
+            <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{targetPiece.title} {targetPiece.year}< /Text>
+            <Text fontSize="14px" color={colors.secondary}  pb="20px">No.{targetPiece.id} {targetPiece.material} </Text>
+            <Box height="10px" />
+            <Text fontSize="15px" color={colors.secondary} >{targetPiece.desc}</Text>
             <Box height="8px" />
-            <DefaultBtn text="재료 펀딩 참여하기" onPressBtn={() => console.log('hi')} disabled={true} />
+            <View
+            style={{
+            borderBottomColor: 'black',
+            borderBottomWidth: 1,
+          }}
+            />
+            <Box height="8px" />
+            <Text fontSize="18px" color={colors.secondary} >{targetPiece.artistInfo.name}</Text>
+            <Box height="8px" />
+            <Text fontSize="15px" color={colors.secondary} >{targetPiece.artistInfo.desc}</Text>
+            <Box height="38px" />
+            <DefaultBtn text="Keep on my gallery" onPressBtn={() => console.log('hi')} disabled={false} />
+            <Box height="8px" />
           </Box>
         </ScrollView >
       )
