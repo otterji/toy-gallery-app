@@ -44,6 +44,7 @@ export const initialState = {
   },
   hasAdded: false,
   artistList: [],
+  favArtistList: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */

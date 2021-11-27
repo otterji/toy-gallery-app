@@ -108,8 +108,10 @@ function PieceDetailScreen({ navigation, route }) {
           }}
             />
             <Box height="8px" />
-            <Text fontSize="18px" color={colors.secondary} >{targetPiece.artistInfo.name}</Text>
+            <Pressable onPress={() => navigate('ArtistDetail', { artistId: targetPiece.artistId, artistName: targetPiece.artistInfo.name, artistInfo: targetPiece.artistInfo })}>
+            <Text fontSize="18px" color={colors.secondary} >{targetPiece.artistInfo.name} > </Text>
             <Box height="8px" />
+            </Pressable>
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.artistInfo.desc}</Text>
             <Box height="38px" />
             <DefaultBtn text="Keep on my gallery" onPressBtn={() => console.log('hi')} disabled={false} />

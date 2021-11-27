@@ -9,6 +9,7 @@ export function* getAllArtistSaga() {
     const { artistList } = yield call(fetcher, url);
     const transFormedArtistList = artistList.map((x) => {
       return {
+        ...x,
         value: x.name,
         key: x.id
       }

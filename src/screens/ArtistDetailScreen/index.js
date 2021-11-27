@@ -42,7 +42,7 @@ function ArtistDetailScreen({ navigation, route }) {
           {
             artistWorks.map((x, idx) => (
               <>
-                <Text key={`artist-material-${idx}`}>{x.material}  </Text>
+                <Text key={`artist-material-${x.material} ${idx}`}>{x.material}  </Text>
               </>
             ))
           }
@@ -56,7 +56,7 @@ function ArtistDetailScreen({ navigation, route }) {
         <Box width="100%" height="100%" >
           <SimpleGrid minChildWidth="50%" spacing={0} width="100%" >
             {artistWorks.map((x, index) => {
-              return <Pressable key={index} onPress={() => {
+              return <Pressable key={`works-${index}`} onPress={() => {
                 navigate('PieceDetail', {
                   pieceTitle: x.title,
                   pieceId: x.id,
@@ -124,7 +124,9 @@ function ArtistDetailScreen({ navigation, route }) {
         loading
           ?
           (
-            <Loading />
+            <Box height={screen.height} alignItems="center" >
+              <Loading />
+            </Box>
           )
           :
           (

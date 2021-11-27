@@ -56,18 +56,18 @@ const Artist = () => {
             color: colors.secondary,
           }}
           renderCustomItem={(item) => (
-            <View style={{ padding: 20 }}>
-              <Flex direction="row" justifyContent="space-between">
-                <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
-                <Pressable onPress={() => { console.log('hi') }}>
-                  <Image
-                    key={`atelier-gridView-${item.key}`}
-                    source={emptyHeart}
-                    alt={`atelier-image-grid-${item.id}`}
-                  />
-                </Pressable>
-              </Flex>
-            </View>
+            <Pressable onPress={() => navigate('ArtistDetail', { artistId: item.id, artistName: item.name, artistInfo: item })}>
+              <View style={{ padding: 20 }}>
+                <Flex direction="row" justifyContent="space-between">
+                  <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
+                    <Image
+                      key={`atelier-gridView-${item.key}`}
+                      source={emptyHeart}
+                      alt={`atelier-image-grid-${item.id}`}
+                    />
+                </Flex>
+              </View>
+            </Pressable>
           )}
           renderCustomSectionHeader={(section) => (
             <View style={{ backgroundColor: colors.backgroundDark, paddingVertical: 3 }}>
