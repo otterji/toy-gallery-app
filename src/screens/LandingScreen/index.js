@@ -29,7 +29,7 @@ const imgList = [
   {
     id: 2,
     imgSource: myGallery,
-    link: '',
+    link: 'MyGalleryStack',
     marginTop: '39px'
   },
   {

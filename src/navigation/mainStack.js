@@ -9,6 +9,7 @@ import profile from '../../assets/profile.png';
 import { Image, Pressable } from 'native-base';
 import { navigate } from './route';
 import { MagazineStack } from './MagazineStack';
+import { MyGalleryStack } from './MyGalleryStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,6 +40,7 @@ export function Main(params) {
       <Drawer.Screen name="AtelierStack" component={AteilerStack} options={{ headerShown: false }} />
       <Drawer.Screen name="Message" component={MessageScreen} />
       <Drawer.Screen name="MagazineStack" component={MagazineStack} options={{ headerTitle: "Magazine" }} />
+      <Drawer.Screen name="MyGalleryStack" component={MyGalleryStack} options={{ headerTitle: "My Gallery" }} />
     </Drawer.Navigator>
   )
 }
