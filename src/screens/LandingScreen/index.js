@@ -35,7 +35,7 @@ const imgList = [
   {
     id: 3,
     imgSource: magazine,
-    link: '',
+    link: 'MagazineStack',
     marginTop: '58px'
   },
   {

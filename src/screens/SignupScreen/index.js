@@ -1,4 +1,4 @@
-import { Box, Button, Center, Input, Text, Checkbox, Flex, Modal, Pressable } from 'native-base';
+import { Box, Button, Center, Input, Text, Checkbox, Flex, Modal } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -147,14 +147,13 @@ function SignupScreen({ navigation }) {
           {...passwordInput}
           placeholder="Please enter your password"
           borderColor="#E7DFC2"
+          marginBottom="50px"
           backgroundColor="#E7DFC2"
         />
-          <Pressable onPress={() => setShowModal(true)} >
-            <Flex direction="row" paddingY="20px" alignItems="center">
-              <Checkbox isChecked={agreed} value="test" onPress={() => {setAgreed(!agreed)}}/>
-              <Text marginLeft="10px" color={colors.secondary} fontSize="12px">I Agree to Privacy Policy</Text>
-            </Flex>
-          </Pressable>
+        <Flex direction="row">
+          <Checkbox isChecked={agreed} value="test" onPress={() => setShowModal(true)} />
+          <Text>I agree Privacy policy</Text>
+        </Flex>
         <DefaultBtn text={emailCheckLoading ? "Loading" : "Next"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading || emailErr || !agreed} />
       </Box >
     </Box >
