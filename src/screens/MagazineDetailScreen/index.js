@@ -28,7 +28,7 @@ export default function MagazineDetailScreen({ navigation }) {
           <Flex direction="column" >
             {
               curList.map((x, idx) => (
-                <Box key={`magazine-${idx}`} paddingX="20px" >
+                <Box key={`magazine-${x.title}`} paddingX="20px" >
                   <Text fontSize="12px" color={colors.secondary}>Madeleine Bialke</Text>
                   <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{x.title}</Text>
                   <Flex flex={1} flexDirection="row" justifyContent="space-between">

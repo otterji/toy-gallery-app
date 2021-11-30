@@ -35,7 +35,7 @@ export default function AtelierScreen({ navigation }) {
   const renderTabBar = (props) => {
     const inputRange = props.navigationState.routes.map((x, i) => i);
     return (
-      <Box flexDirection="row">
+      <Box flexDirection="row" >
         {props.navigationState.routes.map((route, i) => {
           const opacity = props.position.interpolate({
             inputRange,
@@ -50,6 +50,7 @@ export default function AtelierScreen({ navigation }) {
               flex={1}
               alignItems="center"
               p="1"
+              key={`tab-bar-${i}`}
             >
               <Pressable
                 onPress={() => {

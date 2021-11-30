@@ -60,11 +60,11 @@ const Artist = () => {
               <View style={{ padding: 20 }}>
                 <Flex direction="row" justifyContent="space-between">
                   <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
-                    <Image
-                      key={`atelier-gridView-${item.key}`}
-                      source={emptyHeart}
-                      alt={`atelier-image-grid-${item.id}`}
-                    />
+                  <Image
+                    key={`${item}`}
+                    source={emptyHeart}
+                    alt={`atelier-image-grid-${item.id}`}
+                  />
                 </Flex>
               </View>
             </Pressable>

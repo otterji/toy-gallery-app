@@ -21,7 +21,8 @@ export const initialState = {
     title: "",
     content: "",
     createdAt: "",
-    updatedAt: ""
+    updatedAt: "",
+    coverImage: "",
   },
 };
 

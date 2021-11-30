@@ -86,7 +86,7 @@ const Piece = ({ navigation }) => {
                   )
                 }
                 return (
-                  <Pressable key={`atelier-defaultMode-${x.id}`} onPress={() => setSelectedId(x.id)}>
+                  <Pressable key={`atelier-defaultMode-${x.title}`} onPress={() => setSelectedId(x.id)}>
                     <AutoHeightImage
                       alt={`atelier-image-not-pressed-${x.id}`}
                       source={x.imageLink.length !== 0 ? { uri: x.imageLink } : null}

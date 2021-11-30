@@ -42,7 +42,7 @@ function ArtistDetailScreen({ navigation, route }) {
           {
             artistWorks.map((x, idx) => (
               <>
-                <Text key={`artist-material-${x.material} ${idx}`}>{x.material}  </Text>
+                <Text key={`artist-material-${x.id}`}>{x.material}  </Text>
               </>
             ))
           }
@@ -56,7 +56,7 @@ function ArtistDetailScreen({ navigation, route }) {
         <Box width="100%" height="100%" >
           <SimpleGrid minChildWidth="50%" spacing={0} width="100%" >
             {artistWorks.map((x, index) => {
-              return <Pressable key={`works-${index}`} onPress={() => {
+              return <Pressable key={`works-${x.id}`} onPress={() => {
                 navigate('PieceDetail', {
                   pieceTitle: x.title,
                   pieceId: x.id,
@@ -65,7 +65,7 @@ function ArtistDetailScreen({ navigation, route }) {
                 <Image
                   width="100%"
                   height={180}
-                  key={`atelier-gridView-${x.title}`}
+                  key={`atelier-gridView-${x.id}`}
                   source={x.imageLink.length !== 0 ? { uri: x.imageLink } : null}
                   alt={`atelier-image-grid-${x.id}`}
                 />
@@ -105,7 +105,7 @@ function ArtistDetailScreen({ navigation, route }) {
           {
             _infoList.map((x) => {
               return (
-                <Center key={`infobox-${x.id}`}>
+                <Center key={`info-${x.id}`}>
                   <Text color="#02BA71" fontSize="18px" fontWeight="bold">{x.num}</Text>
                   <Text fontSize="14px">{x.title}</Text>
                 </Center>

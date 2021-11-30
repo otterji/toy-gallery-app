@@ -6,7 +6,10 @@ const magazineActions = {
   }),
   getMagazineDetail: () => ({
     type: magazineConstans.GET_MAGAZINE_DETAIL.REQUEST,
-  })
+  }),
+  resetStore: () => ({
+    type: RESET_STORE
+  }),
 };
 
 export default magazineActions;
