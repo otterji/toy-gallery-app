@@ -39,24 +39,25 @@ function MyGalleryScreen({ navigation, route }) {
   // const { user, registerLoading } = useSelector(state => state.authReducer);
 
   return (
-
-    <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-      <View style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
-        <Box style={{ borderWidth: 3, height: 200 }}>
-          <Text>dkssudsdafdsfas</Text>
-        </Box>
+    <>
+      <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <View style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
+          <Box style={{ borderWidth: 3, height: 200 }}>
+            <Text>dkssudsdafdsfas</Text>
+          </Box>
+        </View>
+        <View style={{ width: '50%', paddingLeft: 5, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
+          <Box style={{ borderWidth: 3, height: 200 }}>
+            <Text>dkssudsdafdsfas</Text>
+          </Box>
+        </View>
+        <View style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
+          <Box style={{ borderWidth: 3, height: 200 }}>
+            <Text>dkssudsdafdsfas</Text>
+          </Box>
+        </View>
       </View>
-      <View style={{ width: '50%', paddingLeft: 5, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
-        <Box style={{ borderWidth: 3, height: 200 }}>
-          <Text>dkssudsdafdsfas</Text>
-        </Box>
-      </View>
-      <View style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
-        <Box style={{ borderWidth: 3, height: 200 }}>
-          <Text>dkssudsdafdsfas</Text>
-        </Box>
-      </View>
-    </View>
+    </>
     // <Box paddingX="15px" width="100%" height="100%">
     //   <Box style={{ width: "100%" }}>
     //     <Center flex={1}>

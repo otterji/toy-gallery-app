@@ -1,8 +1,7 @@
-import { Box, Text, Image, ScrollView, Pressable } from 'native-base';
+import { Box, Text, Image, ScrollView, Pressable, Modal, Button, VStack, FormControl, Input } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { TextPropTypes, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { borderWidth } from 'styled-system';
 import DefaultBtn from '../../components/DefaultBtn';
 import pieceActions from '../../store/piece/actions';
 import { initialState } from '../../store/piece/reducer';
@@ -39,6 +38,23 @@ function PieceDetailScreen({ navigation, route }) {
       nationality: ""
     }
   });
+  const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+  const [selectedExhibition, setSelectedExhibition] = useState({
+    id: null,
+  });
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
+
+  const nameInput = {
+    value: name,
+    onChangeText: (text) => setName(text),
+  }
+
+  const descInput = {
+    value: desc,
+    onChangeText: (text) => setDesc(text),
+  };
 
   useEffect(() => {
     return () => {
@@ -57,32 +73,76 @@ function PieceDetailScreen({ navigation, route }) {
 
   useEffect(() => { }, [targetPiece])
 
-  const accList = [
-    {
-      id: 0,
-      title: "Description",
-      content: targetPiece.desc,
-    },
-    {
-      id: 1,
-      title: "Features",
-      content: targetPiece.features
-    },
-    {
-      id: 2,
-      title: "Artist",
-      content: (
-        <Pressable onPress={() => navigate('ArtistDetail', { artistId: targetPiece.artistId, artistName: targetPiece.artistInfo.name, artistInfo: targetPiece.artistInfo })}>
-          <Text fontSize="20px">
-            {targetPiece.artistInfo.name} >
-          </Text>
-          <Text >
-            {targetPiece.artistInfo.nationality}
-          </Text>
-        </Pressable>
-      )
-    }
-  ]
+  const BringToMyGalleryModal = () => (
+    <Modal isOpen={showModal} onClose={() => setShowModal(false)} >
+      <Modal.Content>
+        <Modal.CloseButton />
+        <Modal.Header>
+          Which Exhibition?
+        </Modal.Header>
+        <Modal.Body>
+          <ScrollView>
+            <VStack space={5}>
+              <Text>
+                Gallery 1
+              </Text>
+              <Text>
+                Gallery 2
+              </Text>
+              <Text>
+                Gallery 3
+              </Text>
+              <Text>
+                Gallery 4
+              </Text>
+            </VStack>
+            <Pressable onPress={() => setShowModal2(true)}>
+              {({ isHovered, isPressed }) => {
+                return (
+                  <Box
+                    bg={isPressed ? "rgb(243, 244, 246)" : isHovered ? "rgb(243, 244, 246)" : "rgb(249, 250, 251)"}
+                    paddingTop='10px'
+                    paddingBottom='10px'
+                    marginTop='10px'
+                  >
+                    <Text fontSize='16px' color="#ABA9A1">+ Create New Exhibition</Text>
+                  </Box>
+                )
+              }}
+            </Pressable>
+          </ScrollView >
+        </Modal.Body>
+        <Modal.Footer>
+          <DefaultBtn text="Exhibit" onPressBtn={() => setShowModal(false)} disabled={selectedExhibition.id === null} />
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal >
+  );
+
+  const CreateNewExhibitionModal = () => (
+    <Modal isOpen={showModal2} onClose={() => setShowModal2(false)} >
+      <Modal.Content>
+        <Modal.CloseButton />
+        <Modal.Header>
+          Create New Exhibition
+        </Modal.Header>
+        <Modal.Body>
+          <FormControl>
+            <FormControl.Label>Exhibition Name</FormControl.Label>
+            <Input {...nameInput} />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Exhibition Description</FormControl.Label>
+            <Input {...descInput} />
+          </FormControl>
+        </Modal.Body>
+        <Modal.Footer>
+          <DefaultBtn text="Create" onPressBtn={() => setShowModal(true)} disabled={selectedExhibition.id === null} />
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal >
+  );
+
 
 
   return (
@@ -94,6 +154,8 @@ function PieceDetailScreen({ navigation, route }) {
       :
       (
         <ScrollView>
+          <BringToMyGalleryModal />
+          <CreateNewExhibitionModal />
           {targetPiece.imageLink && <Image alt={`piece-detail-image-alt-${targetPiece.imageLink}`} source={{ uri: targetPiece.imageLink }} width={screen.width} height="300px" />}
           <Box width="100%" paddingX="15px" paddingY="10px">
             <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{targetPiece.title} {targetPiece.year}< /Text>
@@ -114,7 +176,7 @@ function PieceDetailScreen({ navigation, route }) {
             </Pressable>
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.artistInfo.desc}</Text>
             <Box height="38px" />
-            <DefaultBtn text="Keep on my gallery" onPressBtn={() => console.log('hi')} disabled={false} />
+            <DefaultBtn text="Bring in to my gallery" onPressBtn={() => setShowModal(true)} disabled={false} />
             <Box height="8px" />
           </Box>
         </ScrollView >
