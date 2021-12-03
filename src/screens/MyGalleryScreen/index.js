@@ -1,7 +1,8 @@
 import { Box, SimpleGrid, Center, Text } from 'native-base';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Dimensions, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import AddExhibitionModal from '../../components/AddExhibitionModal';
 import DefaultBtn from '../../components/DefaultBtn';
 import authActions from '../../store/auth/actions';
 import colors from '../../styles/colors';
@@ -36,11 +37,20 @@ function MyGalleryScreen({ navigation, route }) {
   const { navigate } = navigation;
   const { params } = route;
   const dispatch = useDispatch();
+  const viewRef = useRef(null);
+  const [wrapperWidth, setWrapperWidth] = useState(0);
+
+  const onViewLayout = (event) => {
+    console.log("sdfdf")
+    const { width, height } = event.nativeEvent.layout;
+    setWrapperWidth(width);
+  }
   // const { user, registerLoading } = useSelector(state => state.authReducer);
 
   return (
     <>
-      <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+      <View onLayout={onViewLayout} style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <AddExhibitionModal wrapperWidth={wrapperWidth} from="MyPage"></AddExhibitionModal>
         <View style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
           <Box style={{ borderWidth: 3, height: 200 }}>
             <Text>dkssudsdafdsfas</Text>

@@ -124,6 +124,34 @@ export function* postArtistFavoriteSaga({ artistId }) {
   }
 };
 
+export function* postExhibitionSaga({ name, desc }) {
+  const url = createAPI(`/gallery`);
+  const payload = {
+    name,
+    desc
+  }
+  try {
+    yield call(poster, { url, body: payload });
+    yield put({
+      type: pieceConstants.POST_EXHIBITION.SUCCESS,
+    });
+    yield Toast.show({
+      title: 'Successfully created! :)',
+      placement: "top",
+      status: "success",
+      duration: 6000,
+    });
+  } catch (err) {
+    yield Toast.show({
+      title: 'Something went wrong :(',
+      placement: "top",
+      status: "warning",
+      duration: 6000,
+    });
+    yield put({ type: pieceConstants.POST_EXHIBITION.FAIL });
+  }
+};
+
 export default function* pieceSaga() {
   yield all([
     takeLatest(pieceConstants.GET_ALL_PIECES.REQUEST, getAllPiecesSaga),
@@ -131,5 +159,6 @@ export default function* pieceSaga() {
     takeLatest(pieceConstants.GET_PIECE_DETAIL.REQUEST, getPieceDetailSaga),
     takeLatest(pieceConstants.GET_ARTIST_DETAIL.REQUEST, getArtistDetailSaga),
     takeLatest(pieceConstants.POST_ARTIST_FAVORITE.REQUEST, postArtistFavoriteSaga),
+    takeLatest(pieceConstants.POST_EXHIBITION.REQUEST, postExhibitionSaga),
   ]);
 };

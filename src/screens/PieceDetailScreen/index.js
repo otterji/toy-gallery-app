@@ -10,6 +10,7 @@ import { Dimensions } from 'react-native';
 import Loading from '../../components/Loading';
 import AccordionComponent from '../../components/Accordion';
 import colors from '../../styles/colors';
+import AddExhibitionModal from '../../components/AddExhibitionModal';
 
 
 const screen = Dimensions.get('window');
@@ -43,18 +44,6 @@ function PieceDetailScreen({ navigation, route }) {
   const [selectedExhibition, setSelectedExhibition] = useState({
     id: null,
   });
-  const [name, setName] = useState('');
-  const [desc, setDesc] = useState('');
-
-  const nameInput = {
-    value: name,
-    onChangeText: (text) => setName(text),
-  }
-
-  const descInput = {
-    value: desc,
-    onChangeText: (text) => setDesc(text),
-  };
 
   useEffect(() => {
     return () => {
@@ -71,7 +60,13 @@ function PieceDetailScreen({ navigation, route }) {
     setTargetPiece(pieceDetail);
   }, [pieceDetail]);
 
-  useEffect(() => { }, [targetPiece])
+  useEffect(() => { }, [targetPiece]);
+
+  const onPressCreateBtn = ({ name, desc }) => {
+    setShowModal2(false);
+    dispatch(pieceActions.postExhibition({ name, desc }));
+  };
+
 
   const BringToMyGalleryModal = () => (
     <Modal isOpen={showModal} onClose={() => setShowModal(false)} >
@@ -119,30 +114,6 @@ function PieceDetailScreen({ navigation, route }) {
     </Modal >
   );
 
-  const CreateNewExhibitionModal = () => (
-    <Modal isOpen={showModal2} onClose={() => setShowModal2(false)} >
-      <Modal.Content>
-        <Modal.CloseButton />
-        <Modal.Header>
-          Create New Exhibition
-        </Modal.Header>
-        <Modal.Body>
-          <FormControl>
-            <FormControl.Label>Exhibition Name</FormControl.Label>
-            <Input {...nameInput} />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Exhibition Description</FormControl.Label>
-            <Input {...descInput} />
-          </FormControl>
-        </Modal.Body>
-        <Modal.Footer>
-          <DefaultBtn text="Create" onPressBtn={() => setShowModal(true)} disabled={selectedExhibition.id === null} />
-        </Modal.Footer>
-      </Modal.Content>
-    </Modal >
-  );
-
 
 
   return (
@@ -153,30 +124,29 @@ function PieceDetailScreen({ navigation, route }) {
       )
       :
       (
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps="always">
           <BringToMyGalleryModal />
-          <CreateNewExhibitionModal />
           {targetPiece.imageLink && <Image alt={`piece-detail-image-alt-${targetPiece.imageLink}`} source={{ uri: targetPiece.imageLink }} width={screen.width} height="300px" />}
           <Box width="100%" paddingX="15px" paddingY="10px">
-            <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{targetPiece.title} {targetPiece.year}< /Text>
-            <Text fontSize="14px" color={colors.secondary}  pb="20px">No.{targetPiece.id} {targetPiece.material} </Text>
+            <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{targetPiece.title} {targetPiece.year}</Text>
+            <Text fontSize="14px" color={colors.secondary} pb="20px">No.{targetPiece.id} {targetPiece.material} </Text>
             <Box height="10px" />
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.desc}</Text>
             <Box height="8px" />
             <View
-            style={{
-            borderBottomColor: 'black',
-            borderBottomWidth: 1,
-          }}
+              style={{
+                borderBottomColor: 'black',
+                borderBottomWidth: 1,
+              }}
             />
             <Box height="8px" />
             <Pressable onPress={() => navigate('ArtistDetail', { artistId: targetPiece.artistId, artistName: targetPiece.artistInfo.name, artistInfo: targetPiece.artistInfo })}>
-            <Text fontSize="18px" color={colors.secondary} >{targetPiece.artistInfo.name} > </Text>
-            <Box height="8px" />
+              <Text fontSize="18px" color={colors.secondary} >{targetPiece.artistInfo.name} > </Text>
+              <Box height="8px" />
             </Pressable>
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.artistInfo.desc}</Text>
             <Box height="38px" />
-            <DefaultBtn text="Bring in to my gallery" onPressBtn={() => setShowModal(true)} disabled={false} />
+            <AddExhibitionModal from="pieceDetail"></AddExhibitionModal>
             <Box height="8px" />
           </Box>
         </ScrollView >

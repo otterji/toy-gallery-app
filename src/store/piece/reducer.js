@@ -45,6 +45,7 @@ export const initialState = {
   hasAdded: false,
   artistList: [],
   favArtistList: [],
+  postExLoading: true,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -104,6 +105,16 @@ const pieceReducer = (state = initialState, action) =>
         break;
       case pieceConstants.POST_ARTIST_FAVORITE.FAIL:
         draft.loading = false;
+        break;
+
+      case pieceConstants.POST_EXHIBITION.REQUEST:
+        draft.postExLoading = true;
+        break;
+      case pieceConstants.POST_EXHIBITION.SUCCESS:
+        draft.postExLoading = false;
+        break;
+      case pieceConstants.POST_EXHIBITION.FAIL:
+        draft.postExLoading = false;
         break;
 
       case RESET_STORE:
