@@ -68,54 +68,6 @@ function PieceDetailScreen({ navigation, route }) {
   };
 
 
-  const BringToMyGalleryModal = () => (
-    <Modal isOpen={showModal} onClose={() => setShowModal(false)} >
-      <Modal.Content>
-        <Modal.CloseButton />
-        <Modal.Header>
-          Which Exhibition?
-        </Modal.Header>
-        <Modal.Body>
-          <ScrollView>
-            <VStack space={5}>
-              <Text>
-                Gallery 1
-              </Text>
-              <Text>
-                Gallery 2
-              </Text>
-              <Text>
-                Gallery 3
-              </Text>
-              <Text>
-                Gallery 4
-              </Text>
-            </VStack>
-            <Pressable onPress={() => setShowModal2(true)}>
-              {({ isHovered, isPressed }) => {
-                return (
-                  <Box
-                    bg={isPressed ? "rgb(243, 244, 246)" : isHovered ? "rgb(243, 244, 246)" : "rgb(249, 250, 251)"}
-                    paddingTop='10px'
-                    paddingBottom='10px'
-                    marginTop='10px'
-                  >
-                    <Text fontSize='16px' color="#ABA9A1">+ Create New Exhibition</Text>
-                  </Box>
-                )
-              }}
-            </Pressable>
-          </ScrollView >
-        </Modal.Body>
-        <Modal.Footer>
-          <DefaultBtn text="Exhibit" onPressBtn={() => setShowModal(false)} disabled={selectedExhibition.id === null} />
-        </Modal.Footer>
-      </Modal.Content>
-    </Modal >
-  );
-
-
-
   return (
     loading
       ?
@@ -125,7 +77,6 @@ function PieceDetailScreen({ navigation, route }) {
       :
       (
         <ScrollView keyboardShouldPersistTaps="always">
-          <BringToMyGalleryModal />
           {targetPiece.imageLink && <Image alt={`piece-detail-image-alt-${targetPiece.imageLink}`} source={{ uri: targetPiece.imageLink }} width={screen.width} height="300px" />}
           <Box width="100%" paddingX="15px" paddingY="10px">
             <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{targetPiece.title} {targetPiece.year}</Text>
