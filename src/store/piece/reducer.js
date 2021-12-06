@@ -15,6 +15,9 @@ export const initialState = {
   loading: true,
   resetLoading: true,
   artistLoading: true,
+  artistDetailLoading: true,
+  deleteArtistLoading: false,
+  postFavArtistLoading: false,
   pieceList: [],
   pieceDetail: {
     id: null,
@@ -86,25 +89,35 @@ const pieceReducer = (state = initialState, action) =>
         break;
 
       case pieceConstants.GET_ARTIST_DETAIL.REQUEST:
-        draft.loading = true;
+        draft.artistDetailLoading = true;
         break;
       case pieceConstants.GET_ARTIST_DETAIL.SUCCESS:
-        draft.loading = false;
+        draft.artistDetailLoading = false;
         draft.artistDetail = action.artistDetail;
         draft.hasAdded = action.hasAdded;
         break;
       case pieceConstants.GET_ARTIST_DETAIL.FAIL:
-        draft.loading = false;
+        draft.artistDetailLoading = false;
         break;
 
       case pieceConstants.POST_ARTIST_FAVORITE.REQUEST:
-        draft.loading = true;
+        draft.postFavArtistLoading = true;
         break;
       case pieceConstants.POST_ARTIST_FAVORITE.SUCCESS:
-        draft.loading = false;
+        draft.postFavArtistLoading = false;
         break;
       case pieceConstants.POST_ARTIST_FAVORITE.FAIL:
-        draft.loading = false;
+        draft.postFavArtistLoading = false;
+        break;
+
+      case pieceConstants.DELETE_ARTIST_FAVORITE.REQUEST:
+        draft.deleteArtistLoading = true;
+        break;
+      case pieceConstants.DELETE_ARTIST_FAVORITE.SUCCESS:
+        draft.deleteArtistLoading = false;
+        break;
+      case pieceConstants.DELETE_ARTIST_FAVORITE.FAIL:
+        draft.deleteArtistLoading = false;
         break;
 
       case pieceConstants.POST_EXHIBITION.REQUEST:

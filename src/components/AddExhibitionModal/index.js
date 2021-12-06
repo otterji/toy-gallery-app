@@ -38,7 +38,6 @@ const AddExhibitionModal = ({ from, wrapperWidth }) => {
 
 
   const viewMode = () => {
-    console.log('hi')
     return (
       <Modal isOpen={isOpen} onClose={() => setOpen(false)} >
         <Modal.Content>

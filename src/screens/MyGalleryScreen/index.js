@@ -41,7 +41,6 @@ function MyGalleryScreen({ navigation, route }) {
   const [wrapperWidth, setWrapperWidth] = useState(0);
 
   const onViewLayout = (event) => {
-    console.log("sdfdf")
     const { width, height } = event.nativeEvent.layout;
     setWrapperWidth(width);
   }

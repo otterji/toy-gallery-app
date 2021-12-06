@@ -7,26 +7,32 @@ import colors from '../../styles/colors';
 
 
 
-export default function MagazineDetailScreen({ navigation }) {
+export default function MagazineDetailScreen({ navigation, route }) {
+  const { navigate } = navigation;
+  const { params } = route;
+  const { magazineId } = params;
   const dispatch = useDispatch();
-  const { allLoading, magazineList } = useSelector(state => state.magazineReducer || initialState);
-  const [curList, setCurList] = useState([]);
+
+  const { detailLoading, magazineDetail } = useSelector(state => state.magazineReducer || initialState);
+  const [target, setTarget] = useState([]);
 
   useEffect(() => {
-    dispatch(magazineActions.getAllMagazines());
-  }, [])
+    dispatch(magazineActions.getMagazineDetail({ magazineId: magazineId }));
+  }, []);
 
   useEffect(() => {
-    if (magazineList.length === 0) return;
-    setCurList(magazineList);
-  }, [magazineList])
+    if (!magazineDetail.id) return;
+    setTarget(magazineDetail);
+  }, [magazineDetail])
 
   return (
     <NativeBaseProvider>
       <Box width="100%" height="100%" >
         <ScrollView width="100%" style={{ flex: 1 }}>
           <Flex direction="column" >
-            {
+            <Text>{target.title}</Text>
+
+            {/* {
               curList.map((x, idx) => (
                 <Box key={`magazine-${x.title}`} paddingX="20px" >
                   <Text fontSize="12px" color={colors.secondary}>Madeleine Bialke</Text>
@@ -37,7 +43,7 @@ export default function MagazineDetailScreen({ navigation }) {
                   </Flex>
                 </Box>
               ))
-            }
+            } */}
           </Flex>
         </ScrollView>
       </Box >

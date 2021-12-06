@@ -18,7 +18,7 @@ export function MagazineStack() {
         headerShown: false,
       })} />
       <Stack.Screen name="MagazineDetail" component={MagazineDetailScreen} options={() => ({
-        headerShown: false,
+        headerShown: true,
       })} />
     </Stack.Navigator >
   );

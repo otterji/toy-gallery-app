@@ -26,6 +26,7 @@ const markdownStyles = {
 }
 
 export default function MagazineScreen({ navigation }) {
+  const { navigate } = navigation;
   const dispatch = useDispatch();
   const { allLoading, magazineList } = useSelector(state => state.magazineReducer || initialState);
   const [curList, setCurList] = useState([]);
@@ -45,16 +46,6 @@ export default function MagazineScreen({ navigation }) {
     setCurList(magazineList);
   }, [magazineList])
 
-  const copy = `# h1 Heading 8-)
-
-| Option | Description |
-| ------ | ----------- |
-| data   | path to data files to supply the data that will be passed into templates. |
-| engine | engine to be used for processing templates. Handlebars is the default. |
-| ext    | extension to be used for dest files. |
-`;
-
-
   return (
     <NativeBaseProvider>
       <Box width="100%" height="100%" >
@@ -63,13 +54,13 @@ export default function MagazineScreen({ navigation }) {
             {
               curList.map((x, idx) => {
                 return (
-                  <Pressable mb="25px" onPress={() => { console.log('pressed!') }}>
+                  <Pressable mb="25px" onPress={() => navigate('MagazineDetail', { magazineId: x.id })} key={`magazine-${idx}`}>
                     {x.coverImage && <Image alt={`magazine-${x.coverImage}`} source={{ uri: x.coverImage }} width={screen.width} height="300px" />}
                     <Box key={`magazine-${idx}`} paddingX="20px" >
-                      <Text fontSize="12px" color={colors.secondary} mt="5px">Madeleine Bialke</Text>
+                      <Text fontSize="12px" color={colors.secondary} mt="5px">{x.authorName}</Text>
                       <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{x.title}</Text>
                       <Flex flex={1} flexDirection="row" justifyContent="space-between">
-                        <Text fontSize="12px" color="#97806C" underline>Artist</Text>
+                        <Text fontSize="12px" color="#97806C" underline>{x.tag}</Text>
                         <Text fontSize="12px" color="#97806C">2 days ago</Text>
                       </Flex>
                     </Box>

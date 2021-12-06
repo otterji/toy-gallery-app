@@ -11,21 +11,69 @@ import pieceActions from '../../store/piece/actions';
 
 const screen = Dimensions.get('window');
 
+const InfoBox = (_infoList) => {
+  return (
+    <Stack alignItems="center" >
+      <HStack space={20} width="100%" height="74px" alignItems="center">
+        {
+          _infoList.map((x) => {
+            return (
+              <Center key={`artist-info-${x.id}`}>
+                <Text color="#02BA71" fontSize="18px" fontWeight="bold">{x.num}</Text>
+                <Text fontSize="14px">{x.title}</Text>
+              </Center>
+            )
+          })
+        }
+      </HStack>
+    </Stack>
+  )
+};
+
+
+const infoList = [
+  {
+    id: 0,
+    num: 3,
+    title: '갤러리',
+  },
+  {
+    id: 1,
+    num: 422,
+    title: '팔로워',
+  },
+  {
+    id: 2,
+    num: 159,
+    title: '팔로우',
+  },
+];
+
+
 function ArtistDetailScreen({ navigation, route }) {
   const { navigate } = navigation;
   const { params } = route;
   const { artistId, artistName, artistInfo } = params;
   const dispatch = useDispatch();
-  const { loading, artistDetail, hasAdded } = useSelector(state => state.pieceReducer || initialState);
+  const { artistDetailLoading, artistDetail, hasAdded, postFavArtistLoading, deleteArtistLoading } = useSelector(state => state.pieceReducer || initialState);
   const [artistWorks, setArtistWorks] = useState([]);
+  const [clicked, setClicked] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(pieceActions.resetStore());
+  //   };
+  // }, []);
 
   useEffect(() => {
     dispatch(pieceActions.getArtistDetail({ artistId }));
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (!artistDetail.id) return;
     setArtistWorks(artistDetail.pieceList);
+    setLoading(false)
   }, [artistDetail])
 
   const aboutList = [
@@ -42,7 +90,7 @@ function ArtistDetailScreen({ navigation, route }) {
           {
             artistWorks.map((x, idx) => (
               <>
-                <Text key={`artist-material-${x.id}`}>{x.material}  </Text>
+                <Text key={`artist-material-${x.idx}`}>{x.material}  </Text>
               </>
             ))
           }
@@ -56,7 +104,7 @@ function ArtistDetailScreen({ navigation, route }) {
         <Box width="100%" height="100%" >
           <SimpleGrid minChildWidth="50%" spacing={0} width="100%" >
             {artistWorks.map((x, index) => {
-              return <Pressable key={`works-${x.id}`} onPress={() => {
+              return <Pressable key={`artist-works-${x.id}`} onPress={() => {
                 navigate('PieceDetail', {
                   pieceTitle: x.title,
                   pieceId: x.id,
@@ -65,7 +113,7 @@ function ArtistDetailScreen({ navigation, route }) {
                 <Image
                   width="100%"
                   height={180}
-                  key={`atelier-gridView-${x.id}`}
+                  key={`artist-gridView-${x.id}`}
                   source={x.imageLink.length !== 0 ? { uri: x.imageLink } : null}
                   alt={`atelier-image-grid-${x.id}`}
                 />
@@ -80,48 +128,24 @@ function ArtistDetailScreen({ navigation, route }) {
     }
   ];
 
-  const infoList = [
-    {
-      id: 0,
-      num: 3,
-      title: '갤러리',
-    },
-    {
-      id: 1,
-      num: 422,
-      title: '팔로워',
-    },
-    {
-      id: 2,
-      num: 159,
-      title: '팔로우',
-    },
-  ];
 
-  const InfoBox = (_infoList) => {
-    return (
-      <Stack alignItems="center" >
-        <HStack space={20} width="100%" height="74px" alignItems="center">
-          {
-            _infoList.map((x) => {
-              return (
-                <Center key={`info-${x.id}`}>
-                  <Text color="#02BA71" fontSize="18px" fontWeight="bold">{x.num}</Text>
-                  <Text fontSize="14px">{x.title}</Text>
-                </Center>
-              )
-            })
-          }
-        </HStack>
-      </Stack>
-    )
+  const onClickFavAddBtn = () => {
+    dispatch(pieceActions.postArtistFavorite({ artistId: artistId }));
+    setClicked(true);
+  };
+
+  const onClickFavDelBtn = () => {
+    dispatch(pieceActions.deleteArtistFavorite({ artistId: artistId }));
+    setClicked(false);
   };
 
 
+
+
   return (
-    <ScrollView>
+    <>
       {
-        loading
+        loading || artistDetailLoading
           ?
           (
             <Box height={screen.height} alignItems="center" >
@@ -129,7 +153,7 @@ function ArtistDetailScreen({ navigation, route }) {
             </Box>
           )
           :
-          (
+          (<ScrollView>
             <Box width="100%" paddingX="15px" paddingY="20px">
               <HStack width="100%" height="74px" style={{ backgroundColor: "#E7DFC2" }}>
                 <Box padding="15px">
@@ -148,13 +172,20 @@ function ArtistDetailScreen({ navigation, route }) {
                 {InfoBox(infoList)}
               </Center>
               <Box height="15px" />
-              <DefaultBtn text="Add Favorites" onPressBtn={() => { console.log("hi") }} disabled={!hasAdded} />
+              {
+                clicked || hasAdded
+                  ?
+                  <DefaultBtn text={deleteArtistLoading ? "Loading..." : "Delete Favorites"} onPressBtn={() => onClickFavDelBtn()} disabled={false} />
+                  :
+                  <DefaultBtn text={postFavArtistLoading ? "Loading..." : "Add Favorites"} onPressBtn={() => onClickFavAddBtn()} disabled={false} />
+              }
               <Box height="15px" />
               <AccordionComponent list={aboutList} />
             </Box>
+          </ScrollView >
           )
       }
-    </ScrollView >
+    </>
   )
 };
 
