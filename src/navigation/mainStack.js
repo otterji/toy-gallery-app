@@ -39,7 +39,7 @@ export function Main(params) {
       })} />
       <Drawer.Screen name="AtelierStack" component={AteilerStack} options={{ headerShown: false }} />
       <Drawer.Screen name="Message" component={MessageScreen} />
-      <Drawer.Screen name="MagazineStack" component={MagazineStack} options={{ headerTitle: "Magazine" }} />
+      <Drawer.Screen name="MagazineStack" component={MagazineStack} options={{ headerShown: false }} />
       <Drawer.Screen name="MyGalleryStack" component={MyGalleryStack} options={{ headerTitle: "My Gallery" }} />
     </Drawer.Navigator>
   )

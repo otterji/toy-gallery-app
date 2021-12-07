@@ -5,6 +5,10 @@ import colors from '../styles/colors';
 import MagazineScreen from '../screens/MagazineScreen';
 import { Pressable, Image } from 'native-base';
 import MagazineDetailScreen from '../screens/MagazineDetailScreen';
+import earth from '../../assets/earth.png';
+import profile from '../../assets/profile.png';
+import { navigate } from './route';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -14,9 +18,18 @@ export function MagazineStack() {
       headerTitleAlign: "center",
       headerStyle: { backgroundColor: colors.background }
     }}>
-      <Stack.Screen name="Magazine" component={MagazineScreen} options={() => ({
-        headerShown: false,
-      })} />
+      <Stack.Screen name="Magazine" component={MagazineScreen} options={{ headerTitle: "Ateiler" }} options={{
+        headerLeft: (props) => (
+          <Pressable paddingX={5} onPress={() => navigate('Landing')}>
+            <Image source={earth} alt="earth" />
+          </Pressable>
+        ),
+        headerRight: (props) => (
+          <Pressable paddingX={5} onPress={() => navigate('Profile')}>
+            <Image source={profile} alt="profile" />
+          </Pressable>
+        ),
+      }} />
       <Stack.Screen name="MagazineDetail" component={MagazineDetailScreen} options={() => ({
         headerShown: true,
       })} />

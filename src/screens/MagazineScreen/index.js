@@ -4,26 +4,10 @@ import { NativeBaseProvider, Box, Text, Center, ScrollView, Flex, VStack, Image,
 import magazineActions from '../../store/magazine/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../styles/colors';
-import Markdown from 'react-native-simple-markdown'
 import { Dimensions } from 'react-native';
 
 const screen = Dimensions.get('window');
 
-const markdownStyles = {
-  heading1: {
-    fontSize: 24,
-    color: 'purple',
-  },
-  link: {
-    color: 'pink',
-  },
-  mailTo: {
-    color: 'orange',
-  },
-  text: {
-    color: '#555555',
-  },
-}
 
 export default function MagazineScreen({ navigation }) {
   const { navigate } = navigation;
@@ -53,6 +37,7 @@ export default function MagazineScreen({ navigation }) {
           <Flex direction="column" >
             {
               curList.map((x, idx) => {
+                const _date = new Date(x.createdAt);
                 return (
                   <Pressable mb="25px" onPress={() => navigate('MagazineDetail', { magazineId: x.id })} key={`magazine-${idx}`}>
                     {x.coverImage && <Image alt={`magazine-${x.coverImage}`} source={{ uri: x.coverImage }} width={screen.width} height="300px" />}
@@ -61,7 +46,7 @@ export default function MagazineScreen({ navigation }) {
                       <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{x.title}</Text>
                       <Flex flex={1} flexDirection="row" justifyContent="space-between">
                         <Text fontSize="12px" color="#97806C" underline>{x.tag}</Text>
-                        <Text fontSize="12px" color="#97806C">2 days ago</Text>
+                        <Text fontSize="12px" color="#97806C">{_date.toDateString()}</Text>
                       </Flex>
                     </Box>
                   </Pressable>
