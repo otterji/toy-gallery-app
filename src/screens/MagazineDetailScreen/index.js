@@ -51,6 +51,7 @@ export default function MagazineDetailScreen({ navigation, route }) {
   useEffect(() => {
     if (!magazineDetail.id) return;
     setTarget(magazineDetail);
+    console.log(magazineDetail.createdAt);
     const _date = new Date(magazineDetail.createdAt);
     setDate(_date.toDateString())
   }, [magazineDetail])

@@ -7,7 +7,7 @@ import NameScreen from '../screens/NameScreen';
 import SignupCompletedScreen from '../screens/SignUpCompletedScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { navigate } from './route';
-import { Toast, useToast } from 'native-base';
+import { Toast } from 'native-base';
 import { getItemFromAsync } from '../hooks/requests';
 
 const Stack = createNativeStackNavigator();

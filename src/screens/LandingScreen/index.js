@@ -23,7 +23,7 @@ const imgList = [
   {
     id: 1,
     imgSource: funding,
-    link: '',
+    link: 'FundingStack',
     marginTop: '31px'
   },
   {
@@ -63,7 +63,7 @@ function LandingScreen({ navigation }) {
       <Box marginY={30} marginLeft={26}>
         <Text fontSize={45} italic color={colors.secondary} marginBottom="7px">earth</Text>
         <Text fontSize={14} color="#E7DFC2">
-          {`Hi, we’re Patreon. We believe 
+          {`Hi, we’re Patreon. We believe
 people who make things should get 
 paid for the value they give to the world.`}
         </Text>
