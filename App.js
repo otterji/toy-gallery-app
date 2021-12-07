@@ -28,7 +28,7 @@ const theme = extendTheme({
       },
       variants: {},
       sizes: {},
-    }
+    },
   }
 });
 

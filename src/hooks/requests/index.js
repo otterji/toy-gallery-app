@@ -38,7 +38,6 @@ export const removeItemToAsync = async (storageName) =>
       if (error) {
         reject(error);
       }
-
       resolve('제거 성공');
     });
   });

@@ -1,6 +1,6 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
-import { createAPI, poster, setItemToAsync, fetcher } from '../../hooks/requests';
-import authConstants from './constants';
+import { createAPI, poster, setItemToAsync, fetcher, removeItemToAsync } from '../../hooks/requests';
+import authConstants, { RESET_STORE } from './constants';
 import * as RootNavigation from '../../navigation/route';
 import { Toast } from 'native-base';
 
@@ -19,7 +19,7 @@ export function* postRegisterSaga({ email, password, nickname }) {
       type: authConstants.GET_ME.REQUEST,
     });
     yield Toast.show({
-      title: 'You are successfully signed up',
+      title: 'You have successfully signed up',
       placement: "top",
       status: "success",
       duration: 6000,
@@ -70,6 +70,27 @@ export function* logInSaga({ email, password }) {
   }
 };
 
+export function* logOutSaga() {
+  try {
+    yield removeItemToAsync('idToken');
+    yield put({
+      type: authConstants.LOG_OUT.SUCCESS,
+    });
+    yield put({ type: RESET_STORE });
+    yield Toast.show({
+      title: 'You have successfully signed out',
+      placement: "top",
+      status: "success",
+      duration: 6000,
+    })
+    yield RootNavigation.replace('Main', { screen: 'Home' });
+  } catch (error) {
+    yield put({
+      type: authConstants.LOG_OUT.FAIL,
+    });
+  }
+}
+
 export function* getMeSaga() {
   const url = createAPI('/auth/me');
   try {
@@ -113,6 +134,7 @@ export function* getEmailCheckSaga({ email, password }) {
 export default function* authSaga() {
   yield all([
     takeLatest(authConstants.POST_REGISTER.REQUEST, postRegisterSaga),
+    takeLatest(authConstants.LOG_OUT.REQUEST, logOutSaga),
     takeLatest(authConstants.LOG_IN.REQUEST, logInSaga),
     takeLatest(authConstants.GET_ME.REQUEST, getMeSaga),
     takeLatest(authConstants.GET_EMAIL_CHECK.REQUEST, getEmailCheckSaga),

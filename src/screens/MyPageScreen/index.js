@@ -1,4 +1,4 @@
-import { Box, Text, Image, ScrollView, Pressable, HStack, Center, Stack } from 'native-base';
+import { Box, Text, Button, ScrollView, Pressable, HStack, Center, Stack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
@@ -37,24 +37,24 @@ function MyPageScreen({ navigation, route }) {
   const aboutList = [
     {
       id: 0,
-      title: "About",
-      content: "About",
+      title: "My Badge",
+      content: "뺏지들 사진들",
     },
-    {
-      id: 1,
-      title: "ARTIST",
-      content: "어쩌고 저쩌고"
-    },
-    {
-      id: 2,
-      title: "BADGE",
-      content: "하하.."
-    },
-    {
-      id: 3,
-      title: "FUNDING HISTORY",
-      content: "???"
-    }
+    // {
+    //   id: 1,
+    //   title: "ARTIST",
+    //   content: "어쩌고 저쩌고"
+    // },
+    // {
+    //   id: 2,
+    //   title: "BADGE",
+    //   content: "하하.."
+    // },
+    // {
+    //   id: 3,
+    //   title: "FUNDING HISTORY",
+    //   content: "???"
+    // }
   ];
 
   const infoList = [
@@ -104,11 +104,9 @@ function MyPageScreen({ navigation, route }) {
             <Text fontSize="12px" color="#757575">{curUser.email}</Text>
           </Box>
         </Box>
-        <Center style={{ backgroundColor: "#EFEDD5" }} >
-          {InfoBox(infoList)}
-        </Center>
         <Box height="15px" />
         <AccordionComponent list={aboutList} />
+
       </Box>
     </ScrollView >
   )

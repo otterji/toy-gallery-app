@@ -15,8 +15,9 @@ const Stack = createNativeStackNavigator();
 export function AuthStack() {
 
   const autoLogin = async () => {
-    const userId = await getItemFromAsync('userId');
-    if (userId) {
+    const idToken = await getItemFromAsync('idToken');
+    console.log(idToken)
+    if (idToken) {
       Toast.show({
         title: 'You are automatically signed in',
         placement: "top",
