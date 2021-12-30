@@ -97,7 +97,7 @@ function PieceDetailScreen({ navigation, route }) {
             </Pressable>
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.artistInfo.desc}</Text>
             <Box height="38px" />
-            <AddExhibitionModal from="pieceDetail"></AddExhibitionModal>
+            <AddExhibitionModal from="pieceDetail" pieceId={pieceId}></AddExhibitionModal>
             <Box height="8px" />
           </Box>
         </ScrollView >

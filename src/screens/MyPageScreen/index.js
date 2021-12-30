@@ -1,4 +1,4 @@
-import { Box, Text, Button, ScrollView, Pressable, HStack, Center, Stack } from 'native-base';
+import { Box, Text, useToast, ScrollView, Pressable, HStack, Center, Stack, Image, Flex } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
@@ -23,6 +23,7 @@ function MyPageScreen({ navigation, route }) {
     email: '',
     nickname: ''
   });
+  const toast = useToast();
 
   useEffect(() => {
     dispatch(authActions.getMe());
@@ -38,23 +39,20 @@ function MyPageScreen({ navigation, route }) {
     {
       id: 0,
       title: "My Badge",
-      content: "뺏지들 사진들",
-    },
-    // {
-    //   id: 1,
-    //   title: "ARTIST",
-    //   content: "어쩌고 저쩌고"
-    // },
-    // {
-    //   id: 2,
-    //   title: "BADGE",
-    //   content: "하하.."
-    // },
-    // {
-    //   id: 3,
-    //   title: "FUNDING HISTORY",
-    //   content: "???"
-    // }
+      content: (
+        <Pressable onPress={() => toast.show({
+          title: "Sorry :(",
+          status: "warning",
+          description: "This is not available in Betaflight",
+          placement: "top"
+        })} >
+          <Flex direction='row'>
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/medal+(1).png" }} alt="mypage-badge" width="100px" height="100px" />
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/medal.png" }} alt="mypage-badge" width="100px" height="100px" />
+          </Flex>
+        </Pressable >
+      )
+    }
   ];
 
   const infoList = [

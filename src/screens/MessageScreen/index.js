@@ -1,4 +1,4 @@
-import { Box, Button, Center, Input, Text, Pressable, Flex, Image, useToast } from 'native-base';
+import { Box, Text, Pressable, Flex, Image, useToast } from 'native-base';
 import React, { useState } from 'react';
 import colors from '../../styles/colors';
 import chatImg1 from '../../../assets/chatImg1.png';

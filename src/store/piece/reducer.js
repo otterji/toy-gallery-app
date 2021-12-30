@@ -13,6 +13,7 @@ import pieceConstants, { RESET_STORE } from './constants';
 // The initial state of the App
 export const initialState = {
   loading: true,
+  pieceLoading: false,
   resetLoading: true,
   artistLoading: true,
   artistDetailLoading: true,
@@ -56,14 +57,14 @@ const pieceReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case pieceConstants.GET_ALL_PIECES.REQUEST:
-        draft.loading = true;
+        draft.pieceLoading = true;
         break;
       case pieceConstants.GET_ALL_PIECES.SUCCESS:
-        draft.loading = false;
+        draft.pieceLoading = false;
         draft.pieceList = action.pieceList;
         break;
       case pieceConstants.GET_ALL_PIECES.FAIL:
-        draft.loading = false;
+        draft.pieceLoading = false;
         break;
 
       case pieceConstants.GET_ALL_ARTISTS.REQUEST:

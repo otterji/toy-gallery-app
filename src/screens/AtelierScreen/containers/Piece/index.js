@@ -19,7 +19,7 @@ const screen = Dimensions.get('window');
 
 const Piece = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { loading, pieceList, pieceDetail } = useSelector(state => state.pieceReducer || initialState);
+  const { loading, pieceList, pieceDetail, pieceLoading } = useSelector(state => state.pieceReducer || initialState);
   const [isDefaultView, setIsDefaultView] = useState(true);
   const [curPiceList, setCurPieceList] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
@@ -149,7 +149,7 @@ const Piece = ({ navigation }) => {
   );
 
   return (
-    loading
+    pieceLoading
       ?
       (<Loading />)
       :

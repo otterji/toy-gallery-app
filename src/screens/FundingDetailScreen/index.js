@@ -4,7 +4,6 @@ import { NativeBaseProvider, Box, Text, useToast, ScrollView, Flex, Progress, Im
 import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../styles/colors';
 import { Dimensions } from 'react-native';
-import Markdown from 'react-native-markdown-package';
 import DefaultBtn from '../../components/DefaultBtn';
 import { Toast } from 'native-base';
 

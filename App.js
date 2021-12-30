@@ -29,7 +29,7 @@ const theme = extendTheme({
       variants: {},
       sizes: {},
     },
-  }
+  },
 });
 
 export default function App() {
