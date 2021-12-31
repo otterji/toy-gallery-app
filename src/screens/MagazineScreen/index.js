@@ -35,7 +35,7 @@ export default function MagazineScreen({ navigation }) {
 
     allLoading
       ?
-      <Loading></Loading>
+      <Loading />
       :
       <NativeBaseProvider>
         <Box width="100%" height="100%" >
@@ -48,8 +48,8 @@ export default function MagazineScreen({ navigation }) {
                     <Pressable mb="25px" onPress={() => navigate('MagazineDetail', { magazineId: x.id, magazineTitle: `Magazine-${x.id}` })} key={`magazine-${idx}`}>
                       {x.coverImage && <Image alt={`magazine-${x.coverImage}`} source={{ uri: x.coverImage }} width={screen.width} height="300px" />}
                       <Box key={`magazine-${idx}`} paddingX="20px" >
-                        <Text fontSize="12px" color={colors.secondary} mt="5px">{x.authorName}</Text>
-                        <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{x.title}</Text>
+                        <Text fontSize="12px" color={colors.secondary} mt="5px" fontFamily="Belleza_400Regular">{x.authorName}</Text>
+                        <Text fontSize="20px" color={colors.secondary} fontFamily="Belleza_400Regular">{x.title}</Text>
                         <Flex flex={1} flexDirection="row" justifyContent="space-between">
                           <Text fontSize="12px" color="#97806C" underline>{x.tag}</Text>
                           <Text fontSize="12px" color="#97806C">{_date.toDateString()}</Text>

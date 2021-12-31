@@ -51,7 +51,7 @@ const Artist = () => {
             <Pressable onPress={() => navigate('ArtistDetail', { artistId: item.id, artistName: item.name, artistInfo: item })}>
               <View style={{ padding: 20 }}>
                 <Flex direction="row" justifyContent="space-between">
-                  <Text style={{ fontSize: 17, color: colors.secondary }}>{item.value}</Text>
+                  <Text style={{ fontSize: 17, color: colors.secondary }} fontFamily="Belleza_400Regular">{item.value}</Text>
                   {
                     item.artistFavorite.length !== 0
                       ?
@@ -73,7 +73,7 @@ const Artist = () => {
           )}
           renderCustomSectionHeader={(section) => (
             <View style={{ backgroundColor: colors.backgroundDark, paddingVertical: 3 }}>
-              <Text style={{ paddingLeft: 20, color: colors.secondary }}>{section.title}</Text>
+              <Text style={{ paddingLeft: 20, color: colors.secondary }} fontFamily="Belleza_400Regular">{section.title}</Text>
             </View>
           )}
         />

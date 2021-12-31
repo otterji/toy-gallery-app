@@ -22,8 +22,8 @@ export default function FundingScreen({ navigation }) {
                   <Pressable mb="40px" onPress={() => navigate('FundingDetail', { targetFunding: x })} key={`funding-${idx}`}>
                     {x.imgLink && <Image alt={`magazine-${x.imgLink}`} source={{ uri: x.imgLink }} width={screen.width} height="300px" />}
                     <Box key={`funding-cover-${idx}`} paddingX="20px">
-                      <Text fontSize="12px" color={colors.secondary} mt="5px">{x.artist}</Text>
-                      <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{x.title}</Text>
+                      <Text fontSize="12px" color={colors.secondary} mt="5px" fontFamily="Belleza_400Regular">{x.artist}</Text>
+                      <Text fontSize="20px" color={colors.secondary} fontFamily="Belleza_400Regular">{x.title}</Text>
                       <Progress colorScheme="warning" value={x.fundRate} marginY="10px" />
                       <HStack>
                         {
@@ -34,6 +34,7 @@ export default function FundingScreen({ navigation }) {
                               key={`tags-list-${index}`}
                               marginRight="10px"
                               style={{ backgroundColor: "#B5A48F", borderRadius: 5, paddingHorizontal: 4, marginTop: 5, letterSpacing: 1 }}
+                              fontFamily="Belleza_400Regular"
                             >
                               {y}
                             </Text>

@@ -15,7 +15,10 @@ export function profileStack() {
   return (
     <Stack.Navigator initialRouteName="MyPage" screenOptions={{
       headerTitleAlign: "center",
-      headerStyle: { backgroundColor: colors.background }
+      headerStyle: { backgroundColor: colors.background },
+      headerTitleStyle: {
+        fontFamily: "Belleza_400Regular"
+      },
     }}>
       <Stack.Screen name="MyPage" component={MyPageScreen} options={{ headerTitle: "My Room" }} options={{
         headerRight: (props) => (

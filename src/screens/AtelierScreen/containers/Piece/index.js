@@ -59,8 +59,8 @@ const Piece = ({ navigation }) => {
                       >
                         <Box style={{ width: '100%', height: '100%', backgroundColor: 'rgba(203, 195, 166, 0.7)' }}>
                           <Box pt='15px' pl='15px' style={{ width: '100%', height: '100%' }}>
-                            <Text color="#FAFAFA" fontSize="24px">No. {x.id} {x.material}</Text>
-                            <Text color="#FAFAFA" fontSize="26px" fontWeight="bold">{x.title}</Text>
+                            <Text color="#FAFAFA" fontSize="24px" fontFamily="Belleza_400Regular">No. {x.id} {x.material}</Text>
+                            <Text color="#FAFAFA" fontSize="26px" fontFamily="Belleza_400Regular">{x.title}</Text>
                             <Button
                               backgroundColor={colors.primary}
                               width="100px"
@@ -69,15 +69,15 @@ const Piece = ({ navigation }) => {
                               right="0"
                               mr="15px"
                               mb="16px"
-                              fontSize="20px"
                               onPress={() => {
                                 navigate('PieceDetail', {
                                   pieceTitle: x.title,
                                   pieceId: x.id,
                                 });
                               }}
+                              _text={{ fontSize: 16, fontFamily: "Belleza_400Regular" }}
                             >
-                              자세히 보기
+                              See More
                             </Button>
                           </Box>
                         </Box>

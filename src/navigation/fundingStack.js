@@ -16,7 +16,10 @@ export function FundingStack() {
   return (
     <Stack.Navigator initialRouteName="Funding" screenOptions={{
       headerTitleAlign: "center",
-      headerStyle: { backgroundColor: colors.background }
+      headerStyle: { backgroundColor: colors.background },
+      headerTitleStyle: {
+        fontFamily: "Belleza_400Regular"
+      },
     }}>
       <Stack.Screen name="Funding" component={FundingScreen} options={{ headerTitle: "Ateiler" }} options={{
         headerLeft: (props) => (

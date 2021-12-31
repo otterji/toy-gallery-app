@@ -19,7 +19,7 @@ const InfoBox = (_infoList) => {
           _infoList.map((x) => {
             return (
               <Center key={`artist-info-${x.id}`}>
-                <Text color="#02BA71" fontSize="18px" fontWeight="bold">{x.num}</Text>
+                <Text color="#02BA71" fontSize="18px" fontFamily="Belleza_400Regular">{x.num}</Text>
                 <Text fontSize="14px">{x.title}</Text>
               </Center>
             )
@@ -35,17 +35,17 @@ const infoList = [
   {
     id: 0,
     num: 3,
-    title: '갤러리',
+    title: 'gallery',
   },
   {
     id: 1,
     num: 422,
-    title: '팔로워',
+    title: 'follower',
   },
   {
     id: 2,
     num: 159,
-    title: '팔로우',
+    title: 'follow',
   },
 ];
 
@@ -166,7 +166,7 @@ function ArtistDetailScreen({ navigation, route }) {
                   />
                 </Box>
                 <Box padding="15px">
-                  <Text fontWeight="bold" fontSize="20px" color={colors.textPrimary}>{artistInfo.name}</Text>
+                  <Text fontSize="20px" color={colors.textPrimary} fontFamily="Belleza_400Regular">{artistInfo.name}</Text>
                   <Text fontSize="12px" color="#757575">{artistInfo.nationality}</Text>
                 </Box>
               </HStack>

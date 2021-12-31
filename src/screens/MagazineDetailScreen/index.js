@@ -13,18 +13,25 @@ const screen = Dimensions.get('window');
 const markdownStyles = {
   heading1: {
     fontSize: 25,
+    fontFamily: "Belleza_400Regular",
   },
   heading2: {
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: "Belleza_400Regular",
+
   },
   heading3: {
     fontSize: 15,
     fontWeight: 'bold',
+    fontFamily: "Belleza_400Regular",
+
   },
   text: {
     color: colors.secondary,
     lineHeight: 23,
+    fontFamily: "Belleza_400Regular",
+
   },
   image: {
     width: screen.width,
@@ -71,11 +78,11 @@ export default function MagazineDetailScreen({ navigation, route }) {
             <ScrollView width="100%" style={{ flex: 1 }}>
               <Flex direction="column" paddingX="20px" marginY="25px">
                 <Flex direction="row">
-                  <Text color={colors.secondary}>{target.authorName} / </Text>
-                  <Text color={colors.secondary}>{target.tag}</Text>
+                  <Text color={colors.secondary} fontFamily="Belleza_400Regular">{target.authorName} / </Text>
+                  <Text color={colors.secondary} fontFamily="Belleza_400Regular">{target.tag}</Text>
                 </Flex>
-                <Text fontSize="25px" color={colors.secondary} fontWeight="bold">{target.title}</Text>
-                <Text color="#B5A48F">{date}</Text>
+                <Text fontSize="25px" color={colors.secondary} fontFamily="Belleza_400Regular">{target.title}</Text>
+                <Text color="#B5A48F" fontFamily="Belleza_400Regular">{date}</Text>
               </Flex>
               <Flex direction="column" marginX="25px">
                 <Markdown styles={markdownStyles}>

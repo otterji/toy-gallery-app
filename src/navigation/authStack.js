@@ -34,7 +34,13 @@ export function AuthStack() {
 
 
   return (
-    <Stack.Navigator initialRouteName={getInitialScreen()} screenOptions={{ headerTitleAlign: "center", headerStyle: { backgroundColor: colors.background } }}>
+    <Stack.Navigator initialRouteName={getInitialScreen()} screenOptions={{
+      headerTitleAlign: "center",
+      headerStyle: { backgroundColor: colors.background },
+      headerTitleStyle: {
+        fontFamily: "Belleza_400Regular"
+      },
+    }}>
       <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Sign in' }} />
       <Stack.Screen name="SignUp" component={SignupScreen} options={{ title: 'Sign up' }} />
       <Stack.Screen name="Name" component={NameScreen} options={{ title: 'Sign up' }} />

@@ -64,9 +64,9 @@ function HomeScreen({ navigation }) {
           }}
         >
           <Flex direction="row">
-            <Text fontSize={45} color="#FFFDE7">e</Text>
-            <Text fontSize={45} italic color="#FFFDE7">art</Text>
-            <Text fontSize={45} color="#FFFDE7">h</Text>
+            <Text fontSize={45} color="#FFFDE7" fontFamily="Roboto_400Regular" paddingTop="4px">e</Text>
+            <Text fontSize={50} color="#FFFDE7" fontWeight={400} >art</Text>
+            <Text fontSize={45} color="#FFFDE7" fontFamily="Roboto_400Regular" paddingTop="4px">h</Text>
           </Flex>
         </PresenceTransition>
         <View style={{

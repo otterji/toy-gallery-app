@@ -59,17 +59,17 @@ function MyPageScreen({ navigation, route }) {
     {
       id: 0,
       num: 3,
-      title: '갤러리',
+      title: 'gallery',
     },
     {
       id: 1,
       num: 422,
-      title: '팔로워',
+      title: 'follower',
     },
     {
       id: 2,
       num: 159,
-      title: '팔로우',
+      title: 'follow',
     },
   ];
 

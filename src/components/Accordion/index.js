@@ -25,13 +25,15 @@ export default function AccordionComponent({
                     paddingLeft="10px"
                     paddingRight="10px"
                     style={{ backgroundColor: '#E7DFC2', borderRadius: 3 }}>
-                    <Text style={{ color: colors.textPrimary, fontWeight: 'bold' }}>
+                    <Text style={{ color: colors.textPrimary }} fontFamily="Belleza_400Regular">
                       {x.title}
                     </Text>
                     <Accordion.Icon color={colors.textPrimary} />
                   </Accordion.Summary>
                   <Accordion.Details>
-                    {x.content}
+                    <Text fontFamily="Belleza_400Regular">
+                      {x.content}
+                    </Text>
                   </Accordion.Details>
                 </Accordion.Item>
               ))
@@ -39,6 +41,6 @@ export default function AccordionComponent({
           </Accordion>
         </Box>
       </ScrollView>
-    </NativeBaseProvider>
+    </NativeBaseProvider >
   );
 };

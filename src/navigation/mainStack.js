@@ -6,7 +6,7 @@ import LandingScreen from '../screens/LandingScreen';
 import MessageScreen from '../screens/MessageScreen';
 import earth from '../../assets/earth.png';
 import profile from '../../assets/profile.png';
-import { Image, Pressable } from 'native-base';
+import { Image, Pressable, Text } from 'native-base';
 import { navigate } from './route';
 import { MagazineStack } from './magazineStack';
 import { MyGalleryStack } from './myGalleryStack';
@@ -19,6 +19,9 @@ export function Main(params) {
   return (
     <Drawer.Navigator initialRouteName="Home" screenOptions={{
       headerTitleAlign: "center",
+      headerTitleStyle: {
+        fontFamily: "Belleza_400Regular"
+      },
       headerLeft: (props) => (
         <Pressable paddingX={5} onPress={() => navigate('Landing')} >
           <Image source={earth} alt="earth" />
@@ -28,7 +31,7 @@ export function Main(params) {
         <Pressable paddingX={5} onPress={() => navigate('Profile')}>
           <Image source={profile} alt="profile" />
         </Pressable>
-      ),
+      )
     }}>
       <Drawer.Screen name="Home" component={HomeScreen}
         options={() => ({
@@ -42,7 +45,11 @@ export function Main(params) {
       <Drawer.Screen name="Message" component={MessageScreen} />
       <Drawer.Screen name="MagazineStack" component={MagazineStack} options={{ headerShown: false }} />
       <Drawer.Screen name="FundingStack" component={FundingStack} options={{ headerShown: false }} />
-      <Drawer.Screen name="MyGalleryStack" component={MyGalleryStack} options={{ headerTitle: "My Gallery" }} />
+      <Drawer.Screen name="MyGalleryStack" component={MyGalleryStack} options={{
+        headerTitle: "My Gallery", headerTitleStyle: {
+          fontFamily: "Belleza_400Regular"
+        }
+      }} />
     </Drawer.Navigator>
   )
 }

@@ -16,7 +16,10 @@ export function MagazineStack() {
   return (
     <Stack.Navigator initialRouteName="Magazine" screenOptions={{
       headerTitleAlign: "center",
-      headerStyle: { backgroundColor: colors.background }
+      headerStyle: { backgroundColor: colors.background },
+      headerTitleStyle: {
+        fontFamily: "Belleza_400Regular"
+      },
     }}>
       <Stack.Screen name="Magazine" component={MagazineScreen} options={{
         headerLeft: (props) => (

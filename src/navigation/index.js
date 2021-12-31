@@ -8,7 +8,9 @@ const Stack = createNativeStackNavigator();
 
 export default function RootStack() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }}>
       <Stack.Screen name="Main" component={Main} />
       <Stack.Screen name="Auth" component={AuthStack} />
       <Stack.Screen name="Profile" component={profileStack} />
