@@ -23,13 +23,14 @@ function NameScreen({ navigation, route }) {
   return (
     <Box paddingX="15px" width="100%" height="100%">
       <Box>
-        <Text fontSize="14px" marginTop="25px" >Nickname*</Text>
+        <Text fontSize="14px" marginTop="25px" fontFamily="Roboto_400Regular" >Nickname*</Text>
         <Input
           {...nickNameInput}
           placeholder="Please enter your email nickname"
-          backgroundColor="#E7DFC2"
+          backgroundColor="#D5C9A5"
           marginBottom="50px"
-          borderColor="#E7DFC2"
+          borderColor="#D5C9A5"
+          fontFamily="Roboto_400Regular"
         />
         {/* <Button onPress={() => dispatch(authActions.postRegister({
           email, password

@@ -7,12 +7,10 @@ const DefaultBtn = ({ text, onPressBtn, disabled }) => {
   return (
     <Button onPress={() => onPressBtn()}
       width="100%"
-      backgroundColor='#E7E2D4'
-      backgroundColor={`${disabled ? '#E7E2D4' : '#D57162'}`}
-      _text={{ color: `${disabled ? '#ABA9A1' : '#ffffff'}`, fontSize: 16 }}
+      backgroundColor={`${disabled ? '#DBD5BE' : '#D57162'}`}
       height='48px'
       disabled={disabled}
-    >{text}</Button>
+    ><Text fontFamily="Roboto_400Regular" color={`${disabled ? '#ABA9A1' : '#F0E8C1'}`} fontSize="16px">{text}</Text></Button>
   )
 };
 

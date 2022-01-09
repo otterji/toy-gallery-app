@@ -112,20 +112,21 @@ function SignupScreen({ navigation }) {
         </Modal.Content>
       </Modal>
       <Box>
-        <Text fontSize="14px" marginTop='25px' color={colors.secondary}>Email*</Text>
+        <Text fontSize="14px" marginTop='25px' color={colors.secondary} fontFamily="Roboto_400Regular">Email*</Text>
         <Input
           {...emailInput}
           placeholder="Please enter your email address"
-          backgroundColor="#E7DFC2"
+          backgroundColor="#D5C9A5"
           marginBottom="5px"
-          borderColor="#E7DFC2"
+          borderColor="#D5C9A5"
           color={colors.secondary}
+          fontFamily="Roboto_400Regular"
         />
         {
           emailErr
             ?
             (
-              <Text color={colors.error}>Please enter a valid email address.</Text>
+              <Text color={colors.error} fontFamily="Roboto_400Regular">Please enter a valid email address.</Text>
             )
             :
             (
@@ -136,23 +137,24 @@ function SignupScreen({ navigation }) {
           curIsDuplicated
             ?
             (
-              <Text color={colors.error}>This address is already taken.</Text>
+              <Text color={colors.error} fontFamily="Roboto_400Regular">This address is already taken.</Text>
             )
             : (
               <></>
             )
         }
-        <Text fontSize="14px" marginTop="15px" color={colors.secondary}>Password*</Text>
+        <Text fontSize="14px" marginTop="15px" color={colors.secondary} fontFamily="Roboto_400Regular">Password*</Text>
         <Input
           {...passwordInput}
           placeholder="Please enter your password"
-          borderColor="#E7DFC2"
-          marginBottom="50px"
-          backgroundColor="#E7DFC2"
+          borderColor="#D5C9A5"
+          marginBottom="20px"
+          backgroundColor="#D5C9A5"
+          fontFamily="Roboto_400Regular"
         />
         <Flex direction="row">
           <Checkbox isChecked={agreed} value="test" onPress={() => setShowModal(true)} />
-          <Text>I agree Privacy policy</Text>
+          <Text fontFamily="Roboto_400Regular" paddingLeft={3} paddingBottom={5} color="#97806C">I agree Privacy policy</Text>
         </Flex>
         <DefaultBtn text={emailCheckLoading ? "Loading" : "Next"} onPressBtn={() => dispatch(authActions.getEmailCheckAction({ email, password }))} disabled={email.length === 0 || password.length === 0 || emailCheckLoading || emailErr || !agreed} />
       </Box >

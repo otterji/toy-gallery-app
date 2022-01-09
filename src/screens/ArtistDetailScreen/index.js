@@ -157,7 +157,7 @@ function ArtistDetailScreen({ navigation, route }) {
           :
           (<ScrollView>
             <Box width="100%" paddingX="15px" paddingY="20px">
-              <HStack width="100%" height="74px" style={{ backgroundColor: "#E7DFC2" }}>
+              <HStack width="100%" height="74px" style={{ backgroundColor: "#D5C9A5" }}>
                 <Box padding="15px">
                   <Avatar
                     source={{

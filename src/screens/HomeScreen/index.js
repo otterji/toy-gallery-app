@@ -47,7 +47,7 @@ function HomeScreen({ navigation }) {
             },
           }}
         >
-          <Text fontSize={18} color="#FFFDE7" style={{ marginTop: screen.height / 2 - 60, textAlign: 'center' }}>Art for us</Text>
+          <Text fontSize={18} color="#F0E8C1" style={{ marginTop: screen.height / 2 - 60, textAlign: 'center' }}>Art for us</Text>
         </PresenceTransition>
         <PresenceTransition
           visible={true}
@@ -64,9 +64,9 @@ function HomeScreen({ navigation }) {
           }}
         >
           <Flex direction="row">
-            <Text fontSize={45} color="#FFFDE7" fontFamily="Roboto_400Regular" paddingTop="4px">e</Text>
-            <Text fontSize={50} color="#FFFDE7" fontWeight={400} >art</Text>
-            <Text fontSize={45} color="#FFFDE7" fontFamily="Roboto_400Regular" paddingTop="4px">h</Text>
+            <Text fontSize={45} color="#F0E8C1" fontFamily="Roboto_400Regular" paddingTop="4px">e</Text>
+            <Text fontSize={50} color="#F0E8C1" fontWeight={400} >art</Text>
+            <Text fontSize={45} color="#F0E8C1" fontFamily="Roboto_400Regular" paddingTop="4px">h</Text>
           </Flex>
         </PresenceTransition>
         <View style={{

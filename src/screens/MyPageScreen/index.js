@@ -96,7 +96,7 @@ function MyPageScreen({ navigation, route }) {
   return (
     <ScrollView>
       <Box width="100%" paddingX="15px" paddingY="20px">
-        <Box width="100%" height="74px" style={{ backgroundColor: "#E7DFC2" }}>
+        <Box width="100%" height="74px" style={{ backgroundColor: "#D5C9A5" }}>
           <Box padding="15px">
             <Text fontWeight="bold" fontSize="20px" color={colors.textPrimary}>{curUser.nickname}</Text>
             <Text fontSize="12px" color="#757575">{curUser.email}</Text>

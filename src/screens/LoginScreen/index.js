@@ -47,33 +47,42 @@ function LoginScreen({ navigation }) {
   return (
     <Box paddingX="15px" width="100%" height="100%">
       <Box>
-        <Text fontSize="14px" marginTop="25px" color={colors.secondary} >Email*</Text>
+        <Text fontSize="14px" marginTop="25px" color={colors.secondary} fontFamily="Roboto_400Regular">Email*</Text>
         <Input
           {...emailInput}
           placeholder="Please enter your email address"
-          backgroundColor="#E7DFC2"
+          backgroundColor="#D5C9A5"
           marginBottom="5px"
-          borderColor="#E7DFC2"
+          borderColor="#D5C9A5"
+          fontFamily="Roboto_400Regular"
         />
         {
           emailErr
             ?
             (
-              <Text color={colors.error}>Please enter a valid email address.</Text>
+              <Text color={colors.error} fontFamily="Roboto_400Regular">Please enter a valid email address.</Text>
             )
             :
             (
               <></>
             )
         }
-        <Text fontSize="14px" marginTop="15px" color={colors.secondary} >Password*</Text>
+        <Text fontSize="14px" marginTop="15px" color={colors.secondary} fontFamily="Roboto_400Regular" >Password*</Text>
         <Input
           {...passwordInput}
           placeholder="Please enter your password"
-          borderColor="#E7DFC2"
+          borderColor="#D5C9A5"
           marginBottom="50"
-          backgroundColor="#E7DFC2"
+          backgroundColor="#D5C9A5"
+          fontFamily="Roboto_400Regular"
         />
+        <Button onPress={() => onPressBtn()}
+            width="100%"
+            backgroundColor="#B5A48F"
+            height='48px'
+            onPress={() => navigate("SignUp")}
+          ><Text fontFamily="Roboto_400Regular" color="#F0E8C1" fontSize="16px">Sign up</Text></Button>
+        <Box height="15px" />
         <DefaultBtn
           text={loginLoading ? "Loading" : "Sign in"}
           onPressBtn={() => dispatch(authActions.logIn({
@@ -81,8 +90,6 @@ function LoginScreen({ navigation }) {
           }))}
           disabled={email.length === 0 || password.length === 0 || loginLoading || emailErr}
         />
-        <Box height="15px" />
-        <DefaultBtn text="Sign up" onPressBtn={() => navigate("SignUp")} disabled={false}></DefaultBtn>
       </Box >
     </Box >
   )

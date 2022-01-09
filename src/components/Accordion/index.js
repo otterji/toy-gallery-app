@@ -24,7 +24,7 @@ export default function AccordionComponent({
                     padding="0px"
                     paddingLeft="10px"
                     paddingRight="10px"
-                    style={{ backgroundColor: '#E7DFC2', borderRadius: 3 }}>
+                    style={{ backgroundColor: '#D5C9A5', borderRadius: 3 }}>
                     <Text style={{ color: colors.textPrimary }} fontFamily="Belleza_400Regular">
                       {x.title}
                     </Text>
