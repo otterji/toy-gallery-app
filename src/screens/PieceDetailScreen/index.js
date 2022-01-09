@@ -79,7 +79,7 @@ function PieceDetailScreen({ navigation, route }) {
         <ScrollView keyboardShouldPersistTaps="always">
           {targetPiece.imageLink && <Image alt={`piece-detail-image-alt-${targetPiece.imageLink}`} source={{ uri: targetPiece.imageLink }} width={screen.width} height="300px" />}
           <Box width="100%" paddingX="15px" paddingY="10px">
-            <Text fontSize="20px" color={colors.secondary} fontWeight="bold">{targetPiece.title} {targetPiece.year}</Text>
+            <Text fontSize="20px" color={colors.secondary} fontFamily="Belleza_400Regular">{targetPiece.title} {targetPiece.year}</Text>
             <Text fontSize="14px" color={colors.secondary} pb="20px">No.{targetPiece.id} {targetPiece.material} </Text>
             <Box height="10px" />
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.desc}</Text>
@@ -97,7 +97,7 @@ function PieceDetailScreen({ navigation, route }) {
             </Pressable>
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.artistInfo.desc}</Text>
             <Box height="38px" />
-            <AddExhibitionModal from="pieceDetail"></AddExhibitionModal>
+            <AddExhibitionModal from="pieceDetail" pieceId={pieceId}></AddExhibitionModal>
             <Box height="8px" />
           </Box>
         </ScrollView >

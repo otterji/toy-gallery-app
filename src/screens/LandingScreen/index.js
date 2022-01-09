@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { Box, Center, Text, Image, Pressable } from 'native-base';
+import { Box, Center, Text, Image, Pressable, Flex, VStack } from 'native-base';
 import { navigate } from '../../navigation/route';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import colors from '../../../src/styles/colors';
@@ -23,7 +23,7 @@ const imgList = [
   {
     id: 1,
     imgSource: funding,
-    link: '',
+    link: 'FundingStack',
     marginTop: '31px'
   },
   {
@@ -49,32 +49,30 @@ const imgList = [
 
 function LandingScreen({ navigation }) {
 
-  const renderImg = (_target) => (
-    <Pressable onPress={() => navigate(`${_target.link}`)} marginTop={_target.marginTop}>
-      <Image
-        alt={`${_target.imgSource}`}
-        source={_target.imgSource}
-      />
-    </Pressable>
-  )
-
   return (
     <TouchableWithoutFeedback style={{ width: screen.width, height: screen.height }}>
       <Box marginY={30} marginLeft={26}>
-        <Text fontSize={45} italic color={colors.secondary} marginBottom="7px">earth</Text>
+        <Flex direction="row">
+          <Text fontSize={45} color={colors.secondary} fontFamily="Roboto_400Regular" paddingTop="4px">e</Text>
+          <Text fontSize={50} color={colors.secondary} fontWeight={400} >art</Text>
+          <Text fontSize={45} color={colors.secondary} fontFamily="Roboto_400Regular" paddingTop="4px">h</Text>
+        </Flex>
         <Text fontSize={14} color="#E7DFC2">
-          {`Hi, we’re Patreon. We believe 
-people who make things should get 
-paid for the value they give to the world.`}
+          {`Our EARTH is a platform that connects upcycling artists and the public. Join the arts movement for the planet. Explore and purchase a variety of upcycling art pieces.`}
         </Text>
       </Box>
-      <Box backgroundColor={colors.secondary} paddingX={9} flex={1}>
-        {imgList.map((x) => (
-          <Box key={`landing-${x.id}`}>
-            {renderImg(x)}
-          </Box>
-        ))}
-      </Box>
+      <Center backgroundColor={colors.secondary} paddingX={5} flex={1} width={screen.width}>
+        <VStack alignItems="center" width={screen.width} space={7} >
+          {imgList.map((x) => (
+            <Pressable onPress={() => navigate(`${x.link}`)} key={`landing-${x.id}`}>
+              <Image
+                alt={`${x.imgSource}`}
+                source={x.imgSource}
+              />
+            </Pressable>
+          ))}
+        </VStack>
+      </Center>
     </TouchableWithoutFeedback >
   )
 };

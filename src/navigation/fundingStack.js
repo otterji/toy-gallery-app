@@ -2,26 +2,26 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import colors from '../styles/colors';
-import MagazineScreen from '../screens/MagazineScreen';
 import { Pressable, Image } from 'native-base';
-import MagazineDetailScreen from '../screens/MagazineDetailScreen';
 import earth from '../../assets/earth.png';
 import profile from '../../assets/profile.png';
 import { navigate } from './route';
+import FundingScreen from '../screens/FundingScreen';
+import FundingDetailScreen from '../screens/FundingDetailScreen';
 
 
 const Stack = createNativeStackNavigator();
 
-export function MagazineStack() {
+export function FundingStack() {
   return (
-    <Stack.Navigator initialRouteName="Magazine" screenOptions={{
+    <Stack.Navigator initialRouteName="Funding" screenOptions={{
       headerTitleAlign: "center",
       headerStyle: { backgroundColor: colors.background },
       headerTitleStyle: {
         fontFamily: "Belleza_400Regular"
       },
     }}>
-      <Stack.Screen name="Magazine" component={MagazineScreen} options={{
+      <Stack.Screen name="Funding" component={FundingScreen} options={{ headerTitle: "Ateiler" }} options={{
         headerLeft: (props) => (
           <Pressable paddingX={5} onPress={() => navigate('Landing')}>
             <Image source={earth} alt="earth" />
@@ -33,7 +33,7 @@ export function MagazineStack() {
           </Pressable>
         ),
       }} />
-      <Stack.Screen name="MagazineDetail" component={MagazineDetailScreen} options={({ route }) => ({ title: route.params.magazineTitle })} />
+      <Stack.Screen name="FundingDetail" component={FundingDetailScreen} options={({ route }) => ({ title: `Funding-${route.params.targetFunding.id + 1}` })} />
     </Stack.Navigator >
   );
 }

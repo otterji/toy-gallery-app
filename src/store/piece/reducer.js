@@ -13,8 +13,12 @@ import pieceConstants, { RESET_STORE } from './constants';
 // The initial state of the App
 export const initialState = {
   loading: true,
+  pieceLoading: false,
   resetLoading: true,
   artistLoading: true,
+  artistDetailLoading: true,
+  deleteArtistLoading: false,
+  postFavArtistLoading: false,
   pieceList: [],
   pieceDetail: {
     id: null,
@@ -55,14 +59,14 @@ const pieceReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case pieceConstants.GET_ALL_PIECES.REQUEST:
-        draft.loading = true;
+        draft.pieceLoading = true;
         break;
       case pieceConstants.GET_ALL_PIECES.SUCCESS:
-        draft.loading = false;
+        draft.pieceLoading = false;
         draft.pieceList = action.pieceList;
         break;
       case pieceConstants.GET_ALL_PIECES.FAIL:
-        draft.loading = false;
+        draft.pieceLoading = false;
         break;
 
       case pieceConstants.GET_ALL_ARTISTS.REQUEST:
@@ -99,25 +103,35 @@ const pieceReducer = (state = initialState, action) =>
         break;
 
       case pieceConstants.GET_ARTIST_DETAIL.REQUEST:
-        draft.loading = true;
+        draft.artistDetailLoading = true;
         break;
       case pieceConstants.GET_ARTIST_DETAIL.SUCCESS:
-        draft.loading = false;
+        draft.artistDetailLoading = false;
         draft.artistDetail = action.artistDetail;
         draft.hasAdded = action.hasAdded;
         break;
       case pieceConstants.GET_ARTIST_DETAIL.FAIL:
-        draft.loading = false;
+        draft.artistDetailLoading = false;
         break;
 
       case pieceConstants.POST_ARTIST_FAVORITE.REQUEST:
-        draft.loading = true;
+        draft.postFavArtistLoading = true;
         break;
       case pieceConstants.POST_ARTIST_FAVORITE.SUCCESS:
-        draft.loading = false;
+        draft.postFavArtistLoading = false;
         break;
       case pieceConstants.POST_ARTIST_FAVORITE.FAIL:
-        draft.loading = false;
+        draft.postFavArtistLoading = false;
+        break;
+
+      case pieceConstants.DELETE_ARTIST_FAVORITE.REQUEST:
+        draft.deleteArtistLoading = true;
+        break;
+      case pieceConstants.DELETE_ARTIST_FAVORITE.SUCCESS:
+        draft.deleteArtistLoading = false;
+        break;
+      case pieceConstants.DELETE_ARTIST_FAVORITE.FAIL:
+        draft.deleteArtistLoading = false;
         break;
 
       case pieceConstants.POST_EXHIBITION.REQUEST:

@@ -1,4 +1,4 @@
-import { Box, Text, Image, ScrollView, Pressable, HStack, Center, Stack } from 'native-base';
+import { Box, Text, useToast, ScrollView, Pressable, HStack, Center, Stack, Image, Flex } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
@@ -23,6 +23,7 @@ function MyPageScreen({ navigation, route }) {
     email: '',
     nickname: ''
   });
+  const toast = useToast();
 
   useEffect(() => {
     dispatch(authActions.getMe());
@@ -37,23 +38,20 @@ function MyPageScreen({ navigation, route }) {
   const aboutList = [
     {
       id: 0,
-      title: "About",
-      content: "About",
-    },
-    {
-      id: 1,
-      title: "ARTIST",
-      content: "어쩌고 저쩌고"
-    },
-    {
-      id: 2,
-      title: "BADGE",
-      content: "하하.."
-    },
-    {
-      id: 3,
-      title: "FUNDING HISTORY",
-      content: "???"
+      title: "My Badge",
+      content: (
+        <Pressable onPress={() => toast.show({
+          title: "Sorry :(",
+          status: "warning",
+          description: "This is not available in Betaflight",
+          placement: "top"
+        })} >
+          <Flex direction='row'>
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/medal+(1).png" }} alt="mypage-badge" width="100px" height="100px" />
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/medal.png" }} alt="mypage-badge" width="100px" height="100px" />
+          </Flex>
+        </Pressable >
+      )
     }
   ];
 
@@ -61,17 +59,17 @@ function MyPageScreen({ navigation, route }) {
     {
       id: 0,
       num: 3,
-      title: '갤러리',
+      title: 'gallery',
     },
     {
       id: 1,
       num: 422,
-      title: '팔로워',
+      title: 'follower',
     },
     {
       id: 2,
       num: 159,
-      title: '팔로우',
+      title: 'follow',
     },
   ];
 
@@ -104,11 +102,9 @@ function MyPageScreen({ navigation, route }) {
             <Text fontSize="12px" color="#757575">{curUser.email}</Text>
           </Box>
         </Box>
-        <Center style={{ backgroundColor: "#EFEDD5" }} >
-          {InfoBox(infoList)}
-        </Center>
         <Box height="15px" />
         <AccordionComponent list={aboutList} />
+
       </Box>
     </ScrollView >
   )

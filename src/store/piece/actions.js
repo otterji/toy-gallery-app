@@ -26,6 +26,10 @@ const pieceActions = {
     type: pieceConstants.GET_ARTIST_FAVORITE.REQUEST,
     artistId,
   }),
+  deleteArtistFavorite: ({ artistId }) => ({
+    type: pieceConstants.DELETE_ARTIST_FAVORITE.REQUEST,
+    artistId,
+  }),
   postExhibition: ({ name, desc }) => ({
     type: pieceConstants.POST_EXHIBITION.REQUEST,
     name,

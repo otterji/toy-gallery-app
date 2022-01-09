@@ -15,7 +15,10 @@ export function AteilerStack() {
   return (
     <Stack.Navigator initialRouteName="Atelier" screenOptions={{
       headerTitleAlign: "center",
-      headerStyle: { backgroundColor: colors.background }
+      headerStyle: { backgroundColor: colors.background },
+      headerTitleStyle: {
+        fontFamily: "Belleza_400Regular"
+      },
     }}>
       <Stack.Screen name="Atelier" component={AtelierScreen} options={{ headerTitle: "Ateiler" }} options={{
         headerLeft: (props) => (

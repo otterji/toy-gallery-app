@@ -7,7 +7,7 @@ import NameScreen from '../screens/NameScreen';
 import SignupCompletedScreen from '../screens/SignUpCompletedScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { navigate } from './route';
-import { Toast, useToast } from 'native-base';
+import { Toast } from 'native-base';
 import { getItemFromAsync } from '../hooks/requests';
 
 const Stack = createNativeStackNavigator();
@@ -15,8 +15,9 @@ const Stack = createNativeStackNavigator();
 export function AuthStack() {
 
   const autoLogin = async () => {
-    const userId = await getItemFromAsync('userId');
-    if (userId) {
+    const idToken = await getItemFromAsync('idToken');
+    console.log(idToken)
+    if (idToken) {
       Toast.show({
         title: 'You are automatically signed in',
         placement: "top",
@@ -33,7 +34,13 @@ export function AuthStack() {
 
 
   return (
-    <Stack.Navigator initialRouteName={getInitialScreen()} screenOptions={{ headerTitleAlign: "center", headerStyle: { backgroundColor: colors.background } }}>
+    <Stack.Navigator initialRouteName={getInitialScreen()} screenOptions={{
+      headerTitleAlign: "center",
+      headerStyle: { backgroundColor: colors.background },
+      headerTitleStyle: {
+        fontFamily: "Belleza_400Regular"
+      },
+    }}>
       <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Sign in' }} />
       <Stack.Screen name="SignUp" component={SignupScreen} options={{ title: 'Sign up' }} />
       <Stack.Screen name="Name" component={NameScreen} options={{ title: 'Sign up' }} />

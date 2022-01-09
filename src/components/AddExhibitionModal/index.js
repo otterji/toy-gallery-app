@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Text, View, ScrollView, Pressable, Modal, Button, VStack, FormControl, Input } from 'native-base';
-
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import pieceActions from '../../store/piece/actions';
 import DefaultBtn from '../DefaultBtn';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import galleryActions from '../../store/gallery/actions';
 
 
-const AddExhibitionModal = ({ from, wrapperWidth }) => {
+const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
+  const { getGalGroupLoading, myGalleryList } = useSelector(state => state.galleryReducer || initialState);
   const isFromMyPage = from === "MyPage"
   const [mode, setMode] = useState(isFromMyPage ? "create" : "view");
   const [isOpen, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
+<<<<<<< HEAD
   const [curList, setCurList] = useState([]);
+=======
+  const [galleryList, setGalleryList] = useState([]);
+  const [selectedId, setSelectedId] = useState(null);
+>>>>>>> 6dcbbe88dc2b12e704e75de5a8b234a3e8497cd3
   const dispatch = useDispatch();
 
   const nameInput = {
@@ -27,19 +33,34 @@ const AddExhibitionModal = ({ from, wrapperWidth }) => {
   };
 
   const onPressCreateBtn = () => {
-    dispatch(pieceActions.postExhibition({ name, desc }))
+    dispatch(galleryActions.postGalleryGroup({ name, desc }))
     if (isFromMyPage) {
       setOpen(false)
     }
     else {
       setMode("view");
-
     }
   }
 
+  useEffect(() => {
+    dispatch(galleryActions.getMyGalleryList());
+  }, [])
+
+  useEffect(() => {
+    if (myGalleryList.length === 0) return;
+    setGalleryList(myGalleryList);
+  }, [myGalleryList])
+
+  const exhibit = () => {
+    dispatch(galleryActions.postGalleryPiece({
+      pieceId,
+      galleryId: selectedId,
+    }))
+    setOpen(false)
+  };
+
 
   const viewMode = () => {
-    console.log('hi')
     return (
       <Modal isOpen={isOpen} onClose={() => setOpen(false)} >
         <Modal.Content>
@@ -49,19 +70,25 @@ const AddExhibitionModal = ({ from, wrapperWidth }) => {
           </Modal.Header>
           <Modal.Body>
             <ScrollView>
-              <VStack space={5}>
-                <Text>
-                  Gallery 1
-                </Text>
-                <Text>
-                  Gallery 2
-                </Text>
-                <Text>
-                  Gallery 3
-                </Text>
-                <Text>
-                  Gallery 4
-                </Text>
+              <VStack>
+                {
+                  galleryList.map((x) => {
+                    const isSelected = x.id === selectedId;
+                    return (
+                      <Pressable key={`gallery-modal-${x.id}`} onPress={() => setSelectedId(x.id)} backgroundColor={isSelected ? "rgb(243, 244, 246)" : "rgb(249, 250, 251)"}>
+                        <Box
+                          paddingTop='10px'
+                          paddingBottom='10px'
+                        >
+                          <Text>
+                            {x.name}
+                          </Text>
+                        </Box>
+                      </Pressable>
+                    )
+                  }
+                  )
+                }
               </VStack>
               <Pressable onPress={() => setMode('create')}>
                 {({ isHovered, isPressed }) => {
@@ -80,7 +107,7 @@ const AddExhibitionModal = ({ from, wrapperWidth }) => {
             </ScrollView >
           </Modal.Body>
           <Modal.Footer>
-            <DefaultBtn text="Exhibit" onPressBtn={() => setOpen(false)} disabled={false} />
+            <DefaultBtn text="Exhibit" onPressBtn={() => exhibit()} disabled={false} />
           </Modal.Footer>
         </Modal.Content>
       </Modal >
@@ -117,8 +144,8 @@ const AddExhibitionModal = ({ from, wrapperWidth }) => {
         return (
           <TouchableWithoutFeedback onPress={() => setOpen(true)}>
             <View style={{ width: wrapperWidth / 2, paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
-              <Box style={{ borderWidth: 3, height: 200 }}>
-                <Text>추가하기</Text>
+              <Box style={{ height: 200, borderRadius: 10, backgroundColor: "rgb(243, 244, 246)" }}>
+                <Text fontSize={100}>+</Text>
               </Box>
             </View>
           </TouchableWithoutFeedback>

@@ -1,5 +1,5 @@
 import { call, put, all, takeLatest } from 'redux-saga/effects';
-import { createAPI, fetcher, poster } from '../../hooks/requests';
+import { createAPI, deleter, fetcher, poster } from '../../hooks/requests';
 import { Toast, useToast } from 'native-base';
 import pieceConstants from './constants';
 
@@ -104,6 +104,7 @@ export function* getArtistDetailSaga({ artistId }) {
       artistDetail,
       hasAdded,
     });
+    console.log('saga', hasAdded)
   } catch (err) {
     yield Toast.show({
       title: 'Something went wrong :(',
@@ -121,7 +122,7 @@ export function* postArtistFavoriteSaga({ artistId }) {
     artistId
   }
   try {
-    yield call(poster, { url, payload });
+    yield call(poster, { url, body: payload });
     yield put({
       type: pieceConstants.POST_ARTIST_FAVORITE.SUCCESS,
     });
@@ -132,6 +133,7 @@ export function* postArtistFavoriteSaga({ artistId }) {
       duration: 6000,
     });
   } catch (err) {
+    console.log(err)
     yield Toast.show({
       title: 'Something went wrong :(',
       placement: "top",
@@ -139,6 +141,34 @@ export function* postArtistFavoriteSaga({ artistId }) {
       duration: 6000,
     });
     yield put({ type: pieceConstants.POST_ARTIST_FAVORITE.FAIL });
+  }
+};
+
+export function* deleteArtistFavoriteSaga({ artistId }) {
+  const url = createAPI(`/artist/favorite`);
+  const payload = {
+    artistId
+  }
+  try {
+    yield call(deleter, { url, body: payload });
+    yield put({
+      type: pieceConstants.DELETE_ARTIST_FAVORITE.SUCCESS,
+    });
+    yield Toast.show({
+      title: 'Successfully deleted! :)',
+      placement: "top",
+      status: "success",
+      duration: 6000,
+    });
+  } catch (err) {
+    console.log(err)
+    yield Toast.show({
+      title: 'Something went wrong :(',
+      placement: "top",
+      status: "warning",
+      duration: 6000,
+    });
+    yield put({ type: pieceConstants.DELETE_ARTIST_FAVORITE.FAIL });
   }
 };
 
@@ -179,5 +209,6 @@ export default function* pieceSaga() {
     takeLatest(pieceConstants.GET_ARTIST_DETAIL.REQUEST, getArtistDetailSaga),
     takeLatest(pieceConstants.POST_ARTIST_FAVORITE.REQUEST, postArtistFavoriteSaga),
     takeLatest(pieceConstants.POST_EXHIBITION.REQUEST, postExhibitionSaga),
+    takeLatest(pieceConstants.DELETE_ARTIST_FAVORITE.REQUEST, deleteArtistFavoriteSaga),
   ]);
 };
