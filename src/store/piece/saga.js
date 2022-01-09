@@ -77,6 +77,24 @@ export function* getPieceDetailSaga({ pieceId }) {
   }
 };
 
+export function* getAllGallerySaga() {
+  const url = createAPI(`/gallery`);
+  try {
+    const { galleryList } = yield call(fetcher, url);
+    yield put({
+      type: pieceConstants.GET_ALL_GALLERY.SUCCESS,
+    });
+  } catch (err) {
+    yield Toast.show({
+      title: 'Something went wrong :(',
+      placement: "top",
+      status: "warning",
+      duration: 6000,
+    });
+    yield put({ type: pieceConstants.GET_ALL_GALLERY.FAIL });
+  }
+};
+
 export function* getArtistDetailSaga({ artistId }) {
   const url = createAPI(`/artist/${artistId}`);
   try {
@@ -156,6 +174,7 @@ export default function* pieceSaga() {
   yield all([
     takeLatest(pieceConstants.GET_ALL_PIECES.REQUEST, getAllPiecesSaga),
     takeLatest(pieceConstants.GET_ALL_ARTISTS.REQUEST, getAllArtistSaga),
+    takeLatest(pieceConstants.GET_ALL_GALLERY.REQUEST, getAllGallerySaga),
     takeLatest(pieceConstants.GET_PIECE_DETAIL.REQUEST, getPieceDetailSaga),
     takeLatest(pieceConstants.GET_ARTIST_DETAIL.REQUEST, getArtistDetailSaga),
     takeLatest(pieceConstants.POST_ARTIST_FAVORITE.REQUEST, postArtistFavoriteSaga),

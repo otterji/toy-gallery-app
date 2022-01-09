@@ -13,6 +13,7 @@ const AddExhibitionModal = ({ from, wrapperWidth }) => {
   const [isOpen, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
+  const [curList, setCurList] = useState([]);
   const dispatch = useDispatch();
 
   const nameInput = {

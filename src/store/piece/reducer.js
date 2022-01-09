@@ -46,6 +46,8 @@ export const initialState = {
   artistList: [],
   favArtistList: [],
   postExLoading: true,
+  galistLoading: true,
+  galleryList: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -72,6 +74,17 @@ const pieceReducer = (state = initialState, action) =>
         break;
       case pieceConstants.GET_ALL_ARTISTS.FAIL:
         draft.artistLoading = false;
+        break;
+
+      case pieceConstants.GET_ALL_GALLERY.REQUEST:
+        draft.galistLoading = true;
+        break;
+      case pieceConstants.GET_ALL_GALLERY.SUCCESS:
+        draft.galistLoading = false;
+        draft.galleryList = action.galleryList;
+        break;
+      case pieceConstants.GET_ALL_GALLERY.FAIL:
+        draft.galistLoading = false;
         break;
 
       case pieceConstants.GET_PIECE_DETAIL.REQUEST:
