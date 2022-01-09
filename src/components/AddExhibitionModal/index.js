@@ -14,12 +14,9 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
   const [isOpen, setOpen] = useState(false);
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
-<<<<<<< HEAD
   const [curList, setCurList] = useState([]);
-=======
   const [galleryList, setGalleryList] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
->>>>>>> 6dcbbe88dc2b12e704e75de5a8b234a3e8497cd3
   const dispatch = useDispatch();
 
   const nameInput = {

@@ -8,8 +8,8 @@ import earth from '../../assets/earth.png';
 import profile from '../../assets/profile.png';
 import { Image, Pressable, Text } from 'native-base';
 import { navigate } from './route';
-import { MagazineStack } from './magazineStack';
-import { MyGalleryStack } from './myGalleryStack';
+import { MagazineStack } from './MagazineStack';
+import { MyGalleryStack } from './MyGalleryStack';
 import { FundingStack } from './fundingStack';
 
 const Drawer = createDrawerNavigator();
