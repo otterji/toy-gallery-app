@@ -82,6 +82,7 @@ const Piece = ({ navigation }) => {
                           </Box>
                         </Box>
                       </AutoHeightImage>
+                      <Box height="15px" />
                     </Pressable>
                   )
                 }
@@ -92,6 +93,7 @@ const Piece = ({ navigation }) => {
                       source={x.imageLink.length !== 0 ? { uri: x.imageLink } : null}
                       width={screen.width}
                     />
+                    <Box height="15px" />
                   </Pressable>
                 )
               })

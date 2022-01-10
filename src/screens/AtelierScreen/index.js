@@ -43,7 +43,7 @@ export default function AtelierScreen({ navigation }) {
               inputIndex === i ? 1 : 0.5
             ),
           });
-          const color = index === i ? colors.secondary : colors.backgroundDark;
+          const color = index === i ? colors.secondary : "#B5A48F";
 
           return (
             <Box
@@ -54,7 +54,6 @@ export default function AtelierScreen({ navigation }) {
             >
               <Pressable
                 onPress={() => {
-                  console.log(i);
                   setIndex(i);
                 }}
                 style={{ width: '100%', alignItems: 'center', height: 40 }}

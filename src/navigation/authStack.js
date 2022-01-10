@@ -16,7 +16,6 @@ export function AuthStack() {
 
   const autoLogin = async () => {
     const idToken = await getItemFromAsync('idToken');
-    console.log(idToken)
     if (idToken) {
       Toast.show({
         title: 'You are automatically signed in',

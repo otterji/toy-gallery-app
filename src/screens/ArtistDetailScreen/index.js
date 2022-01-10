@@ -139,8 +139,6 @@ function ArtistDetailScreen({ navigation, route }) {
     setClicked(false);
   };
 
-  console.log(clicked, hasAdded)
-
 
 
 

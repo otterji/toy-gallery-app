@@ -49,7 +49,6 @@ export default function App() {
 
 
   if (!fontsLoaded) {
-    console.log('loading')
     return (
       <AppLoading
       />

@@ -104,7 +104,6 @@ export function* getArtistDetailSaga({ artistId }) {
       artistDetail,
       hasAdded,
     });
-    console.log('saga', hasAdded)
   } catch (err) {
     yield Toast.show({
       title: 'Something went wrong :(',
