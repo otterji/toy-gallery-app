@@ -48,10 +48,10 @@ export default function FundingDetailScreen({ navigation, route }) {
     <NativeBaseProvider>
       <Box width="100%" height="100%">
         <Box style={{
-          position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: "#F0E8C1", zIndex: 2,
+          position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: "#CBC3A6", zIndex: 2,
         }}>
           <Flex direction="row" justifyContent="space-between">
-            <Text fontSize="15px" color={colors.secondary} fontWeight="bold" marginLeft="20px" marginTop="19px">
+            <Text fontSize="12px" color={colors.secondary} fontWeight="bold" marginLeft="20px" marginTop="26px">
               Become an Art Supporter!
             </Text>
             <View style={{ width: '50%', padding: 10 }}>

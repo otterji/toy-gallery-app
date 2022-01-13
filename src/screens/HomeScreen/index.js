@@ -4,6 +4,7 @@ import { Box, Center, Flex, Text, Image, View, PresenceTransition } from 'native
 import { navigate } from '../../navigation/route';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import tncLogo from '../../../assets/tncLogo.png';
+import { borderWidth } from 'styled-system';
 
 const screen = Dimensions.get('window');
 
@@ -29,10 +30,12 @@ function HomeScreen({ navigation }) {
       onPress={() => navigate('Auth')}
       style={{
         width: screen.width,
-        height: screen.height,
-        backgroundColor: "#6B4B37"
+        height: screen.height+ 50,
+        backgroundColor: "#6B4B37",
+        borderWidth: 4,
+        bottom: 0,
       }}>
-      <Center flex={1} px="3">
+      <Center flex={1}>
         <PresenceTransition
           visible={true}
           initial={{
@@ -70,9 +73,9 @@ function HomeScreen({ navigation }) {
           </Flex>
         </PresenceTransition>
         <View style={{
-          justifyContent: 'flex-end', flex: 1, marginBottom: 45
+          justifyContent: 'flex-end', flex: 1, paddingBottom: 45
         }}>
-          < Image source={tncLogo} alt="tnc-logo" ></Image>
+          <Image source={tncLogo} alt="tnc-logo" />
         </View>
       </Center >
     </TouchableWithoutFeedback >

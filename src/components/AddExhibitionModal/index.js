@@ -141,8 +141,8 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
         return (
           <TouchableWithoutFeedback onPress={() => setOpen(true)}>
             <View style={{ width: wrapperWidth / 2, paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
-              <Box style={{ height: 200, borderRadius: 10, backgroundColor: "rgb(243, 244, 246)" }}>
-                <Text fontSize={100}>+</Text>
+              <Box style={{ height: 170, borderRadius: 10, backgroundColor: "#D5C9A5" }}>
+              <Icon color="black" as={<AntDesign name="addfolder" />} size="sm" />
               </Box>
             </View>
           </TouchableWithoutFeedback>

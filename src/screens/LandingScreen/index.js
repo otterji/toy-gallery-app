@@ -50,14 +50,14 @@ const imgList = [
 function LandingScreen({ navigation }) {
 
   return (
-    <TouchableWithoutFeedback style={{ width: screen.width, height: screen.height }}>
+    <TouchableWithoutFeedback style={{ width: screen.width, height: screen.height + 50 }}>
       <Box marginY={30} marginLeft={26}>
         <Flex direction="row">
           <Text fontSize={45} color={colors.secondary} fontFamily="Roboto_400Regular" paddingTop="4px">e</Text>
           <Text fontSize={50} color={colors.secondary} fontWeight={400} >art</Text>
           <Text fontSize={45} color={colors.secondary} fontFamily="Roboto_400Regular" paddingTop="4px">h</Text>
         </Flex>
-        <Text fontSize={14} color="#D5C9A5">
+        <Text fontSize={14} color="#97806C">
           {`Our EARTH is a platform that connects upcycling artists and the public. Join the arts movement for the planet. Explore and purchase a variety of upcycling art pieces.`}
         </Text>
       </Box>
