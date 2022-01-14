@@ -1,4 +1,4 @@
-import { call, put, all, takeLatest } from 'redux-saga/effects';
+import { call, put, all, takeLatest, delay } from 'redux-saga/effects';
 import { createAPI, deleter, fetcher, poster } from '../../hooks/requests';
 import { Toast } from 'native-base';
 import galleryConstants from './constants';
@@ -45,7 +45,7 @@ export function* getGalleryDetailSaga({ galleryId }) {
   }
 };
 
-export function* postGalleryGroupSaga({ name, desc }) {
+export function* postGalleryGroupSaga({ name, desc, callback }) {
   const url = createAPI('/gallery');
   const body = {
     name,
@@ -56,6 +56,8 @@ export function* postGalleryGroupSaga({ name, desc }) {
     yield put({
       type: galleryConstants.POST_GALLERY_GROUP.SUCCESS,
     });
+    yield put({ type: galleryConstants.GET_MY_GALLERY_LIST.REQUEST });
+    yield callback();
     yield Toast.show({
       title: 'Successfully added! :)',
       placement: "top",
@@ -74,7 +76,8 @@ export function* postGalleryGroupSaga({ name, desc }) {
   }
 };
 
-export function* postGalleryPieceSaga({ pieceId, galleryId }) {
+export function* postGalleryPieceSaga({ pieceId, galleryId, callback }) {
+  console.log('postGalPiece')
   const url = createAPI('/gallery/piece');
   const body = {
     pieceId,
@@ -85,6 +88,7 @@ export function* postGalleryPieceSaga({ pieceId, galleryId }) {
     yield put({
       type: galleryConstants.POST_GALLERY_PIECE.SUCCESS,
     });
+    yield callback();
     yield Toast.show({
       title: 'Successfully added! :)',
       placement: "top",

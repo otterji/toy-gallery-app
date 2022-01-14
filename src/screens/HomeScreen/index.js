@@ -30,7 +30,7 @@ function HomeScreen({ navigation }) {
       onPress={() => navigate('Auth')}
       style={{
         width: screen.width,
-        height: screen.height+ 50,
+        height: screen.height + 50,
         backgroundColor: "#6B4B37",
         borderWidth: 4,
         bottom: 0,
@@ -73,7 +73,7 @@ function HomeScreen({ navigation }) {
           </Flex>
         </PresenceTransition>
         <View style={{
-          justifyContent: 'flex-end', flex: 1, paddingBottom: 45
+          justifyContent: 'flex-end', flex: 1, paddingBottom: 55
         }}>
           <Image source={tncLogo} alt="tnc-logo" />
         </View>

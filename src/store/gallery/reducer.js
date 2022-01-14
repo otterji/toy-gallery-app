@@ -28,16 +28,13 @@ const galleryReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case galleryConstants.GET_MY_GALLERY_LIST.REQUEST:
-        console.log('req')
         draft.getGalGroupLoading = true;
         break;
       case galleryConstants.GET_MY_GALLERY_LIST.SUCCESS:
-        console.log('succee')
         draft.getGalGroupLoading = false;
         draft.myGalleryList = action.myGalleryList;
         break;
       case galleryConstants.GET_MY_GALLERY_LIST.FAIL:
-        console.log('fail')
         draft.getGalGroupLoading = false;
         break;
 

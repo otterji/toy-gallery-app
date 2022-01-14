@@ -8,15 +8,17 @@ const galleryActions = {
     type: galleryConstants.GET_GALLERY_DETAIL.REQUEST,
     galleryId
   }),
-  postGalleryGroup: ({ name, desc }) => ({
+  postGalleryGroup: ({ name, desc, callback }) => ({
     type: galleryConstants.POST_GALLERY_GROUP.REQUEST,
     name,
     desc,
+    callback
   }),
-  postGalleryPiece: ({ pieceId, galleryId }) => ({
+  postGalleryPiece: ({ pieceId, galleryId, callback }) => ({
     type: galleryConstants.POST_GALLERY_PIECE.REQUEST,
     pieceId,
-    galleryId
+    galleryId,
+    callback
   }),
   updateGalleryGroup: ({ name, desc, galleryId }) => ({
     type: galleryConstants.UPDATE_GALLERY_GROUP.REQUEST,

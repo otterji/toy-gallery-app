@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Text, View, ScrollView, Pressable, Modal, Button, VStack, FormControl, Input } from 'native-base';
+import { Box, Text, View, ScrollView, Pressable, Modal, Button, VStack, Icon, Input } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
-import pieceActions from '../../store/piece/actions';
+import { AntDesign } from "@expo/vector-icons"
 import DefaultBtn from '../DefaultBtn';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import galleryActions from '../../store/gallery/actions';
 
 
 const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
-  const { getGalGroupLoading, myGalleryList } = useSelector(state => state.galleryReducer || initialState);
+  const { getGalGroupLoading, myGalleryList, postGalPieceLoading } = useSelector(state => state.galleryReducer || initialState);
   const isFromMyPage = from === "MyPage"
   const [mode, setMode] = useState(isFromMyPage ? "create" : "view");
   const [isOpen, setOpen] = useState(false);
@@ -30,14 +30,8 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
   };
 
   const onPressCreateBtn = () => {
-    dispatch(galleryActions.postGalleryGroup({ name, desc }))
-    if (isFromMyPage) {
-      setOpen(false)
-    }
-    else {
-      setMode("view");
-    }
-  }
+    dispatch(galleryActions.postGalleryGroup({ name, desc, callback: isFromMyPage ? () => setOpen(false) : () => setMode('view') }));
+  };
 
   useEffect(() => {
     dispatch(galleryActions.getMyGalleryList());
@@ -52,8 +46,8 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
     dispatch(galleryActions.postGalleryPiece({
       pieceId,
       galleryId: selectedId,
+      callback: () => setOpen(false),
     }))
-    setOpen(false)
   };
 
 
@@ -104,7 +98,7 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
             </ScrollView >
           </Modal.Body>
           <Modal.Footer>
-            <DefaultBtn text="Exhibit" onPressBtn={() => exhibit()} disabled={false} />
+            <DefaultBtn text={postGalPieceLoading ? "loading..." : "Exibit"} onPressBtn={() => exhibit()} disabled={false} />
           </Modal.Footer>
         </Modal.Content>
       </Modal >
@@ -142,7 +136,7 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
           <TouchableWithoutFeedback onPress={() => setOpen(true)}>
             <View style={{ width: wrapperWidth / 2, paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
               <Box style={{ height: 170, borderRadius: 10, backgroundColor: "#D5C9A5" }}>
-              <Icon color="black" as={<AntDesign name="addfolder" />} size="sm" />
+                <Icon color="black" as={<AntDesign name="addfolder" />} size="sm" />
               </Box>
             </View>
           </TouchableWithoutFeedback>
