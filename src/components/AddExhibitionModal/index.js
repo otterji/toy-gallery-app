@@ -135,7 +135,7 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
         return (
           <TouchableWithoutFeedback onPress={() => setOpen(true)}>
             <View style={{ width: wrapperWidth / 2, paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
-              <Center style={{ height: 170, borderRadius: 10, borderColor: "#D5C9A5", borderWidth: 1, borderStyle: 'dashed' }}>
+              <Center style={{ height: 170, borderRadius: 10, borderColor: "#D5C9A5", borderWidth: 2, borderStyle: 'dashed' }}>
                 <Flex>
                   <Icon color="#D5C9A5" as={<AntDesign name="pluscircleo" />} size="lg" ml={5}/>
                   <Text color="#6B4B37" fontFamily="Roboto_400Regular" mt={1}>Add Exhibition</Text>

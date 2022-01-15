@@ -34,7 +34,7 @@ export function MyGalleryStack() {
           </Pressable>
         ),
       }} />
-      <Stack.Screen name="MyGalleryDetail" component={MyGalleryDetailScreen} options={({ route }) => ({ title: route.params.title })}/>
+      <Stack.Screen name="MyGalleryDetail" component={MyGalleryDetailScreen} options={({ route }) => ({ title: route.params.gallery.name })}/>
     </Stack.Navigator >
   );
 }
