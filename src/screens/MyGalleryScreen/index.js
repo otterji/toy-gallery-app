@@ -67,7 +67,7 @@ function MyGalleryScreen({ navigation, route }) {
           <AddExhibitionModal wrapperWidth={wrapperWidth} from="MyPage"></AddExhibitionModal>
           {
             galleryList.map((x) => (
-              <Pressable style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }} key={`gallery-myList-${x.id}`} onPress={() => navigate('MyGalleryDetail', { galleryId: x.id })}>
+              <Pressable style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }} key={`gallery-myList-${x.id}`} onPress={() => navigate('MyGalleryDetail', { galleryId: x.id, title: x.name })}>
                 <Image key={x.imageLink} style={{ borderWidth: 3, borderRadius: 10 }} source={{ uri: x.imageLink || 'https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/noImg.png' }} alt="my-gallery-image" height={170} />
                 <Text fontFamily="Roboto_400Regular" fontSize={18}>{x.name}</Text>
                 <Text>{x.updatedAt}</Text>

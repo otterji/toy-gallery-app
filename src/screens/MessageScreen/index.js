@@ -13,17 +13,21 @@ function MessageScreen({ navigation }) {
   const sampleChat = [
     {
       id: 0,
-      name: 'Ralph Edwards',
-      text: 'Me: Yes, please :)',
-      date: '10월 22일',
+      name: 'Nick Gentry',
+      text: 'Nick: Hello, I add the two documents in...',
+      date: 'Nov 29',
       imageUrl: chatImg1,
+      color: '#D57162',
+      haveDot: true,
     },
     {
       id: 1,
-      name: 'Kathryn Murphy',
-      text: 'Katheryn : Thank you for...',
-      date: '10월 20일',
+      name: 'Carmen Mardonez',
+      text: 'Carmen: Sweet, see you then!',
+      date: 'Nov 20',
       imageUrl: chatImg2,
+      color: '#6B4B37',
+      haveDot: false,
     }
   ];
 
@@ -36,18 +40,31 @@ function MessageScreen({ navigation }) {
         placement: "top"
       })
     }>
-      <Box ml={3} mb={5}>
+      <Box mx={2} mb={7}>
         <Flex direction="row" _text={{ color: colors.textPrimary }}>
           <Image source={_target.imageUrl} mt={1} alt={_target.name} />
-          <Box ml={3} mt={2}>
-            <Text bold fontSize="16px">
-              {_target.name}
-            </Text>
+          <Box ml={3}>
+            {
+              _target.haveDot
+              ? (
+                <Flex direction="row">
+                <Text bold fontSize="16px" color="#6B4B37" fontFamily="Roboto_400Regular">
+                  {_target.name}
+                </Text>
+                <Box backgroundColor="#D57162" width={2} height={2} borderRadius={5} mt={2} ml={3}/>
+              </Flex>
+              )
+              : (
+                <Text bold fontSize="16px" color="#6B4B37" fontFamily="Roboto_400Regular">
+                  {_target.name}
+                </Text>
+              )
+            }
             <Flex direction="row" _text={{ color: colors.gray[0] }}>
-              <Text marginRight={3} >
+              <Text marginRight={3} fontFamily="Roboto_400Regular" color={_target.color}>
                 {_target.text}
               </Text>
-              <Text fontSize="10px" mt={1}>
+              <Text fontSize="10px" mt={1} color="#97806C" fontFamily="Roboto_400Regular">
                 {_target.date}
               </Text>
             </Flex>

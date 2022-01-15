@@ -31,7 +31,7 @@ const Artist = () => {
   }, [])
 
   useEffect(() => {
-    if (artistList.length === 0) return;
+    if (!artistList || artistList.length === 0) return;
     setCurData(artistList);
   }, [artistList])
 
@@ -72,7 +72,7 @@ const Artist = () => {
             </Pressable>
           )}
           renderCustomSectionHeader={(section) => (
-            <View style={{ backgroundColor: colors.backgroundDark, paddingVertical: 3 }}>
+            <View style={{ backgroundColor: "#D5C9A5", paddingVertical: 3 }}>
               <Text style={{ paddingLeft: 20, color: colors.secondary }} fontFamily="Belleza_400Regular">{section.title}</Text>
             </View>
           )}

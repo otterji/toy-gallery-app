@@ -125,6 +125,9 @@ export function* postArtistFavoriteSaga({ artistId }) {
     yield put({
       type: pieceConstants.POST_ARTIST_FAVORITE.SUCCESS,
     });
+    yield put({
+      type: pieceConstants.GET_ALL_ARTISTS.SUCCESS,
+    });
     yield Toast.show({
       title: 'Successfully added! :)',
       placement: "top",
