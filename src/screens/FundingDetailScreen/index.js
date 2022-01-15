@@ -1,11 +1,9 @@
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NativeBaseProvider, Box, Text, useToast, ScrollView, Flex, Progress, Image, HStack, View } from 'native-base';
-import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../styles/colors';
 import { Dimensions } from 'react-native';
 import DefaultBtn from '../../components/DefaultBtn';
-import { Toast } from 'native-base';
 
 const screen = Dimensions.get('window');
 

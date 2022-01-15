@@ -1,5 +1,5 @@
 import { Text, Image, ScrollView, Flex } from 'native-base';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Pressable, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import AddExhibitionModal from '../../components/AddExhibitionModal';

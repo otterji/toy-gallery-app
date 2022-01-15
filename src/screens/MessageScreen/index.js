@@ -1,9 +1,8 @@
 import { Box, Text, Pressable, Flex, Image, useToast } from 'native-base';
-import React, { useState } from 'react';
+import React from 'react';
 import colors from '../../styles/colors';
 import chatImg1 from '../../../assets/chatImg1.png';
 import chatImg2 from '../../../assets/chatImg2.png';
-import { Toast } from 'native-base';
 
 
 function MessageScreen({ navigation }) {

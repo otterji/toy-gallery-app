@@ -1,8 +1,6 @@
-import { Box, Button, Center, Input, Text, Pressable } from 'native-base';
+import { Box, Button, Input, Text } from 'native-base';
 import React, { useState } from 'react';
-import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { borderWidth } from 'styled-system';
 import DefaultBtn from '../../components/DefaultBtn';
 import authActions from '../../store/auth/actions';
 import colors from '../../styles/colors';

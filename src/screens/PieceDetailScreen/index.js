@@ -1,13 +1,11 @@
-import { Box, Text, Image, ScrollView, Pressable, Modal, Button, VStack, FormControl, Input, Toast, useToast } from 'native-base';
+import { Box, Text, Image, ScrollView, Pressable, useToast } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { TextPropTypes, View } from 'react-native';
+import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import pieceActions from '../../store/piece/actions';
 import { initialState } from '../../store/piece/reducer';
-import { AntDesign } from "@expo/vector-icons"
 import { Dimensions } from 'react-native';
 import Loading from '../../components/Loading';
-import AccordionComponent from '../../components/Accordion';
 import colors from '../../styles/colors';
 import AddExhibitionModal from '../../components/AddExhibitionModal';
 

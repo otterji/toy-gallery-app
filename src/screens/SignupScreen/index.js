@@ -1,6 +1,5 @@
 import { Box, Button, Center, Input, Text, Checkbox, Flex, Modal } from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import DefaultBtn from '../../components/DefaultBtn';
 import authActions from '../../store/auth/actions';

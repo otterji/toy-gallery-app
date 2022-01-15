@@ -2,8 +2,6 @@ import { Box, Text, useToast, ScrollView, Pressable, HStack, Center, Stack, Imag
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dimensions } from 'react-native';
-import Loading from '../../components/Loading';
-import AccordionComponent from '../../components/Accordion';
 import authActions from '../../store/auth/actions';
 import { initialState } from '../../store/auth/reducer';
 import colors from '../../styles/colors';

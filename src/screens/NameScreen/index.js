@@ -1,10 +1,8 @@
-import { Box, Button, Center, Input, Text } from 'native-base';
+import { Box, Input, Text } from 'native-base';
 import React, { useState } from 'react';
-import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import DefaultBtn from '../../components/DefaultBtn';
 import authActions from '../../store/auth/actions';
-import colors from '../../styles/colors';
 
 
 function NameScreen({ navigation, route }) {

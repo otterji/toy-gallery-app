@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { NativeBaseProvider, Box, Text, Center, ScrollView, Flex, VStack, Image, Pressable } from 'native-base';
+import { NativeBaseProvider, Box, Text, ScrollView, Flex, Image, Pressable } from 'native-base';
 import magazineActions from '../../store/magazine/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import colors from '../../styles/colors';

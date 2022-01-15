@@ -1,6 +1,6 @@
-import { Text, Image, ScrollView, Box, Pressable, Flex, Center } from 'native-base';
-import React, { useEffect, useRef, useState } from 'react';
-import { Dimensions, View } from 'react-native';
+import { Text, Image, Box, Pressable } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../components/Loading';
 import galleryActions from '../../store/gallery/actions';
