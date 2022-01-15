@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Text, View, ScrollView, Pressable, Modal, Button, VStack, Icon, Input } from 'native-base';
+import { Box, Text, View, ScrollView, Pressable, Modal, Flex, VStack, Icon, Input, Center } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import { AntDesign } from "@expo/vector-icons"
 import DefaultBtn from '../DefaultBtn';
@@ -135,12 +135,14 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
         return (
           <TouchableWithoutFeedback onPress={() => setOpen(true)}>
             <View style={{ width: wrapperWidth / 2, paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }}>
-              <Box style={{ height: 170, borderRadius: 10, backgroundColor: "#D5C9A5" }}>
-                <Icon color="black" as={<AntDesign name="addfolder" />} size="sm" />
-              </Box>
+              <Center style={{ height: 170, borderRadius: 10, borderColor: "#D5C9A5", borderWidth: 1, borderStyle: 'dashed' }}>
+                <Flex>
+                  <Icon color="#D5C9A5" as={<AntDesign name="pluscircleo" />} size="lg" ml={5}/>
+                  <Text color="#6B4B37" fontFamily="Roboto_400Regular" mt={1}>Add Exhibition</Text>
+                </Flex>
+              </Center>
             </View>
           </TouchableWithoutFeedback>
-
         )
       default:
         return (<DefaultBtn text="Bring in to my gallery" onPressBtn={() => setOpen(true)}></DefaultBtn>)

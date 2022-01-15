@@ -77,7 +77,6 @@ export function* postGalleryGroupSaga({ name, desc, callback }) {
 };
 
 export function* postGalleryPieceSaga({ pieceId, galleryId, callback }) {
-  console.log('postGalPiece')
   const url = createAPI('/gallery/piece');
   const body = {
     pieceId,
