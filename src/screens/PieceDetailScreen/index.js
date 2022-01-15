@@ -1,8 +1,7 @@
-import { Box, Text, Image, ScrollView, Pressable, Modal, Button, VStack, FormControl, Input } from 'native-base';
+import { Box, Text, Image, ScrollView, Pressable, Modal, Button, VStack, FormControl, Input, Toast, useToast } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { TextPropTypes, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import DefaultBtn from '../../components/DefaultBtn';
 import pieceActions from '../../store/piece/actions';
 import { initialState } from '../../store/piece/reducer';
 import { AntDesign } from "@expo/vector-icons"
@@ -17,6 +16,7 @@ const screen = Dimensions.get('window');
 
 
 function PieceDetailScreen({ navigation, route }) {
+  const toast = useToast()
   const { navigate } = navigation;
   const { params } = route;
   const { pieceId } = params;
@@ -39,11 +39,6 @@ function PieceDetailScreen({ navigation, route }) {
       nationality: ""
     }
   });
-  const [showModal, setShowModal] = useState(false);
-  const [showModal2, setShowModal2] = useState(false);
-  const [selectedExhibition, setSelectedExhibition] = useState({
-    id: null,
-  });
 
   useEffect(() => {
     return () => {
@@ -61,12 +56,6 @@ function PieceDetailScreen({ navigation, route }) {
   }, [pieceDetail]);
 
   useEffect(() => { }, [targetPiece]);
-
-  const onPressCreateBtn = ({ name, desc }) => {
-    setShowModal2(false);
-    dispatch(pieceActions.postExhibition({ name, desc }));
-  };
-
 
   return (
     loading
@@ -97,7 +86,7 @@ function PieceDetailScreen({ navigation, route }) {
             </Pressable>
             <Text fontSize="15px" color={colors.secondary} >{targetPiece.artistInfo.desc}</Text>
             <Box height="38px" />
-            <AddExhibitionModal from="pieceDetail" pieceId={pieceId}></AddExhibitionModal>
+            <AddExhibitionModal from="pieceDetail" pieceId={pieceId}/>
             <Box height="8px" />
           </Box>
         </ScrollView >

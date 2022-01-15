@@ -50,7 +50,7 @@ const imgList = [
 function LandingScreen({ navigation }) {
 
   return (
-    <TouchableWithoutFeedback style={{ width: screen.width, height: screen.height + 50 }}>
+    <TouchableWithoutFeedback style={{ width: screen.width }}>
       <Box marginY={30} marginLeft={26}>
         <Flex direction="row">
           <Text fontSize={45} color={colors.secondary} fontFamily="Roboto_400Regular" paddingTop="4px">e</Text>
@@ -58,11 +58,12 @@ function LandingScreen({ navigation }) {
           <Text fontSize={45} color={colors.secondary} fontFamily="Roboto_400Regular" paddingTop="4px">h</Text>
         </Flex>
         <Text fontSize={14} color="#97806C">
-          {`Our EARTH is a platform that connects upcycling artists and the public. Join the arts movement for the planet. Explore and purchase a variety of upcycling art pieces.`}
+          {`Our EARTH is a platform that connects upcycling artists and the public. Join the arts movement for the planet.
+Explore and purchase a variety of upcycling art pieces.`}
         </Text>
       </Box>
-      <Center backgroundColor={colors.secondary} paddingX={5} flex={1} width={screen.width}>
-        <VStack alignItems="center" width={screen.width} space={7} >
+      <Center backgroundColor={colors.secondary} paddingX={5} width={screen.width} style={{ height: screen.height - 185 }}>
+        <VStack alignItems="center" width={screen.width} space={6}  >
           {imgList.map((x) => (
             <Pressable onPress={() => navigate(`${x.link}`)} key={`landing-${x.id}`}>
               <Image

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Text, View, ScrollView, Pressable, Modal, Flex, VStack, Icon, Input, Center } from 'native-base';
+import { Box, Text, View, ScrollView, Pressable, Modal, Flex, VStack, Icon, Input, Center, Toast, useToast } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import { AntDesign } from "@expo/vector-icons"
 import DefaultBtn from '../DefaultBtn';
@@ -8,7 +8,8 @@ import galleryActions from '../../store/gallery/actions';
 
 
 const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
-  const { getGalGroupLoading, myGalleryList, postGalPieceLoading } = useSelector(state => state.galleryReducer || initialState);
+  const toast = useToast()
+  const { postGalGroupLoading, myGalleryList, postGalPieceLoading } = useSelector(state => state.galleryReducer || initialState);
   const isFromMyPage = from === "MyPage"
   const [mode, setMode] = useState(isFromMyPage ? "create" : "view");
   const [isOpen, setOpen] = useState(false);
@@ -18,6 +19,12 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
   const [galleryList, setGalleryList] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const dispatch = useDispatch();
+
+  const onCloseHandler = () => {
+    setOpen(false);
+    setName('');
+    setDesc('');
+  }
 
   const nameInput = {
     value: name,
@@ -30,8 +37,15 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
   };
 
   const onPressCreateBtn = () => {
-    dispatch(galleryActions.postGalleryGroup({ name, desc, callback: isFromMyPage ? () => setOpen(false) : () => setMode('view') }));
+    dispatch(galleryActions.postGalleryGroup({ name, desc, callback: isFromMyPage ? () => onCloseHandler() : () => setMode('view') }));
   };
+
+  useEffect(() => {
+    return () => {
+      setName('');
+      setDesc('');
+    };
+  }, []);
 
   useEffect(() => {
     dispatch(galleryActions.getMyGalleryList());
@@ -46,14 +60,19 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
     dispatch(galleryActions.postGalleryPiece({
       pieceId,
       galleryId: selectedId,
-      callback: () => setOpen(false),
-    }))
+      callback: () => {
+        setOpen(false);
+      },
+    }));
+
   };
+
+
 
 
   const viewMode = () => {
     return (
-      <Modal isOpen={isOpen} onClose={() => setOpen(false)} >
+      <Modal isOpen={isOpen} onClose={onCloseHandler} >
         <Modal.Content>
           <Modal.CloseButton />
           <Modal.Header>
@@ -98,7 +117,7 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
             </ScrollView >
           </Modal.Body>
           <Modal.Footer>
-            <DefaultBtn text={postGalPieceLoading ? "loading..." : "Exibit"} onPressBtn={() => exhibit()} disabled={false} />
+            <DefaultBtn text={postGalPieceLoading ? "loading..." : "Exibit"} onPressBtn={() => exhibit()} disabled={postGalPieceLoading} />
           </Modal.Footer>
         </Modal.Content>
       </Modal >
@@ -107,7 +126,7 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
 
   const createMode = () => {
     return (
-      <Modal isOpen={isOpen} onClose={() => setOpen(false)} >
+      <Modal isOpen={isOpen} onClose={onCloseHandler} >
         <Modal.Content>
           <Modal.CloseButton />
           <Modal.Header>
@@ -115,12 +134,12 @@ const AddExhibitionModal = ({ from, wrapperWidth, pieceId }) => {
           </Modal.Header>
           <Modal.Body>
             <Text>Exhibition Name</Text>
-            <Input {...nameInput} />
+            <Input {...nameInput}  />
             <Text>Exhibition Description</Text>
-            <Input {...descInput} />
+            <Input {...descInput} multiline minHeight={100} textAlignVertical='top'/>
           </Modal.Body>
           <Modal.Footer>
-            <DefaultBtn text="Create" onPressBtn={() => onPressCreateBtn({ name, desc })} disabled={false} />
+            <DefaultBtn text={postGalGroupLoading ? "Loading..." : "Create"} onPressBtn={() => onPressCreateBtn({ name, desc })} disabled={postGalGroupLoading} />
           </Modal.Footer>
         </Modal.Content>
       </Modal >

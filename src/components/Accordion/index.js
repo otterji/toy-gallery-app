@@ -15,7 +15,7 @@ export default function AccordionComponent({
     <NativeBaseProvider>
       <ScrollView >
         <Box>
-          <Accordion index={[0, 1]} style={{ borderWidth: 0, borderRadius: 0 }} allowMultiple>
+          <Accordion index={[0, 1, 2]} style={{ borderWidth: 0, borderRadius: 0 }} allowMultiple>
             {
               list.map((x) => (
                 <Accordion.Item key={`accordion-${x.id}`}>

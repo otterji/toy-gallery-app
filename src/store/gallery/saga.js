@@ -58,12 +58,6 @@ export function* postGalleryGroupSaga({ name, desc, callback }) {
     });
     yield put({ type: galleryConstants.GET_MY_GALLERY_LIST.REQUEST });
     yield callback();
-    yield Toast.show({
-      title: 'Successfully added! :)',
-      placement: "top",
-      status: "success",
-      duration: 6000,
-    });
   } catch (err) {
     console.log(err)
     yield Toast.show({
