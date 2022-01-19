@@ -58,7 +58,8 @@ function LandingScreen({ navigation }) {
           <Text fontSize={45} color={colors.secondary} fontFamily="Roboto_400Regular" paddingTop="4px">h</Text>
         </Flex>
         <Text fontSize={14} color="#97806C">
-          {`Our EARTH is a platform that connects upcycling artists and the public. Join the arts movement for the planet.
+          {`Our EARTH is a platform that connects upcycling artists and the public.
+Join the arts movement for the planet.
 Explore and purchase a variety of upcycling art pieces.`}
         </Text>
       </Box>
