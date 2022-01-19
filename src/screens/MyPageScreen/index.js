@@ -54,11 +54,11 @@ function MyPageScreen({ navigation, route }) {
     return (
       <Pressable
         onPress={() => toast.show({
-        title: "Sorry :(",
-        status: "warning",
-        description: "This is not available in Betaflight",
-        placement: "top"
-      })}>
+          title: "Sorry :(",
+          status: "warning",
+          description: "This is not available in Betaflight",
+          placement: "top"
+        })}>
         <Stack alignItems="center" >
           <HStack space={20} width="100%" height="74px" alignItems="center">
             {
@@ -98,7 +98,7 @@ function MyPageScreen({ navigation, route }) {
           paddingRight="10px"
           style={{ backgroundColor: '#D5C9A5', borderRadius: 3, justifyContent: 'center' }}
         >
-          <Text color={colors.textPrimary} > 
+          <Text color={colors.textPrimary} fontFamily="Roboto_400Regular">
             My Badge
           </Text>
         </Box>
@@ -108,9 +108,15 @@ function MyPageScreen({ navigation, route }) {
           description: "This is not available in Betaflight",
           placement: "top"
         })} >
-          <Flex direction='row' mt={3}>
-            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/medal+(1).png" }} alt="mypage-badge" width="100px" height="100px" />
-            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/medal.png" }} alt="mypage-badge" width="100px" height="100px" />
+          <Flex direction='row' justifyContent='space-between' mt={3}>
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/badge1.png" }} alt="mypage-badge" width="100px" height="100px" />
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/badge2.png" }} alt="mypage-badge" width="100px" height="100px" />
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/badge3.png" }} alt="mypage-badge" width="100px" height="100px" />
+          </Flex>
+          <Flex direction='row' justifyContent='space-between' mt={3}>
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/badge4.png" }} alt="mypage-badge" width="100px" height="100px" />
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/badge5.png" }} alt="mypage-badge" width="100px" height="100px" />
+            <Image source={{ uri: "https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/badge6.png" }} alt="mypage-badge" width="100px" height="100px" />
           </Flex>
         </Pressable >
       </Box>

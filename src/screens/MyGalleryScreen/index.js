@@ -45,35 +45,35 @@ function MyGalleryScreen({ navigation, route }) {
     <>
       {
         getGalGroupLoading
-        ?
+          ?
           (
-          <ScrollView>
-            <View onLayout={onViewLayout} style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-              <AddExhibitionModal wrapperWidth={wrapperWidth} from="MyPage" />
-              <Loading />
-            </View>
-          </ScrollView>
+            <ScrollView>
+              <View onLayout={onViewLayout} style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                <AddExhibitionModal wrapperWidth={wrapperWidth} from="MyPage" />
+                <Loading />
+              </View>
+            </ScrollView>
           )
-        :
-        (
-          <ScrollView>
-            <View onLayout={onViewLayout} style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
-              <AddExhibitionModal wrapperWidth={wrapperWidth} from="MyPage" />
-              {
-                galleryList.map((x) => (
-                  <Pressable style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }} key={`gallery-myList-${x.id}`} onPress={() => navigate('MyGalleryDetail', { gallery: x })}>
-                    <Image key={x.imageLink} style={{ borderWidth: 3, borderRadius: 10 }} source={{ uri: x.imageLink || 'https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/noImg.png' }} alt="my-gallery-image" height={170} />
-                    <Text fontFamily="Roboto_400Regular" fontSize={18} color="#6B4B37" px={1}>{x.name}</Text>
-                    <Flex direction="row" justifyContent="space-between" px={1}>
-                      <Text fontFamily="Roboto_400Regular" color="#97806C" mr={3}>Works</Text>
-                      <Text fontFamily="Roboto_400Regular" color="#6B4B37" fontSize={10} mt={1}>{renderDate(x.updatedAt)}</Text>
-                    </Flex>
-                  </Pressable>
-                ))
-              }
-            </View>
-          </ScrollView>
-        )
+          :
+          (
+            <ScrollView>
+              <View onLayout={onViewLayout} style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+                <AddExhibitionModal wrapperWidth={wrapperWidth} from="MyPage" />
+                {
+                  galleryList.map((x) => (
+                    <Pressable style={{ width: '50%', paddingLeft: 10, paddingRight: 5, paddingTop: 10, paddingBottom: 10 }} key={`gallery-myList-${x.id}`} onPress={() => navigate('MyGalleryDetail', { gallery: x })}>
+                      <Image key={x.imageLink} style={{ borderWidth: 3, borderRadius: 10 }} source={{ uri: x.imageLink || 'https://sumisa-canvas-daechi.s3.ap-northeast-2.amazonaws.com/earth/noImg.png' }} alt="my-gallery-image" height={170} />
+                      <Text fontFamily="Roboto_400Regular" fontSize={18} color="#6B4B37" px={1}>{x.name}</Text>
+                      <Flex direction="row" justifyContent="space-between" px={1}>
+                        <Text fontFamily="Roboto_400Regular" color="#97806C" mr={3}>Works</Text>
+                        <Text fontFamily="Roboto_400Regular" color="#6B4B37" fontSize={10} mt={1}>{renderDate(x.updatedAt)}</Text>
+                      </Flex>
+                    </Pressable>
+                  ))
+                }
+              </View>
+            </ScrollView>
+          )
       }
     </>
   )

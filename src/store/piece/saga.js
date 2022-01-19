@@ -156,6 +156,9 @@ export function* deleteArtistFavoriteSaga({ artistId }) {
     yield put({
       type: pieceConstants.DELETE_ARTIST_FAVORITE.SUCCESS,
     });
+    yield put({
+      type: pieceConstants.GET_ALL_ARTISTS.REQUEST,
+    });
     yield Toast.show({
       title: 'Successfully deleted! :)',
       placement: "top",
